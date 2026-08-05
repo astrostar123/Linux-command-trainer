@@ -16,11 +16,11 @@ Built with **pure HTML5, CSS3 and vanilla ES6 JavaScript**. No frameworks, no bu
 - Pipes (`|`), redirection (`>`, `>>`), environment variables (`$VAR`, `export`), `sudo`
 - Tab completion for commands **and** paths, command history with ↑/↓, `Ctrl+L` to clear
 - Simulated services (`systemctl start/stop/enable nginx`…) and package manager
-- **12 practice challenges** verified against the *actual sandbox state* — not string matching
+- **12 practice challenges** verified against the *actual sandbox state* not string matching
 - A rotating **daily challenge** that feeds your streak
 
 ### 📚 Command database
-- **166 fully documented commands** across **24 categories** — every entry handwritten with description, syntax, parameter table, real examples with output, common mistakes, pro tips and related commands
+- **166 fully documented commands** across **24 categories** every entry handwritten with description, syntax, parameter table, real examples with output, common mistakes, pro tips and related commands
 - Instant multi-word search + category & difficulty filters
 - Detail pages with copy buttons, animated typing demo, personal notes and printable cheat sheets
 - ⭐ Favorites system
