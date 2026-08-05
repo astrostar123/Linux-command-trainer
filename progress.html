@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progress — Linux Command Trainer</title>
+  <meta name="description" content="Your dashboard: XP, level, streak, quiz history chart, achievements and local leaderboard.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="section" style="padding-top:34px">
+      <h1>Dashboard</h1>
+      <div class="grid cols-4" id="stat-cards" style="margin-top:14px"></div>
+      <div class="grid cols-2 section" style="padding-top:24px">
+        <div class="card">
+          <h3>Quiz scores — last 14</h3>
+          <svg class="chart" id="score-chart" viewBox="0 0 560 180" preserveAspectRatio="none" role="img" aria-label="Recent quiz scores"></svg>
+        </div>
+        <div class="card">
+          <h3>Category completion</h3>
+          <div id="cat-progress"></div>
+        </div>
+      </div>
+      <div class="grid cols-2 section" style="padding-top:0">
+        <div class="card">
+          <h3>Achievements</h3>
+          <div id="achievements" class="grid" style="gap:12px"></div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <h3>Daily goal</h3>
+            <div id="daily-goal"></div>
+          </div>
+          <div class="card">
+            <h3>Local leaderboard</h3>
+            <p class="muted" style="font-size:.85rem">Best quiz runs on this device.</p>
+            <div id="leaderboard"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="js/progress.js"></script>
+</body>
+</html>

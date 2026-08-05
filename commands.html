@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commands — Linux Command Trainer</title>
+  <meta name="description" content="Browse and search 160+ documented Linux commands with syntax, examples, common mistakes and quizzes.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <div id="cmd-list-view">
+      <section class="section" style="padding-top:34px">
+        <h1>Command reference</h1>
+        <p class="muted">Every command with syntax, parameters, real examples, common mistakes and tips.</p>
+        <div class="card raised" style="margin-top:14px">
+          <div class="search-row">
+            <input class="input" id="cmd-search" type="search" placeholder="Search by name, description or alias…" aria-label="Search commands">
+            <select class="input" id="cmd-cat" style="max-width:230px" aria-label="Filter by category"><option value="">All categories</option></select>
+            <select class="input" id="cmd-diff" style="max-width:180px" aria-label="Filter by difficulty">
+              <option value="">Any difficulty</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+          <p class="muted" id="cmd-count" style="margin:10px 0 0;font-size:.88rem"></p>
+        </div>
+        <div class="grid cols-3" id="cmd-grid" style="margin-top:18px"></div>
+      </section>
+    </div>
+    <div id="cmd-detail-view" hidden>
+      <section class="section" style="padding-top:34px" id="cmd-detail"></section>
+    </div>
+  </main>
+  <script type="module" src="js/commands.js"></script>
+</body>
+</html>

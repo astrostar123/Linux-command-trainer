@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Linux Command Trainer</title>
+  <meta name="description" content="About the Linux Command Trainer project: how it works, tech stack and contributing.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="section" style="padding-top:34px;max-width:760px">
+      <h1>About this project</h1>
+      <p class="lede muted">Linux Command Trainer is an open-source, framework-free web app for learning the Linux command line by doing — built with plain HTML, CSS and modern JavaScript.</p>
+      <div class="card" style="margin-top:16px">
+        <h3>How it works</h3>
+        <p>The command reference is a single JSON database of 160+ commands across 24 categories, each with syntax, parameters, worked examples, common mistakes and tips. The terminal simulator implements a real virtual filesystem in memory — every <code>mkdir</code>, <code>cp</code> and <code>rm</code> genuinely changes state, pipes and redirection work, and practice challenges verify your solutions against that live state rather than pattern-matching your keystrokes.</p>
+        <p>Quizzes are generated from the same database: hand-written questions for tricky commands, plus auto-generated multiple-choice, fill-in-the-blank and true/false questions, so the pool stays fresh. All progress — XP, streaks, achievements, notes, favorites — lives in your browser's Local Storage. Nothing is sent anywhere.</p>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3>Tech stack</h3>
+        <p>HTML5, CSS3 (custom properties, glassmorphism, dark/light themes) and vanilla ES modules. No frameworks, no build step, no dependencies. Works offline as a PWA once visited. Deployable to GitHub Pages as-is.</p>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3>Contributing</h3>
+        <p>Found a mistake in a command page, or want to add one? Every command is one JSON object in <code>data/commands.json</code> — see the README for the schema and the contribution guide. Bug reports and pull requests are welcome.</p>
+        <p style="margin-bottom:0">Released under the <a href="https://opensource.org/license/mit" rel="noopener">MIT License</a>.</p>
+      </div>
+    </section>
+  </main>
+  <script type="module">
+    import { renderChrome } from "./js/app.js";
+    renderChrome("about.html");
+  </script>
+</body>
+</html>

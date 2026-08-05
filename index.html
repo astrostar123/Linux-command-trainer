@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linux Command Trainer — learn the shell by using it</title>
+  <meta name="description" content="Interactive Linux tutorials: 160+ documented commands, a realistic terminal simulator, lessons, quizzes and practice challenges.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Interactive Linux training</div>
+        <h1>Learn the shell<br>by <em style="color:var(--green);font-style:normal">using it.</em></h1>
+        <p class="lede">160+ fully documented commands, a realistic terminal simulator, structured lessons, quizzes and hands-on challenges — all in your browser, nothing to install, nothing to break.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="simulator.html">Open the terminal</a>
+          <a class="btn" id="continue-btn" href="lessons.html">Continue learning</a>
+        </div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </div>
+      <div class="terminal raised" aria-label="Live terminal demo">
+        <div class="terminal-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="title">student@trainer — try me, it's real</span></div>
+        <div class="terminal-body" id="hero-terminal"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card raised">
+        <h3 style="margin-bottom:12px">Search 160+ Linux commands</h3>
+        <div class="search-row">
+          <input class="input" id="home-search" type="search" placeholder="Try: permissions, tar, find files by size…" aria-label="Search commands">
+          <a class="btn" href="commands.html">Browse all</a>
+        </div>
+        <div id="home-results" class="grid cols-3" style="margin-top:16px"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid cols-3">
+        <div class="card" id="cotd-card">
+          <div class="eyebrow">Command of the day</div>
+          <div id="cotd"></div>
+        </div>
+        <div class="card" id="daily-card">
+          <div class="eyebrow">Daily challenge</div>
+          <div id="daily"></div>
+        </div>
+        <div class="card">
+          <div class="eyebrow">Your progress</div>
+          <div id="home-progress"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Learning roadmap</h2>
+        <a href="lessons.html">All lessons →</a>
+      </div>
+      <div class="grid cols-4" id="roadmap"></div>
+    </section>
+
+    <section class="section" id="recent-section" hidden>
+      <div class="section-head"><h2>Recently viewed commands</h2></div>
+      <div class="tag-row" id="recent-cmds"></div>
+    </section>
+
+  </main>
+  <script type="module" src="js/home.js"></script>
+</body>
+</html>

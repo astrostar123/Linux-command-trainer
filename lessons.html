@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lessons — Linux Command Trainer</title>
+  <meta name="description" content="Structured Linux learning paths from absolute basics to advanced administration.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="section" style="padding-top:34px">
+      <div id="lesson-list-view">
+        <h1>Lessons</h1>
+        <p class="muted">A structured path from first command to confident admin. Each lesson ends with a mini quiz and hands-on tasks.</p>
+        <div id="lesson-list" style="margin-top:18px;max-width:760px"></div>
+      </div>
+      <div id="lesson-view" hidden>
+        <div id="lesson-content" class="lesson-body" style="max-width:780px"></div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="js/lessons.js"></script>
+</body>
+</html>

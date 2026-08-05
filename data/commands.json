@@ -1,0 +1,6906 @@
+[
+ {
+  "name": "ls",
+  "aliases": [
+   "list",
+   "dir"
+  ],
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "List directory contents, including file names, sizes, permissions and timestamps.",
+  "syntax": "ls [options] [path...]",
+  "params": [
+   [
+    "-l",
+    "Long format: permissions, owner, size, date"
+   ],
+   [
+    "-a",
+    "Include hidden files (names starting with .)"
+   ],
+   [
+    "-h",
+    "Human-readable sizes (K, M, G) with -l"
+   ],
+   [
+    "-t",
+    "Sort by modification time, newest first"
+   ],
+   [
+    "-R",
+    "Recurse into subdirectories"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ls -la /etc",
+    "out": "drwxr-xr-x  2 root root 4096 Aug  4 09:12 apt\n-rw-r--r--  1 root root 3028 Jul 30 14:02 fstab"
+   },
+   {
+    "cmd": "ls -lh",
+    "out": "-rw-r--r-- 1 amina amina 2.4M Aug  5 10:31 report.pdf"
+   }
+  ],
+  "mistakes": [
+   "Forgetting -a and concluding a hidden config file does not exist."
+  ],
+  "tips": [
+   "Combine flags: ls -lah gives the most useful everyday view."
+  ],
+  "related": [
+   "cd",
+   "pwd",
+   "tree",
+   "stat"
+  ],
+  "quiz": [
+   {
+    "q": "Which ls option shows hidden files?",
+    "options": [
+     "-l",
+     "-a",
+     "-h",
+     "-R"
+    ],
+    "answer": 1,
+    "explain": "-a (all) includes entries whose names begin with a dot."
+   }
+  ]
+ },
+ {
+  "name": "cp",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Copy files and directories from one location to another.",
+  "syntax": "cp [options] source... destination",
+  "params": [
+   [
+    "-r",
+    "Copy directories recursively"
+   ],
+   [
+    "-i",
+    "Prompt before overwriting"
+   ],
+   [
+    "-p",
+    "Preserve mode, ownership and timestamps"
+   ],
+   [
+    "-v",
+    "Verbose: show each file copied"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "cp notes.txt backup.txt",
+    "out": ""
+   },
+   {
+    "cmd": "cp -rv project/ /tmp/project-backup/",
+    "out": "'project/main.py' -> '/tmp/project-backup/main.py'"
+   }
+  ],
+  "mistakes": [
+   "Copying a directory without -r fails with 'omitting directory'.",
+   "Overwriting files silently \u2014 use -i when unsure."
+  ],
+  "tips": [
+   "cp -a is a common 'archive' shorthand for -rp plus symlink preservation."
+  ],
+  "related": [
+   "mv",
+   "rsync",
+   "rm"
+  ],
+  "quiz": [
+   {
+    "q": "What does cp need to copy a whole directory?",
+    "options": [
+     "-d",
+     "-a or -r",
+     "-f",
+     "nothing extra"
+    ],
+    "answer": 1,
+    "explain": "Directories require recursive copying with -r (or -a)."
+   }
+  ]
+ },
+ {
+  "name": "mv",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Move or rename files and directories.",
+  "syntax": "mv [options] source... destination",
+  "params": [
+   [
+    "-i",
+    "Prompt before overwriting"
+   ],
+   [
+    "-n",
+    "Never overwrite an existing file"
+   ],
+   [
+    "-v",
+    "Verbose output"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "mv draft.txt final.txt",
+    "out": ""
+   },
+   {
+    "cmd": "mv *.log /var/tmp/",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "mv silently overwrites the destination by default \u2014 data loss is instant and permanent."
+  ],
+  "tips": [
+   "Renaming is just moving to a new name in the same directory; no -r is needed for directories."
+  ],
+  "related": [
+   "cp",
+   "rm",
+   "rename"
+  ]
+ },
+ {
+  "name": "rm",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Remove files or directories. There is no trash bin \u2014 deletion is permanent.",
+  "syntax": "rm [options] file...",
+  "params": [
+   [
+    "-r",
+    "Recursively delete directories and contents"
+   ],
+   [
+    "-f",
+    "Force: ignore missing files, never prompt"
+   ],
+   [
+    "-i",
+    "Prompt before every removal"
+   ],
+   [
+    "-v",
+    "Show what is being removed"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "rm old.log",
+    "out": ""
+   },
+   {
+    "cmd": "rm -ri drafts/",
+    "out": "rm: descend into directory 'drafts/'? y"
+   }
+  ],
+  "mistakes": [
+   "rm -rf with a mistyped path (or a stray space, like rm -rf / tmp) can destroy a system.",
+   "Assuming files go to a recycle bin \u2014 they do not."
+  ],
+  "tips": [
+   "Run ls with the same glob first to preview exactly what rm will match."
+  ],
+  "related": [
+   "rmdir",
+   "mv",
+   "find"
+  ],
+  "quiz": [
+   {
+    "q": "What does rm -rf do?",
+    "options": [
+     "Moves files to trash",
+     "Deletes recursively without prompting",
+     "Renames files",
+     "Lists files before deleting"
+    ],
+    "answer": 1,
+    "explain": "-r recurses into directories, -f suppresses prompts and errors."
+   }
+  ]
+ },
+ {
+  "name": "touch",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Create an empty file, or update the access/modification timestamps of an existing one.",
+  "syntax": "touch [options] file...",
+  "params": [
+   [
+    "-a",
+    "Change only the access time"
+   ],
+   [
+    "-m",
+    "Change only the modification time"
+   ],
+   [
+    "-t",
+    "Use a specific timestamp instead of now"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "touch todo.txt",
+    "out": ""
+   },
+   {
+    "cmd": "touch file1 file2 file3",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Expecting touch to open an editor \u2014 it only creates/updates the file."
+  ],
+  "tips": [
+   "Great for quickly creating placeholder files when testing scripts and globs."
+  ],
+  "related": [
+   "mkdir",
+   "cat",
+   "stat"
+  ]
+ },
+ {
+  "name": "cat",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Concatenate files and print their contents to standard output.",
+  "syntax": "cat [options] [file...]",
+  "params": [
+   [
+    "-n",
+    "Number all output lines"
+   ],
+   [
+    "-A",
+    "Show non-printing characters, tabs and line ends"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "cat /etc/hostname",
+    "out": "webserver01"
+   },
+   {
+    "cmd": "cat part1.txt part2.txt > whole.txt",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Using cat on huge files \u2014 use less to page instead of flooding the terminal."
+  ],
+  "tips": [
+   "cat -n file is a quick way to find a line number before editing."
+  ],
+  "related": [
+   "less",
+   "head",
+   "tail",
+   "tac"
+  ],
+  "quiz": [
+   {
+    "q": "What does cat a.txt b.txt > c.txt do?",
+    "options": [
+     "Compares a and b",
+     "Joins a and b into c",
+     "Moves a into b",
+     "Prints c twice"
+    ],
+    "answer": 1,
+    "explain": "cat concatenates its inputs; > redirects the result into c.txt."
+   }
+  ]
+ },
+ {
+  "name": "less",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "View a file one screen at a time, with scrolling and searching.",
+  "syntax": "less [options] file",
+  "params": [
+   [
+    "-N",
+    "Show line numbers"
+   ],
+   [
+    "+F",
+    "Follow the file as it grows (like tail -f)"
+   ],
+   [
+    "-S",
+    "Chop long lines instead of wrapping"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "less /var/log/syslog",
+    "out": "(interactive pager: space = next page, /text = search, q = quit)"
+   }
+  ],
+  "mistakes": [
+   "Not knowing q quits \u2014 many beginners get 'stuck' in less."
+  ],
+  "tips": [
+   "Inside less, press / to search forward and n to jump to the next match."
+  ],
+  "related": [
+   "cat",
+   "more",
+   "head",
+   "tail"
+  ]
+ },
+ {
+  "name": "head",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Print the first lines of a file (10 by default).",
+  "syntax": "head [-n count] [file...]",
+  "params": [
+   [
+    "-n N",
+    "Show the first N lines"
+   ],
+   [
+    "-c N",
+    "Show the first N bytes"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "head -n 3 /etc/passwd",
+    "out": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin"
+   }
+  ],
+  "mistakes": [
+   "Confusing head (start of file) with tail (end of file)."
+  ],
+  "tips": [
+   "Pipe into head to preview command output: ps aux | head."
+  ],
+  "related": [
+   "tail",
+   "cat",
+   "less"
+  ]
+ },
+ {
+  "name": "tail",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Print the last lines of a file; with -f, keep following as it grows.",
+  "syntax": "tail [options] [file...]",
+  "params": [
+   [
+    "-n N",
+    "Show the last N lines"
+   ],
+   [
+    "-f",
+    "Follow: keep printing new lines as they are appended"
+   ],
+   [
+    "-F",
+    "Like -f but reopen the file if it is rotated"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "tail -n 5 /var/log/auth.log",
+    "out": "Aug  5 10:02:11 host sshd[912]: Accepted publickey for amina"
+   },
+   {
+    "cmd": "tail -f /var/log/nginx/access.log",
+    "out": "(streams new requests live; Ctrl+C to stop)"
+   }
+  ],
+  "mistakes": [
+   "Using -f on rotated logs \u2014 use -F so tail survives logrotate."
+  ],
+  "tips": [
+   "tail -f is the classic way to watch a log while reproducing a bug."
+  ],
+  "related": [
+   "head",
+   "less",
+   "journalctl"
+  ],
+  "quiz": [
+   {
+    "q": "Which command watches a log file live?",
+    "options": [
+     "cat -v log",
+     "tail -f log",
+     "head -f log",
+     "less -q log"
+    ],
+    "answer": 1,
+    "explain": "tail -f follows the file and prints new lines as they arrive."
+   }
+  ]
+ },
+ {
+  "name": "ln",
+  "category": "File Management",
+  "difficulty": "intermediate",
+  "description": "Create hard or symbolic (soft) links between files.",
+  "syntax": "ln [-s] target link_name",
+  "params": [
+   [
+    "-s",
+    "Create a symbolic link instead of a hard link"
+   ],
+   [
+    "-f",
+    "Replace the link if it already exists"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ln -s /var/www/html ~/web",
+    "out": ""
+   },
+   {
+    "cmd": "ls -l ~/web",
+    "out": "lrwxrwxrwx 1 amina amina 13 Aug  5 11:00 web -> /var/www/html"
+   }
+  ],
+  "mistakes": [
+   "Reversing the argument order \u2014 the target comes first, the link name second.",
+   "Creating relative symlinks that break when moved."
+  ],
+  "tips": [
+   "Hard links share the same inode; symlinks are just pointers and can cross filesystems."
+  ],
+  "related": [
+   "ls",
+   "cp",
+   "readlink"
+  ]
+ },
+ {
+  "name": "file",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Determine a file's type by inspecting its contents, not its extension.",
+  "syntax": "file [options] file...",
+  "params": [
+   [
+    "-i",
+    "Print MIME type"
+   ],
+   [
+    "-b",
+    "Brief mode: omit the filename"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "file backup.dat",
+    "out": "backup.dat: gzip compressed data, from Unix"
+   },
+   {
+    "cmd": "file /bin/ls",
+    "out": "/bin/ls: ELF 64-bit LSB pie executable, x86-64"
+   }
+  ],
+  "mistakes": [
+   "Trusting file extensions \u2014 Linux ignores them; file inspects magic bytes."
+  ],
+  "tips": [
+   "Handy before extracting an unknown archive or opening a mystery download."
+  ],
+  "related": [
+   "stat",
+   "ls",
+   "xxd"
+  ]
+ },
+ {
+  "name": "stat",
+  "category": "File Management",
+  "difficulty": "intermediate",
+  "description": "Display detailed file metadata: size, permissions, inode, timestamps and more.",
+  "syntax": "stat [options] file...",
+  "params": [
+   [
+    "-c FORMAT",
+    "Custom output format, e.g. %s for size"
+   ],
+   [
+    "-f",
+    "Show filesystem status instead of file status"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "stat notes.txt",
+    "out": "  File: notes.txt\n  Size: 1284    Blocks: 8    IO Block: 4096   regular file\nAccess: (0644/-rw-r--r--)  Uid: (1000/amina)"
+   }
+  ],
+  "mistakes": [
+   "Confusing Change time (metadata) with Modify time (content)."
+  ],
+  "tips": [
+   "stat -c %a file prints permissions in octal \u2014 great for chmod checks."
+  ],
+  "related": [
+   "ls",
+   "file",
+   "touch"
+  ]
+ },
+ {
+  "name": "tree",
+  "category": "File Management",
+  "difficulty": "beginner",
+  "description": "Display a directory hierarchy as an indented tree.",
+  "syntax": "tree [options] [path]",
+  "params": [
+   [
+    "-L N",
+    "Limit depth to N levels"
+   ],
+   [
+    "-a",
+    "Include hidden files"
+   ],
+   [
+    "-d",
+    "Directories only"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "tree -L 2 project",
+    "out": "project\n\u251c\u2500\u2500 src\n\u2502   \u2514\u2500\u2500 main.py\n\u2514\u2500\u2500 README.md"
+   }
+  ],
+  "mistakes": [
+   "Running tree at / without -L and flooding the terminal for minutes."
+  ],
+  "tips": [
+   "Not always preinstalled: sudo apt install tree."
+  ],
+  "related": [
+   "ls",
+   "find",
+   "du"
+  ]
+ },
+ {
+  "name": "tac",
+  "category": "File Management",
+  "difficulty": "intermediate",
+  "description": "Print a file with its lines in reverse order (cat backwards).",
+  "syntax": "tac [file...]",
+  "params": [
+   [
+    "-s SEP",
+    "Use a custom separator instead of newline"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "tac history.log | head -n 3",
+    "out": "(the three most recent lines, newest first)"
+   }
+  ],
+  "mistakes": [
+   "Expecting tac to reverse characters \u2014 it reverses lines."
+  ],
+  "tips": [
+   "Useful for reading logs newest-first without a pager."
+  ],
+  "related": [
+   "cat",
+   "tail",
+   "sort"
+  ]
+ },
+ {
+  "name": "cd",
+  "category": "Directories",
+  "difficulty": "beginner",
+  "description": "Change the shell's current working directory.",
+  "syntax": "cd [directory]",
+  "params": [
+   [
+    "(no argument)",
+    "Jump to your home directory"
+   ],
+   [
+    "-",
+    "Return to the previous directory"
+   ],
+   [
+    "..",
+    "Go up one level"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "cd /var/log",
+    "out": ""
+   },
+   {
+    "cmd": "cd ..",
+    "out": ""
+   },
+   {
+    "cmd": "cd -",
+    "out": "/var/log"
+   }
+  ],
+  "mistakes": [
+   "Typing cd/etc without a space \u2014 the command is cd, the argument is /etc."
+  ],
+  "tips": [
+   "cd with no arguments always takes you home; cd - toggles between two places."
+  ],
+  "related": [
+   "pwd",
+   "ls",
+   "pushd"
+  ],
+  "quiz": [
+   {
+    "q": "What does cd - do?",
+    "options": [
+     "Goes to root",
+     "Goes to the previous directory",
+     "Goes up one level",
+     "Deletes the directory"
+    ],
+    "answer": 1,
+    "explain": "cd - switches back to the directory you were in before."
+   }
+  ]
+ },
+ {
+  "name": "pwd",
+  "category": "Directories",
+  "difficulty": "beginner",
+  "description": "Print the absolute path of the current working directory.",
+  "syntax": "pwd [-P]",
+  "params": [
+   [
+    "-P",
+    "Print the physical path, resolving symlinks"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "pwd",
+    "out": "/home/amina/projects"
+   }
+  ],
+  "mistakes": [
+   "Guessing your location instead of checking \u2014 many rm accidents start here."
+  ],
+  "tips": [
+   "Your prompt usually shows the directory, but pwd gives the full unambiguous path."
+  ],
+  "related": [
+   "cd",
+   "ls"
+  ]
+ },
+ {
+  "name": "mkdir",
+  "category": "Directories",
+  "difficulty": "beginner",
+  "description": "Create new directories.",
+  "syntax": "mkdir [options] directory...",
+  "params": [
+   [
+    "-p",
+    "Create parent directories as needed; no error if it exists"
+   ],
+   [
+    "-m MODE",
+    "Set permissions at creation time"
+   ],
+   [
+    "-v",
+    "Print each created directory"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "mkdir reports",
+    "out": ""
+   },
+   {
+    "cmd": "mkdir -p projects/2026/q3",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Creating nested paths without -p fails if the parents are missing."
+  ],
+  "tips": [
+   "Brace expansion creates several at once: mkdir -p app/{src,tests,docs}."
+  ],
+  "related": [
+   "rmdir",
+   "cd",
+   "touch"
+  ],
+  "quiz": [
+   {
+    "q": "Which flag lets mkdir create missing parent directories?",
+    "options": [
+     "-r",
+     "-p",
+     "-f",
+     "-m"
+    ],
+    "answer": 1,
+    "explain": "-p (parents) builds the whole path in one call."
+   }
+  ]
+ },
+ {
+  "name": "rmdir",
+  "category": "Directories",
+  "difficulty": "beginner",
+  "description": "Remove empty directories only.",
+  "syntax": "rmdir [options] directory...",
+  "params": [
+   [
+    "-p",
+    "Also remove now-empty parent directories"
+   ],
+   [
+    "-v",
+    "Verbose output"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "rmdir old-drafts",
+    "out": ""
+   },
+   {
+    "cmd": "rmdir full-dir",
+    "out": "rmdir: failed to remove 'full-dir': Directory not empty"
+   }
+  ],
+  "mistakes": [
+   "Trying to remove a non-empty directory \u2014 use rm -r for that (carefully)."
+  ],
+  "tips": [
+   "rmdir's refusal to touch non-empty directories makes it the safe choice."
+  ],
+  "related": [
+   "rm",
+   "mkdir"
+  ]
+ },
+ {
+  "name": "basename",
+  "category": "Directories",
+  "difficulty": "intermediate",
+  "description": "Strip the directory part (and optionally a suffix) from a path.",
+  "syntax": "basename path [suffix]",
+  "params": [
+   [
+    "suffix",
+    "Remove a trailing suffix such as .txt"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "basename /var/log/syslog",
+    "out": "syslog"
+   },
+   {
+    "cmd": "basename report.pdf .pdf",
+    "out": "report"
+   }
+  ],
+  "mistakes": [
+   "Confusing basename (filename) with dirname (directory part)."
+  ],
+  "tips": [
+   "Common in shell scripts to derive output filenames from input paths."
+  ],
+  "related": [
+   "dirname",
+   "realpath"
+  ]
+ },
+ {
+  "name": "dirname",
+  "category": "Directories",
+  "difficulty": "intermediate",
+  "description": "Strip the last component from a path, leaving the directory part.",
+  "syntax": "dirname path",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "dirname /var/log/syslog",
+    "out": "/var/log"
+   }
+  ],
+  "mistakes": [
+   "Expecting dirname to verify the path exists \u2014 it is pure string manipulation."
+  ],
+  "tips": [
+   "Pair with cd in scripts: cd \"$(dirname \"$0\")\" jumps to the script's own folder."
+  ],
+  "related": [
+   "basename",
+   "realpath",
+   "pwd"
+  ]
+ },
+ {
+  "name": "realpath",
+  "category": "Directories",
+  "difficulty": "intermediate",
+  "description": "Resolve a path to its absolute, symlink-free form.",
+  "syntax": "realpath [options] path...",
+  "params": [
+   [
+    "-e",
+    "Require that the path exists"
+   ],
+   [
+    "--relative-to=DIR",
+    "Print the path relative to DIR"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "realpath ../notes.txt",
+    "out": "/home/amina/notes.txt"
+   }
+  ],
+  "mistakes": [
+   "Assuming relative paths in scripts survive a cd \u2014 resolve them first."
+  ],
+  "tips": [
+   "Great for logging exactly which file a script operated on."
+  ],
+  "related": [
+   "pwd",
+   "basename",
+   "dirname"
+  ]
+ },
+ {
+  "name": "chmod",
+  "category": "Permissions",
+  "difficulty": "intermediate",
+  "description": "Change the permission bits (read, write, execute) of files and directories.",
+  "syntax": "chmod [options] mode file...",
+  "params": [
+   [
+    "u/g/o/a",
+    "Which users: owner, group, others, all"
+   ],
+   [
+    "+ - =",
+    "Add, remove, or set exactly"
+   ],
+   [
+    "r/w/x",
+    "Read, write, execute bits"
+   ],
+   [
+    "-R",
+    "Apply recursively"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "chmod +x deploy.sh",
+    "out": ""
+   },
+   {
+    "cmd": "chmod 644 notes.txt",
+    "out": ""
+   },
+   {
+    "cmd": "chmod -R go-w shared/",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "chmod 777 as a fix-everything \u2014 it makes files world-writable and is a security hole.",
+   "Forgetting execute (x) on directories, which is required to enter them."
+  ],
+  "tips": [
+   "Octal digits are r=4, w=2, x=1 summed: 755 = rwxr-xr-x."
+  ],
+  "related": [
+   "chown",
+   "umask",
+   "ls",
+   "stat"
+  ],
+  "quiz": [
+   {
+    "q": "What permissions does chmod 750 give?",
+    "options": [
+     "rwxr-x---",
+     "rw-r--r--",
+     "rwxrwxrwx",
+     "r-xr-xr-x"
+    ],
+    "answer": 0,
+    "explain": "7=rwx for owner, 5=r-x for group, 0=--- for others."
+   },
+   {
+    "q": "Which command makes script.sh executable?",
+    "options": [
+     "chmod +r script.sh",
+     "chmod +x script.sh",
+     "chown x script.sh",
+     "exec script.sh"
+    ],
+    "answer": 1,
+    "explain": "+x adds the execute bit for all users."
+   }
+  ]
+ },
+ {
+  "name": "chown",
+  "category": "Permissions",
+  "difficulty": "intermediate",
+  "description": "Change the owner (and optionally the group) of files and directories.",
+  "syntax": "chown [options] user[:group] file...",
+  "params": [
+   [
+    "user:group",
+    "New owner and group, e.g. www-data:www-data"
+   ],
+   [
+    "-R",
+    "Apply recursively"
+   ],
+   [
+    "--reference=FILE",
+    "Copy ownership from another file"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo chown amina report.txt",
+    "out": ""
+   },
+   {
+    "cmd": "sudo chown -R www-data:www-data /var/www/html",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Running chown -R on the wrong path (like /) \u2014 always double-check.",
+   "Forgetting sudo: only root can give files away."
+  ],
+  "tips": [
+   "chown user: (with trailing colon) sets the group to that user's login group."
+  ],
+  "related": [
+   "chmod",
+   "chgrp",
+   "ls"
+  ]
+ },
+ {
+  "name": "chgrp",
+  "category": "Permissions",
+  "difficulty": "intermediate",
+  "description": "Change the group ownership of files and directories.",
+  "syntax": "chgrp [options] group file...",
+  "params": [
+   [
+    "-R",
+    "Apply recursively"
+   ],
+   [
+    "-v",
+    "Report every change"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo chgrp developers app.log",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Changing the group without checking that group members have the needed permission bits."
+  ],
+  "tips": [
+   "chown :group does the same job and is one command to remember instead of two."
+  ],
+  "related": [
+   "chown",
+   "chmod",
+   "groups"
+  ]
+ },
+ {
+  "name": "umask",
+  "category": "Permissions",
+  "difficulty": "advanced",
+  "description": "Show or set the default permission mask applied to newly created files.",
+  "syntax": "umask [mode]",
+  "params": [
+   [
+    "mode",
+    "Octal bits to remove from defaults, e.g. 022"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "umask",
+    "out": "0022"
+   },
+   {
+    "cmd": "umask 077",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Thinking umask sets permissions \u2014 it subtracts them from the defaults (666 files, 777 dirs)."
+  ],
+  "tips": [
+   "umask 022 \u2192 files 644, dirs 755. umask 077 keeps everything private to you."
+  ],
+  "related": [
+   "chmod",
+   "touch",
+   "mkdir"
+  ]
+ },
+ {
+  "name": "sudo",
+  "category": "Permissions",
+  "difficulty": "beginner",
+  "description": "Run a single command with superuser (or another user's) privileges.",
+  "syntax": "sudo [options] command",
+  "params": [
+   [
+    "-u user",
+    "Run as a specific user instead of root"
+   ],
+   [
+    "-i",
+    "Start a full root login shell"
+   ],
+   [
+    "-l",
+    "List what you are allowed to run"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo apt update",
+    "out": "Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease\nReading package lists... Done"
+   },
+   {
+    "cmd": "sudo -u postgres psql",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Prefixing everything with sudo out of habit \u2014 root mistakes are unrecoverable.",
+   "sudo cd /root fails: cd is a shell builtin, not a program."
+  ],
+  "tips": [
+   "sudo !! reruns the previous command with sudo \u2014 a classic time saver."
+  ],
+  "related": [
+   "su",
+   "chmod",
+   "chown",
+   "visudo"
+  ],
+  "quiz": [
+   {
+    "q": "Why does 'sudo cd /root' fail?",
+    "options": [
+     "/root doesn't exist",
+     "cd is a shell builtin, not an executable",
+     "sudo can't change directories ever",
+     "You need sudo -R"
+    ],
+    "answer": 1,
+    "explain": "sudo runs programs; cd only exists inside the shell process."
+   }
+  ]
+ },
+ {
+  "name": "su",
+  "category": "Permissions",
+  "difficulty": "intermediate",
+  "description": "Switch to another user account (root by default) in the current terminal.",
+  "syntax": "su [-] [username]",
+  "params": [
+   [
+    "-",
+    "Start a login shell with the target user's full environment"
+   ],
+   [
+    "-c CMD",
+    "Run one command as the target user"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "su - deploy",
+    "out": "Password:"
+   },
+   {
+    "cmd": "su -c 'systemctl restart nginx'",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Omitting the dash and inheriting your old environment, which breaks PATH-dependent tools."
+  ],
+  "tips": [
+   "On sudo-based systems (Ubuntu), prefer sudo -i over su for a root shell."
+  ],
+  "related": [
+   "sudo",
+   "whoami",
+   "exit"
+  ]
+ },
+ {
+  "name": "useradd",
+  "category": "Users",
+  "difficulty": "intermediate",
+  "description": "Create a new user account (low-level tool).",
+  "syntax": "sudo useradd [options] username",
+  "params": [
+   [
+    "-m",
+    "Create the home directory"
+   ],
+   [
+    "-s SHELL",
+    "Set the login shell, e.g. /bin/bash"
+   ],
+   [
+    "-G groups",
+    "Add to supplementary groups"
+   ],
+   [
+    "-c COMMENT",
+    "Full name / description"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo useradd -m -s /bin/bash -G sudo amina",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Forgetting -m and ending up with a user who has no home directory.",
+   "Forgetting to set a password afterwards with passwd."
+  ],
+  "tips": [
+   "On Debian/Ubuntu, adduser is a friendlier interactive wrapper."
+  ],
+  "related": [
+   "passwd",
+   "usermod",
+   "userdel",
+   "adduser"
+  ],
+  "quiz": [
+   {
+    "q": "Which useradd option creates the home directory?",
+    "options": [
+     "-h",
+     "-d",
+     "-m",
+     "-H"
+    ],
+    "answer": 2,
+    "explain": "-m makes /home/username and copies /etc/skel into it."
+   }
+  ]
+ },
+ {
+  "name": "usermod",
+  "category": "Users",
+  "difficulty": "intermediate",
+  "description": "Modify an existing user account: groups, shell, home, lock status.",
+  "syntax": "sudo usermod [options] username",
+  "params": [
+   [
+    "-aG groups",
+    "Append to supplementary groups (always pair -a with -G)"
+   ],
+   [
+    "-s SHELL",
+    "Change login shell"
+   ],
+   [
+    "-L / -U",
+    "Lock / unlock the account"
+   ],
+   [
+    "-d DIR -m",
+    "Move the home directory"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo usermod -aG docker amina",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Using -G without -a, which replaces all existing groups instead of adding one."
+  ],
+  "tips": [
+   "Group changes take effect at next login \u2014 or immediately via newgrp."
+  ],
+  "related": [
+   "useradd",
+   "groups",
+   "gpasswd",
+   "userdel"
+  ],
+  "quiz": [
+   {
+    "q": "Why must -a accompany -G in usermod?",
+    "options": [
+     "It's required syntax",
+     "-G alone replaces all current groups",
+     "-a sets the password",
+     "-a makes it recursive"
+    ],
+    "answer": 1,
+    "explain": "Without -a (append), -G overwrites the user's group list."
+   }
+  ]
+ },
+ {
+  "name": "userdel",
+  "category": "Users",
+  "difficulty": "intermediate",
+  "description": "Delete a user account.",
+  "syntax": "sudo userdel [-r] username",
+  "params": [
+   [
+    "-r",
+    "Also remove the home directory and mail spool"
+   ],
+   [
+    "-f",
+    "Force removal even if the user is logged in"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo userdel -r contractor",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Deleting the account but leaving orphaned files owned by a recycled UID."
+  ],
+  "tips": [
+   "find / -uid <old-uid> locates leftover files after deletion."
+  ],
+  "related": [
+   "useradd",
+   "usermod",
+   "passwd"
+  ]
+ },
+ {
+  "name": "passwd",
+  "category": "Users",
+  "difficulty": "beginner",
+  "description": "Change a user's password, or lock/expire an account.",
+  "syntax": "passwd [options] [username]",
+  "params": [
+   [
+    "-l / -u",
+    "Lock / unlock the account"
+   ],
+   [
+    "-e",
+    "Expire the password: force change at next login"
+   ],
+   [
+    "-S",
+    "Show password status"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "passwd",
+    "out": "Changing password for amina.\nCurrent password:"
+   },
+   {
+    "cmd": "sudo passwd -e newhire",
+    "out": "passwd: password changed."
+   }
+  ],
+  "mistakes": [
+   "Choosing weak passwords \u2014 PAM may reject them with 'BAD PASSWORD'."
+  ],
+  "tips": [
+   "Regular users change their own password; root can change anyone's without knowing the old one."
+  ],
+  "related": [
+   "useradd",
+   "chage",
+   "su"
+  ]
+ },
+ {
+  "name": "whoami",
+  "category": "Users",
+  "difficulty": "beginner",
+  "description": "Print the username of the current effective user.",
+  "syntax": "whoami",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "whoami",
+    "out": "amina"
+   },
+   {
+    "cmd": "sudo whoami",
+    "out": "root"
+   }
+  ],
+  "mistakes": [
+   "Confusing whoami (current user) with who (all logged-in users)."
+  ],
+  "tips": [
+   "Perfect sanity check inside scripts before privileged operations."
+  ],
+  "related": [
+   "id",
+   "who",
+   "w"
+  ]
+ },
+ {
+  "name": "id",
+  "category": "Users",
+  "difficulty": "beginner",
+  "description": "Show the current (or given) user's UID, GID and group memberships.",
+  "syntax": "id [username]",
+  "params": [
+   [
+    "-u",
+    "Print only the numeric UID"
+   ],
+   [
+    "-un",
+    "Print only the username"
+   ],
+   [
+    "-G",
+    "Print all group IDs"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "id",
+    "out": "uid=1000(amina) gid=1000(amina) groups=1000(amina),27(sudo),999(docker)"
+   }
+  ],
+  "mistakes": [
+   "Forgetting that new group memberships only appear after re-login."
+  ],
+  "tips": [
+   "id -u returning 0 means you are root \u2014 used in countless install scripts."
+  ],
+  "related": [
+   "whoami",
+   "groups",
+   "usermod"
+  ]
+ },
+ {
+  "name": "who",
+  "category": "Users",
+  "difficulty": "beginner",
+  "description": "List users currently logged in, with terminal and login time.",
+  "syntax": "who [options]",
+  "params": [
+   [
+    "-b",
+    "Show last system boot time"
+   ],
+   [
+    "-q",
+    "Just names and a count"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "who",
+    "out": "amina  pts/0  2026-08-05 09:14 (192.168.1.20)"
+   }
+  ],
+  "mistakes": [
+   "Expecting who to show what users are doing \u2014 that is w."
+  ],
+  "tips": [
+   "who -b is a quick way to see when the machine last rebooted."
+  ],
+  "related": [
+   "w",
+   "whoami",
+   "last"
+  ]
+ },
+ {
+  "name": "w",
+  "category": "Users",
+  "difficulty": "intermediate",
+  "description": "Show who is logged in and what each user is running, plus load averages.",
+  "syntax": "w [username]",
+  "params": [
+   [
+    "-h",
+    "Skip the header"
+   ],
+   [
+    "-s",
+    "Short format"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "w",
+    "out": " 11:20:03 up 6 days,  2:11,  2 users,  load average: 0.15, 0.20, 0.18\nUSER   TTY    LOGIN@  IDLE  WHAT\namina  pts/0  09:14   0.00s w"
+   }
+  ],
+  "mistakes": [
+   "Ignoring the load average line \u2014 it is the fastest health check available."
+  ],
+  "tips": [
+   "Think of w as who + uptime + ps for each session."
+  ],
+  "related": [
+   "who",
+   "uptime",
+   "top"
+  ]
+ },
+ {
+  "name": "last",
+  "category": "Users",
+  "difficulty": "intermediate",
+  "description": "Show the login history from /var/log/wtmp, newest first.",
+  "syntax": "last [options] [username]",
+  "params": [
+   [
+    "-n N",
+    "Limit to N entries"
+   ],
+   [
+    "-x",
+    "Include shutdowns and runlevel changes"
+   ],
+   [
+    "reboot",
+    "Pseudo-user showing boot history"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "last -n 3",
+    "out": "amina  pts/0  192.168.1.20  Tue Aug  4 09:14   still logged in\nreboot system boot 6.8.0-40      Mon Aug  3 07:55"
+   }
+  ],
+  "mistakes": [
+   "Forgetting that wtmp rotates \u2014 old history may live in wtmp.1."
+  ],
+  "tips": [
+   "last reboot lists every boot \u2014 useful for spotting unexpected restarts."
+  ],
+  "related": [
+   "who",
+   "lastlog",
+   "journalctl"
+  ]
+ },
+ {
+  "name": "groupadd",
+  "category": "Groups",
+  "difficulty": "intermediate",
+  "description": "Create a new group.",
+  "syntax": "sudo groupadd [options] groupname",
+  "params": [
+   [
+    "-g GID",
+    "Choose a specific numeric group ID"
+   ],
+   [
+    "-r",
+    "Create a system group (low GID)"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo groupadd developers",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Creating the group but forgetting to add members with usermod -aG."
+  ],
+  "tips": [
+   "Check the result in /etc/group or with getent group developers."
+  ],
+  "related": [
+   "groupdel",
+   "usermod",
+   "gpasswd"
+  ]
+ },
+ {
+  "name": "groupdel",
+  "category": "Groups",
+  "difficulty": "intermediate",
+  "description": "Delete a group.",
+  "syntax": "sudo groupdel groupname",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "sudo groupdel oldteam",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "You cannot delete a group that is any user's primary group."
+  ],
+  "tips": [
+   "Audit files owned by the group first: find / -group oldteam."
+  ],
+  "related": [
+   "groupadd",
+   "groups",
+   "find"
+  ]
+ },
+ {
+  "name": "groups",
+  "category": "Groups",
+  "difficulty": "beginner",
+  "description": "List the groups a user belongs to.",
+  "syntax": "groups [username]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "groups",
+    "out": "amina sudo docker developers"
+   },
+   {
+    "cmd": "groups www-data",
+    "out": "www-data : www-data"
+   }
+  ],
+  "mistakes": [
+   "Checking groups right after usermod -aG and not seeing the change \u2014 log out and back in."
+  ],
+  "tips": [
+   "The first group listed is your primary group."
+  ],
+  "related": [
+   "id",
+   "usermod",
+   "gpasswd"
+  ]
+ },
+ {
+  "name": "gpasswd",
+  "category": "Groups",
+  "difficulty": "advanced",
+  "description": "Administer group membership: add or remove members, set group admins.",
+  "syntax": "sudo gpasswd [options] group",
+  "params": [
+   [
+    "-a user",
+    "Add a user to the group"
+   ],
+   [
+    "-d user",
+    "Remove a user from the group"
+   ],
+   [
+    "-A user",
+    "Make a user the group administrator"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo gpasswd -a amina docker",
+    "out": "Adding user amina to group docker"
+   }
+  ],
+  "mistakes": [
+   "Setting group passwords \u2014 a legacy feature that is almost never appropriate."
+  ],
+  "tips": [
+   "gpasswd -d is the cleanest way to remove a single group membership."
+  ],
+  "related": [
+   "usermod",
+   "groups",
+   "groupadd"
+  ]
+ },
+ {
+  "name": "newgrp",
+  "category": "Groups",
+  "difficulty": "advanced",
+  "description": "Start a new shell with a different primary group, activating fresh memberships without re-login.",
+  "syntax": "newgrp [group]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "newgrp docker",
+    "out": "(new shell where 'docker' is now the active group)"
+   }
+  ],
+  "mistakes": [
+   "Forgetting you are in a nested shell \u2014 exit returns to the old one."
+  ],
+  "tips": [
+   "Fast alternative to logging out after usermod -aG."
+  ],
+  "related": [
+   "groups",
+   "usermod",
+   "id"
+  ]
+ },
+ {
+  "name": "ping",
+  "category": "Networking",
+  "difficulty": "beginner",
+  "description": "Send ICMP echo requests to test whether a host is reachable and how fast it responds.",
+  "syntax": "ping [options] host",
+  "params": [
+   [
+    "-c N",
+    "Stop after N packets"
+   ],
+   [
+    "-i SEC",
+    "Interval between packets"
+   ],
+   [
+    "-4 / -6",
+    "Force IPv4 / IPv6"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ping -c 3 example.com",
+    "out": "64 bytes from 93.184.215.14: icmp_seq=1 ttl=56 time=12.4 ms\n--- example.com ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss"
+   }
+  ],
+  "mistakes": [
+   "Forgetting -c on Linux \u2014 ping runs forever until Ctrl+C.",
+   "Assuming no reply means the host is down; many firewalls simply drop ICMP."
+  ],
+  "tips": [
+   "Ping the gateway first, then a public IP, then a hostname \u2014 that isolates LAN vs internet vs DNS problems."
+  ],
+  "related": [
+   "traceroute",
+   "ip",
+   "dig",
+   "curl"
+  ],
+  "quiz": [
+   {
+    "q": "ping works but 'ping google.com' fails while 'ping 8.8.8.8' succeeds. Likely cause?",
+    "options": [
+     "Cable unplugged",
+     "DNS problem",
+     "Firewall blocks all traffic",
+     "Router is down"
+    ],
+    "answer": 1,
+    "explain": "IP connectivity works; only name resolution is failing."
+   }
+  ]
+ },
+ {
+  "name": "ip",
+  "category": "Networking",
+  "difficulty": "intermediate",
+  "description": "Show and configure network interfaces, addresses, routes and neighbors (modern replacement for ifconfig/route).",
+  "syntax": "ip [object] [command]",
+  "params": [
+   [
+    "addr",
+    "Show/modify IP addresses (ip a)"
+   ],
+   [
+    "link",
+    "Show/modify interfaces"
+   ],
+   [
+    "route",
+    "Show/modify the routing table (ip r)"
+   ],
+   [
+    "neigh",
+    "ARP/neighbor table"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ip addr show",
+    "out": "2: eth0: <BROADCAST,MULTICAST,UP> mtu 1500\n    inet 192.168.1.42/24 brd 192.168.1.255 scope global eth0"
+   },
+   {
+    "cmd": "ip route",
+    "out": "default via 192.168.1.1 dev eth0"
+   }
+  ],
+  "mistakes": [
+   "Making address changes with ip that vanish on reboot \u2014 persist them in netplan/NetworkManager."
+  ],
+  "tips": [
+   "ip -c a adds color; ip -br a gives a compact one-line-per-interface summary."
+  ],
+  "related": [
+   "ifconfig",
+   "ss",
+   "ping",
+   "hostname"
+  ],
+  "quiz": [
+   {
+    "q": "Which command shows your default gateway?",
+    "options": [
+     "ip addr",
+     "ip route",
+     "ip link",
+     "ip neigh"
+    ],
+    "answer": 1,
+    "explain": "The routing table's 'default via \u2026' line is the gateway."
+   }
+  ]
+ },
+ {
+  "name": "ifconfig",
+  "category": "Networking",
+  "difficulty": "beginner",
+  "description": "Legacy tool to display and configure network interfaces (superseded by ip).",
+  "syntax": "ifconfig [interface] [options]",
+  "params": [
+   [
+    "interface up/down",
+    "Enable or disable an interface"
+   ],
+   [
+    "-a",
+    "Show all interfaces, including down ones"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ifconfig eth0",
+    "out": "eth0: flags=4163<UP,BROADCAST,RUNNING>  mtu 1500\n        inet 192.168.1.42  netmask 255.255.255.0"
+   }
+  ],
+  "mistakes": [
+   "Relying on ifconfig on modern systems \u2014 it is often not installed (net-tools package)."
+  ],
+  "tips": [
+   "Learn ip; keep ifconfig knowledge for older servers you may inherit."
+  ],
+  "related": [
+   "ip",
+   "hostname",
+   "ping"
+  ]
+ },
+ {
+  "name": "hostname",
+  "category": "Networking",
+  "difficulty": "beginner",
+  "description": "Show or temporarily set the system's hostname.",
+  "syntax": "hostname [options] [name]",
+  "params": [
+   [
+    "-I",
+    "Print all assigned IP addresses"
+   ],
+   [
+    "-f",
+    "Print the fully qualified domain name"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "hostname",
+    "out": "webserver01"
+   },
+   {
+    "cmd": "hostname -I",
+    "out": "192.168.1.42 10.0.3.1"
+   }
+  ],
+  "mistakes": [
+   "Setting a hostname with this command and expecting it to survive reboot \u2014 use hostnamectl."
+  ],
+  "tips": [
+   "hostname -I is the fastest way to grab a machine's IP in a script."
+  ],
+  "related": [
+   "hostnamectl",
+   "ip",
+   "uname"
+  ]
+ },
+ {
+  "name": "ss",
+  "category": "Networking",
+  "difficulty": "intermediate",
+  "description": "Investigate sockets: listening ports, established connections and the processes behind them (modern netstat).",
+  "syntax": "ss [options]",
+  "params": [
+   [
+    "-t / -u",
+    "TCP / UDP sockets"
+   ],
+   [
+    "-l",
+    "Listening sockets only"
+   ],
+   [
+    "-n",
+    "Numeric ports, skip DNS"
+   ],
+   [
+    "-p",
+    "Show owning process (needs sudo)"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo ss -tulpn",
+    "out": "tcp LISTEN 0 511 0.0.0.0:80  users:((\"nginx\",pid=812,fd=6))\ntcp LISTEN 0 128 0.0.0.0:22  users:((\"sshd\",pid=610,fd=3))"
+   }
+  ],
+  "mistakes": [
+   "Running without sudo and wondering why process names are blank."
+  ],
+  "tips": [
+   "'ss -tulpn' is the muscle-memory incantation for 'what is listening on this box?'."
+  ],
+  "related": [
+   "netstat",
+   "lsof",
+   "ip"
+  ],
+  "quiz": [
+   {
+    "q": "Which command shows what process listens on port 80?",
+    "options": [
+     "ping -p 80",
+     "sudo ss -tulpn",
+     "ip route 80",
+     "cat /etc/ports"
+    ],
+    "answer": 1,
+    "explain": "ss -tulpn lists listening TCP/UDP sockets with their PIDs."
+   }
+  ]
+ },
+ {
+  "name": "netstat",
+  "category": "Networking",
+  "difficulty": "intermediate",
+  "description": "Legacy tool for network connections, routing tables and interface statistics.",
+  "syntax": "netstat [options]",
+  "params": [
+   [
+    "-tulpn",
+    "TCP+UDP listening sockets, numeric, with PIDs"
+   ],
+   [
+    "-r",
+    "Routing table"
+   ],
+   [
+    "-i",
+    "Interface statistics"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "netstat -tulpn",
+    "out": "tcp  0  0 0.0.0.0:22  0.0.0.0:*  LISTEN  610/sshd"
+   }
+  ],
+  "mistakes": [
+   "Expecting netstat on a fresh install \u2014 modern distros ship ss instead."
+  ],
+  "tips": [
+   "Every netstat flag combo you know maps almost 1:1 to ss."
+  ],
+  "related": [
+   "ss",
+   "ip",
+   "lsof"
+  ]
+ },
+ {
+  "name": "traceroute",
+  "category": "Networking",
+  "difficulty": "intermediate",
+  "description": "Show the router-by-router path packets take to a destination host.",
+  "syntax": "traceroute [options] host",
+  "params": [
+   [
+    "-n",
+    "Numeric output, skip DNS lookups"
+   ],
+   [
+    "-I",
+    "Use ICMP echo instead of UDP"
+   ],
+   [
+    "-m N",
+    "Maximum hops"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "traceroute -n example.com",
+    "out": " 1  192.168.1.1   1.2 ms\n 2  100.72.16.1   8.9 ms\n 3  93.184.215.14 12.6 ms"
+   }
+  ],
+  "mistakes": [
+   "Panicking over * * * lines \u2014 many routers just don't answer; the trace can still succeed."
+  ],
+  "tips": [
+   "Latency jumping sharply at one hop pinpoints where the slowdown begins."
+  ],
+  "related": [
+   "ping",
+   "ip",
+   "mtr"
+  ]
+ },
+ {
+  "name": "dig",
+  "category": "Networking",
+  "difficulty": "intermediate",
+  "description": "Query DNS servers directly and inspect the full response.",
+  "syntax": "dig [@server] name [type]",
+  "params": [
+   [
+    "+short",
+    "Just the answer, no headers"
+   ],
+   [
+    "MX / TXT / AAAA",
+    "Query a specific record type"
+   ],
+   [
+    "@8.8.8.8",
+    "Ask a specific DNS server"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "dig +short example.com",
+    "out": "93.184.215.14"
+   },
+   {
+    "cmd": "dig MX example.com +short",
+    "out": "10 mail.example.com."
+   }
+  ],
+  "mistakes": [
+   "Testing DNS changes against a caching resolver and seeing stale answers \u2014 query the authoritative server directly."
+  ],
+  "tips": [
+   "Compare dig @1.1.1.1 vs dig @your-router to spot broken local DNS."
+  ],
+  "related": [
+   "nslookup",
+   "host",
+   "ping"
+  ]
+ },
+ {
+  "name": "nslookup",
+  "category": "Networking",
+  "difficulty": "beginner",
+  "description": "Simple interactive/one-shot DNS lookup tool.",
+  "syntax": "nslookup name [server]",
+  "params": [
+   [
+    "-type=MX",
+    "Query a specific record type"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "nslookup example.com",
+    "out": "Server:  192.168.1.1\nName:    example.com\nAddress: 93.184.215.14"
+   }
+  ],
+  "mistakes": [
+   "Using nslookup output in scripts \u2014 dig +short is far easier to parse."
+  ],
+  "tips": [
+   "Fine for quick checks; reach for dig when you need detail."
+  ],
+  "related": [
+   "dig",
+   "host",
+   "ping"
+  ]
+ },
+ {
+  "name": "arp",
+  "category": "Networking",
+  "difficulty": "advanced",
+  "description": "Show the ARP cache mapping IP addresses to MAC addresses on the local network.",
+  "syntax": "arp [-a] | ip neigh",
+  "params": [
+   [
+    "-a",
+    "Display all entries"
+   ],
+   [
+    "-d host",
+    "Delete an entry"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "arp -a",
+    "out": "router (192.168.1.1) at a4:2b:b0:11:22:33 [ether] on eth0"
+   }
+  ],
+  "mistakes": [
+   "Confusing a stale ARP entry with a live host \u2014 entries linger after devices leave."
+  ],
+  "tips": [
+   "The modern equivalent is ip neigh show."
+  ],
+  "related": [
+   "ip",
+   "ping",
+   "ss"
+  ]
+ },
+ {
+  "name": "ps",
+  "category": "Processes",
+  "difficulty": "beginner",
+  "description": "Snapshot the currently running processes.",
+  "syntax": "ps [options]",
+  "params": [
+   [
+    "aux",
+    "Every process, with owner, CPU and memory"
+   ],
+   [
+    "-ef",
+    "Every process, full format with PPID"
+   ],
+   [
+    "-u user",
+    "Processes owned by a user"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ps aux | head -n 3",
+    "out": "USER  PID %CPU %MEM COMMAND\nroot    1  0.0  0.1 /sbin/init\namina 914  1.2  2.4 node server.js"
+   }
+  ],
+  "mistakes": [
+   "Mixing BSD (aux) and System V (-ef) flag styles in one call."
+  ],
+  "tips": [
+   "ps aux | grep name finds a process fast; pgrep name is cleaner."
+  ],
+  "related": [
+   "top",
+   "kill",
+   "pgrep",
+   "htop"
+  ],
+  "quiz": [
+   {
+    "q": "What does 'ps aux' show?",
+    "options": [
+     "Only your processes",
+     "All processes with CPU/memory usage",
+     "Only root's processes",
+     "Available updates"
+    ],
+    "answer": 1,
+    "explain": "a = all users, u = user-oriented columns, x = include processes without a terminal."
+   }
+  ]
+ },
+ {
+  "name": "top",
+  "category": "Processes",
+  "difficulty": "beginner",
+  "description": "Live, self-updating view of processes, CPU, memory and load.",
+  "syntax": "top [options]",
+  "params": [
+   [
+    "-u user",
+    "Show one user's processes"
+   ],
+   [
+    "-d SEC",
+    "Refresh interval"
+   ],
+   [
+    "(inside) M / P",
+    "Sort by memory / CPU"
+   ],
+   [
+    "(inside) k",
+    "Kill a process by PID"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "top",
+    "out": "top - 11:42:01 up 6 days, load average: 0.31, 0.28, 0.22\n%Cpu(s):  3.1 us,  1.0 sy, 95.4 id\nMiB Mem: 7823.4 total, 2211.0 free"
+   }
+  ],
+  "mistakes": [
+   "Reading load average without knowing the core count \u2014 load 4.0 is fine on 8 cores, alarming on 1."
+  ],
+  "tips": [
+   "Press q to quit, h for help; htop is a friendlier alternative."
+  ],
+  "related": [
+   "htop",
+   "ps",
+   "free",
+   "uptime"
+  ]
+ },
+ {
+  "name": "htop",
+  "category": "Processes",
+  "difficulty": "beginner",
+  "description": "Interactive, colorful process viewer with mouse support, tree view and easy killing.",
+  "syntax": "htop [options]",
+  "params": [
+   [
+    "-u user",
+    "Filter by user"
+   ],
+   [
+    "-t",
+    "Tree view"
+   ],
+   [
+    "(inside) F9",
+    "Kill selected process"
+   ],
+   [
+    "(inside) F6",
+    "Choose sort column"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "htop",
+    "out": "(full-screen interactive UI with per-core CPU meters)"
+   }
+  ],
+  "mistakes": [
+   "Assuming it is preinstalled \u2014 sudo apt install htop."
+  ],
+  "tips": [
+   "F5 toggles tree view, making parent/child relationships obvious."
+  ],
+  "related": [
+   "top",
+   "ps",
+   "kill"
+  ]
+ },
+ {
+  "name": "kill",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "Send a signal to a process by PID \u2014 politely ask it to exit, or force it.",
+  "syntax": "kill [-signal] PID...",
+  "params": [
+   [
+    "-15 / -TERM",
+    "Graceful termination request (default)"
+   ],
+   [
+    "-9 / -KILL",
+    "Force kill: cannot be caught or ignored"
+   ],
+   [
+    "-1 / -HUP",
+    "Hang up \u2014 many daemons reload config"
+   ],
+   [
+    "-l",
+    "List all signals"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "kill 4821",
+    "out": ""
+   },
+   {
+    "cmd": "kill -9 4821",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Reaching for -9 first \u2014 the process gets no chance to save data or clean up; try plain kill first."
+  ],
+  "tips": [
+   "Find the PID with pgrep or ps, or skip the lookup entirely with pkill name."
+  ],
+  "related": [
+   "killall",
+   "pkill",
+   "ps",
+   "pgrep"
+  ],
+  "quiz": [
+   {
+    "q": "Why prefer 'kill PID' over 'kill -9 PID' first?",
+    "options": [
+     "-9 is slower",
+     "SIGTERM lets the process clean up; SIGKILL cannot be handled",
+     "-9 needs sudo",
+     "There is no difference"
+    ],
+    "answer": 1,
+    "explain": "SIGTERM (default) is catchable so the app can shut down cleanly; SIGKILL is a last resort."
+   }
+  ]
+ },
+ {
+  "name": "killall",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "Send a signal to every process matching an exact name.",
+  "syntax": "killall [-signal] name",
+  "params": [
+   [
+    "-i",
+    "Confirm each kill interactively"
+   ],
+   [
+    "-u user",
+    "Only that user's processes"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "killall firefox",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Matching more than intended \u2014 killall node stops every Node.js app on the box."
+  ],
+  "tips": [
+   "killall requires the exact process name; pkill matches patterns."
+  ],
+  "related": [
+   "kill",
+   "pkill",
+   "ps"
+  ]
+ },
+ {
+  "name": "pkill",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "Kill processes whose names match a pattern (pgrep's action twin).",
+  "syntax": "pkill [options] pattern",
+  "params": [
+   [
+    "-f",
+    "Match against the full command line"
+   ],
+   [
+    "-u user",
+    "Restrict to a user"
+   ],
+   [
+    "-9",
+    "Force kill"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "pkill -f 'python.*server.py'",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Broad patterns killing unrelated processes \u2014 dry-run with pgrep -l first."
+  ],
+  "tips": [
+   "Always test the pattern with pgrep -l pattern before pkill."
+  ],
+  "related": [
+   "pgrep",
+   "kill",
+   "killall"
+  ]
+ },
+ {
+  "name": "pgrep",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "Find PIDs of processes matching a name or pattern.",
+  "syntax": "pgrep [options] pattern",
+  "params": [
+   [
+    "-l",
+    "Show names alongside PIDs"
+   ],
+   [
+    "-f",
+    "Match the full command line"
+   ],
+   [
+    "-u user",
+    "Restrict to a user"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "pgrep -l nginx",
+    "out": "812 nginx\n813 nginx"
+   }
+  ],
+  "mistakes": [
+   "The classic ps | grep pitfall (grep matching itself) is exactly what pgrep avoids."
+  ],
+  "tips": [
+   "kill $(pgrep myapp) is a common combo \u2014 or just use pkill."
+  ],
+  "related": [
+   "pkill",
+   "ps",
+   "kill"
+  ]
+ },
+ {
+  "name": "jobs",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "List the background and suspended jobs of the current shell.",
+  "syntax": "jobs [-l]",
+  "params": [
+   [
+    "-l",
+    "Include PIDs"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "jobs",
+    "out": "[1]-  Running   npm run dev &\n[2]+  Stopped   vim notes.txt"
+   }
+  ],
+  "mistakes": [
+   "Confusing job numbers (%1) with PIDs \u2014 they are different namespaces."
+  ],
+  "tips": [
+   "Ctrl+Z suspends the foreground task; bg resumes it in the background."
+  ],
+  "related": [
+   "bg",
+   "fg",
+   "kill",
+   "nohup"
+  ]
+ },
+ {
+  "name": "bg",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "Resume a suspended job in the background.",
+  "syntax": "bg [%job]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "bg %1",
+    "out": "[1]+ npm run dev &"
+   }
+  ],
+  "mistakes": [
+   "Backgrounding a job that still writes to the terminal \u2014 it will scribble over your prompt."
+  ],
+  "tips": [
+   "The workflow: Ctrl+Z to suspend, bg to resume in background, fg to bring back."
+  ],
+  "related": [
+   "fg",
+   "jobs",
+   "nohup"
+  ]
+ },
+ {
+  "name": "fg",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "Bring a background or suspended job to the foreground.",
+  "syntax": "fg [%job]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "fg %2",
+    "out": "vim notes.txt"
+   }
+  ],
+  "mistakes": [
+   "Closing the terminal with jobs still attached \u2014 they receive SIGHUP and die."
+  ],
+  "tips": [
+   "fg with no argument resumes the most recent job (the one marked +)."
+  ],
+  "related": [
+   "bg",
+   "jobs",
+   "nohup"
+  ]
+ },
+ {
+  "name": "nice",
+  "category": "Processes",
+  "difficulty": "advanced",
+  "description": "Start a process with an adjusted scheduling priority.",
+  "syntax": "nice [-n adjustment] command",
+  "params": [
+   [
+    "-n N",
+    "Niceness from -20 (highest priority) to 19 (lowest)"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "nice -n 19 tar czf backup.tar.gz /home",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Thinking higher niceness means higher priority \u2014 it is the opposite (nicer = yields more)."
+  ],
+  "tips": [
+   "Only root may set negative niceness."
+  ],
+  "related": [
+   "renice",
+   "top",
+   "ionice"
+  ]
+ },
+ {
+  "name": "renice",
+  "category": "Processes",
+  "difficulty": "advanced",
+  "description": "Change the priority of an already-running process.",
+  "syntax": "renice -n priority -p PID",
+  "params": [
+   [
+    "-n N",
+    "New niceness value"
+   ],
+   [
+    "-p PID",
+    "Target process"
+   ],
+   [
+    "-u user",
+    "All of a user's processes"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo renice -n 10 -p 4821",
+    "out": "4821 (process ID) old priority 0, new priority 10"
+   }
+  ],
+  "mistakes": [
+   "Regular users can only make processes nicer, never less nice."
+  ],
+  "tips": [
+   "Tame a CPU-hungry batch job without restarting it."
+  ],
+  "related": [
+   "nice",
+   "top",
+   "kill"
+  ]
+ },
+ {
+  "name": "nohup",
+  "category": "Processes",
+  "difficulty": "intermediate",
+  "description": "Run a command immune to hangups, so it survives closing the terminal.",
+  "syntax": "nohup command [args] &",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "nohup python train.py &",
+    "out": "nohup: ignoring input and appending output to 'nohup.out'"
+   }
+  ],
+  "mistakes": [
+   "Forgetting the trailing & \u2014 nohup alone does not background the command."
+  ],
+  "tips": [
+   "For anything serious, tmux/screen or a systemd service beats nohup."
+  ],
+  "related": [
+   "jobs",
+   "bg",
+   "systemctl",
+   "tmux"
+  ]
+ },
+ {
+  "name": "df",
+  "category": "Disk Management",
+  "difficulty": "beginner",
+  "description": "Report free and used disk space per mounted filesystem.",
+  "syntax": "df [options] [path]",
+  "params": [
+   [
+    "-h",
+    "Human-readable sizes"
+   ],
+   [
+    "-T",
+    "Show the filesystem type"
+   ],
+   [
+    "-i",
+    "Show inode usage instead of blocks"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "df -h /",
+    "out": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda2        98G   41G   52G  45% /"
+   }
+  ],
+  "mistakes": [
+   "'No space left on device' with df showing free space \u2014 check inodes with df -i."
+  ],
+  "tips": [
+   "df tells you which filesystem is full; du tells you what is filling it."
+  ],
+  "related": [
+   "du",
+   "lsblk",
+   "mount"
+  ],
+  "quiz": [
+   {
+    "q": "Disk shows space free but writes fail with 'No space left'. What do you check?",
+    "options": [
+     "df -h again",
+     "df -i (inodes)",
+     "free -h",
+     "fdisk -l"
+    ],
+    "answer": 1,
+    "explain": "A filesystem can exhaust inodes (file slots) while blocks remain free."
+   }
+  ]
+ },
+ {
+  "name": "du",
+  "category": "Disk Management",
+  "difficulty": "beginner",
+  "description": "Estimate the disk space used by files and directories.",
+  "syntax": "du [options] [path]",
+  "params": [
+   [
+    "-h",
+    "Human-readable sizes"
+   ],
+   [
+    "-s",
+    "Summary total only"
+   ],
+   [
+    "--max-depth=N",
+    "Limit recursion depth"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "du -sh /var/log",
+    "out": "1.3G  /var/log"
+   },
+   {
+    "cmd": "du -h --max-depth=1 / 2>/dev/null | sort -h | tail -n 3",
+    "out": "8.2G  /usr\n12G   /home\n41G   /"
+   }
+  ],
+  "mistakes": [
+   "Running du / without limiting depth and drowning in output."
+  ],
+  "tips": [
+   "du -sh * | sort -h inside a directory instantly ranks its space hogs."
+  ],
+  "related": [
+   "df",
+   "ls",
+   "find",
+   "ncdu"
+  ]
+ },
+ {
+  "name": "mount",
+  "category": "Disk Management",
+  "difficulty": "intermediate",
+  "description": "Attach a filesystem (disk, USB, ISO, network share) to a directory in the tree.",
+  "syntax": "sudo mount [options] device mountpoint",
+  "params": [
+   [
+    "-t TYPE",
+    "Filesystem type, e.g. ext4, ntfs"
+   ],
+   [
+    "-o OPTIONS",
+    "Options like ro, noexec, loop"
+   ],
+   [
+    "-a",
+    "Mount everything in /etc/fstab"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo mount /dev/sdb1 /mnt/usb",
+    "out": ""
+   },
+   {
+    "cmd": "mount | grep sdb",
+    "out": "/dev/sdb1 on /mnt/usb type ext4 (rw,relatime)"
+   }
+  ],
+  "mistakes": [
+   "Mounting over a non-empty directory \u2014 the existing contents are hidden (not deleted) until unmount."
+  ],
+  "tips": [
+   "The mount point must exist first: sudo mkdir -p /mnt/usb."
+  ],
+  "related": [
+   "umount",
+   "lsblk",
+   "df",
+   "blkid"
+  ]
+ },
+ {
+  "name": "umount",
+  "category": "Disk Management",
+  "difficulty": "intermediate",
+  "description": "Detach a mounted filesystem.",
+  "syntax": "sudo umount device-or-mountpoint",
+  "params": [
+   [
+    "-l",
+    "Lazy unmount: detach now, clean up when no longer busy"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo umount /mnt/usb",
+    "out": ""
+   },
+   {
+    "cmd": "sudo umount /mnt/usb",
+    "out": "umount: /mnt/usb: target is busy."
+   }
+  ],
+  "mistakes": [
+   "It is umount, not unmount \u2014 the missing n trips everyone once.",
+   "Yanking a USB drive without unmounting risks data loss."
+  ],
+  "tips": [
+   "'target is busy'? Find the culprit with lsof +f -- /mnt/usb or fuser -vm /mnt/usb."
+  ],
+  "related": [
+   "mount",
+   "lsof",
+   "sync"
+  ]
+ },
+ {
+  "name": "lsblk",
+  "category": "Disk Management",
+  "difficulty": "beginner",
+  "description": "List block devices (disks and partitions) as a tree with sizes and mount points.",
+  "syntax": "lsblk [options]",
+  "params": [
+   [
+    "-f",
+    "Include filesystem type, label and UUID"
+   ],
+   [
+    "-d",
+    "Disks only, no partitions"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "lsblk",
+    "out": "NAME   SIZE TYPE MOUNTPOINTS\nsda    500G disk\n\u251c\u2500sda1 512M part /boot/efi\n\u2514\u2500sda2 499G part /\nsdb     32G disk\n\u2514\u2500sdb1  32G part /mnt/usb"
+   }
+  ],
+  "mistakes": [
+   "Confusing a disk (sdb) with its partition (sdb1) when mounting or formatting."
+  ],
+  "tips": [
+   "Run lsblk before and after plugging in a USB drive to identify it safely."
+  ],
+  "related": [
+   "fdisk",
+   "blkid",
+   "mount",
+   "df"
+  ]
+ },
+ {
+  "name": "fdisk",
+  "category": "Disk Management",
+  "difficulty": "advanced",
+  "description": "Inspect and edit disk partition tables (interactive).",
+  "syntax": "sudo fdisk [-l] [device]",
+  "params": [
+   [
+    "-l",
+    "List partition tables and exit"
+   ],
+   [
+    "(inside) n / d / w",
+    "New partition / delete / write changes"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo fdisk -l /dev/sda",
+    "out": "Disk /dev/sda: 500 GiB\nDevice     Start       End  Size Type\n/dev/sda1   2048   1050623  512M EFI System\n/dev/sda2 1050624 976773119  499G Linux filesystem"
+   }
+  ],
+  "mistakes": [
+   "Writing changes (w) to the wrong disk destroys its data \u2014 triple-check the device name."
+  ],
+  "tips": [
+   "Nothing is written until you press w; q quits safely at any time."
+  ],
+  "related": [
+   "lsblk",
+   "mkfs",
+   "parted",
+   "blkid"
+  ]
+ },
+ {
+  "name": "mkfs",
+  "category": "Disk Management",
+  "difficulty": "advanced",
+  "description": "Create (format) a filesystem on a partition, erasing its contents.",
+  "syntax": "sudo mkfs.TYPE [options] device",
+  "params": [
+   [
+    "mkfs.ext4",
+    "Standard Linux filesystem"
+   ],
+   [
+    "mkfs.vfat",
+    "FAT32, for maximum compatibility"
+   ],
+   [
+    "-L LABEL",
+    "Set a volume label"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo mkfs.ext4 -L backup /dev/sdb1",
+    "out": "Creating filesystem with 8388608 4k blocks\nWriting superblocks and filesystem accounting information: done"
+   }
+  ],
+  "mistakes": [
+   "Formatting a mounted or wrong partition \u2014 mkfs is irreversible."
+  ],
+  "tips": [
+   "Verify with lsblk -f first; format partitions (sdb1), not whole disks (sdb), unless you mean to."
+  ],
+  "related": [
+   "fdisk",
+   "mount",
+   "lsblk"
+  ]
+ },
+ {
+  "name": "blkid",
+  "category": "Disk Management",
+  "difficulty": "advanced",
+  "description": "Print block-device attributes: UUID, label and filesystem type.",
+  "syntax": "sudo blkid [device]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "sudo blkid /dev/sda2",
+    "out": "/dev/sda2: UUID=\"3f1c9a2e-8b1d-4f6a-9c3e-2d7b1a5e8f01\" TYPE=\"ext4\""
+   }
+  ],
+  "mistakes": [
+   "Hardcoding /dev/sdX names in /etc/fstab \u2014 device letters can change; use UUID= instead."
+  ],
+  "tips": [
+   "UUIDs are stable across reboots and cable swaps \u2014 always prefer them in fstab."
+  ],
+  "related": [
+   "lsblk",
+   "mount",
+   "fdisk"
+  ]
+ },
+ {
+  "name": "tar",
+  "category": "Compression",
+  "difficulty": "intermediate",
+  "description": "Bundle files into an archive (tarball), optionally compressed with gzip/bzip2/xz.",
+  "syntax": "tar [options] archive [files]",
+  "params": [
+   [
+    "-c / -x / -t",
+    "Create / extract / list"
+   ],
+   [
+    "-z / -j / -J",
+    "gzip / bzip2 / xz compression"
+   ],
+   [
+    "-f FILE",
+    "Archive filename (must come last in the flag group)"
+   ],
+   [
+    "-v",
+    "Verbose"
+   ],
+   [
+    "-C DIR",
+    "Extract into DIR"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "tar czf site-backup.tar.gz /var/www",
+    "out": ""
+   },
+   {
+    "cmd": "tar xzf site-backup.tar.gz -C /tmp/restore",
+    "out": ""
+   },
+   {
+    "cmd": "tar tzf site-backup.tar.gz | head -n 2",
+    "out": "var/www/\nvar/www/index.html"
+   }
+  ],
+  "mistakes": [
+   "Putting f before the filename position, e.g. tar cfz \u2014 f must be immediately followed by the archive name.",
+   "Extracting unknown tarballs into the current directory and scattering files everywhere \u2014 list with t first."
+  ],
+  "tips": [
+   "Mnemonic: Create Zip File / eXtract Zip File \u2192 czf / xzf."
+  ],
+  "related": [
+   "gzip",
+   "zip",
+   "unzip",
+   "rsync"
+  ],
+  "quiz": [
+   {
+    "q": "Which command extracts backup.tar.gz?",
+    "options": [
+     "tar czf backup.tar.gz",
+     "tar xzf backup.tar.gz",
+     "untar backup.tar.gz",
+     "gzip -x backup.tar.gz"
+    ],
+    "answer": 1,
+    "explain": "x = extract, z = gzip, f = the file that follows."
+   }
+  ]
+ },
+ {
+  "name": "gzip",
+  "category": "Compression",
+  "difficulty": "beginner",
+  "description": "Compress a file with the gzip algorithm, replacing it with a .gz version.",
+  "syntax": "gzip [options] file...",
+  "params": [
+   [
+    "-k",
+    "Keep the original file"
+   ],
+   [
+    "-d",
+    "Decompress (same as gunzip)"
+   ],
+   [
+    "-9",
+    "Best compression"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "gzip -k access.log",
+    "out": ""
+   },
+   {
+    "cmd": "ls",
+    "out": "access.log  access.log.gz"
+   }
+  ],
+  "mistakes": [
+   "Being surprised the original disappears \u2014 gzip replaces it unless you pass -k."
+  ],
+  "tips": [
+   "gzip compresses single files; combine with tar to compress directories."
+  ],
+  "related": [
+   "gunzip",
+   "tar",
+   "zcat",
+   "xz"
+  ]
+ },
+ {
+  "name": "gunzip",
+  "category": "Compression",
+  "difficulty": "beginner",
+  "description": "Decompress .gz files.",
+  "syntax": "gunzip [options] file.gz",
+  "params": [
+   [
+    "-k",
+    "Keep the compressed file"
+   ],
+   [
+    "-l",
+    "List compression statistics without extracting"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "gunzip backup.sql.gz",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Trying to gunzip a .tar.gz and expecting the files out \u2014 that yields a .tar; use tar xzf."
+  ],
+  "tips": [
+   "zcat prints a .gz file's contents without creating a decompressed copy."
+  ],
+  "related": [
+   "gzip",
+   "zcat",
+   "tar"
+  ]
+ },
+ {
+  "name": "zip",
+  "category": "Compression",
+  "difficulty": "beginner",
+  "description": "Create .zip archives, the format Windows and macOS open natively.",
+  "syntax": "zip [options] archive.zip files...",
+  "params": [
+   [
+    "-r",
+    "Recurse into directories"
+   ],
+   [
+    "-e",
+    "Encrypt with a password"
+   ],
+   [
+    "-9",
+    "Best compression"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "zip -r project.zip project/",
+    "out": "  adding: project/main.py (deflated 62%)"
+   }
+  ],
+  "mistakes": [
+   "Zipping a directory without -r produces an archive containing only the empty folder entry."
+  ],
+  "tips": [
+   "Use zip when sharing with non-Linux users; use tar.gz within the Linux world."
+  ],
+  "related": [
+   "unzip",
+   "tar",
+   "gzip"
+  ]
+ },
+ {
+  "name": "unzip",
+  "category": "Compression",
+  "difficulty": "beginner",
+  "description": "Extract .zip archives.",
+  "syntax": "unzip [options] archive.zip",
+  "params": [
+   [
+    "-l",
+    "List contents without extracting"
+   ],
+   [
+    "-d DIR",
+    "Extract into DIR"
+   ],
+   [
+    "-o",
+    "Overwrite without prompting"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "unzip -l release.zip",
+    "out": "  Length      Date    Time    Name\n    18432  2026-08-01 10:02   app/main.bin"
+   },
+   {
+    "cmd": "unzip release.zip -d /opt/app",
+    "out": "  inflating: /opt/app/app/main.bin"
+   }
+  ],
+  "mistakes": [
+   "Extracting into a cluttered directory \u2014 always -l first, or extract with -d into a fresh folder."
+  ],
+  "tips": [
+   "unzip is often not preinstalled on servers: sudo apt install unzip."
+  ],
+  "related": [
+   "zip",
+   "tar",
+   "file"
+  ]
+ },
+ {
+  "name": "bzip2",
+  "category": "Compression",
+  "difficulty": "intermediate",
+  "description": "Compress files with bzip2 \u2014 better ratios than gzip, slower speed.",
+  "syntax": "bzip2 [options] file",
+  "params": [
+   [
+    "-k",
+    "Keep the original"
+   ],
+   [
+    "-d",
+    "Decompress"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "bzip2 -k database.dump",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Using bzip2 where speed matters \u2014 gzip or zstd is usually the better trade-off today."
+  ],
+  "tips": [
+   "tar's -j flag pairs with .tar.bz2 archives."
+  ],
+  "related": [
+   "gzip",
+   "xz",
+   "tar"
+  ]
+ },
+ {
+  "name": "xz",
+  "category": "Compression",
+  "difficulty": "intermediate",
+  "description": "Compress files with xz/LZMA \u2014 excellent ratios, common for software releases.",
+  "syntax": "xz [options] file",
+  "params": [
+   [
+    "-k",
+    "Keep the original"
+   ],
+   [
+    "-d",
+    "Decompress"
+   ],
+   [
+    "-T0",
+    "Use all CPU cores"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "xz -T0 -k huge.log",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Compressing large data single-threaded \u2014 always add -T0."
+  ],
+  "tips": [
+   "tar's -J flag handles .tar.xz archives directly."
+  ],
+  "related": [
+   "gzip",
+   "bzip2",
+   "tar"
+  ]
+ },
+ {
+  "name": "zcat",
+  "category": "Compression",
+  "difficulty": "intermediate",
+  "description": "Print the contents of gzip-compressed files without decompressing them on disk.",
+  "syntax": "zcat file.gz",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "zcat /var/log/syslog.2.gz | grep error | head -n 1",
+    "out": "Aug  1 03:12:44 host kernel: I/O error, dev sdb"
+   }
+  ],
+  "mistakes": [
+   "Decompressing rotated logs to disk just to grep them \u2014 zcat (and zgrep) avoid that."
+  ],
+  "tips": [
+   "Siblings zless and zgrep page and search .gz files directly."
+  ],
+  "related": [
+   "gzip",
+   "gunzip",
+   "less",
+   "grep"
+  ]
+ },
+ {
+  "name": "systemctl",
+  "category": "Services",
+  "difficulty": "intermediate",
+  "description": "Control systemd: start, stop, enable and inspect services and the system state.",
+  "syntax": "systemctl [command] [unit]",
+  "params": [
+   [
+    "start / stop / restart",
+    "Change a service's running state now"
+   ],
+   [
+    "enable / disable",
+    "Start (or not) at boot"
+   ],
+   [
+    "status",
+    "Show state, PID and recent log lines"
+   ],
+   [
+    "list-units --type=service",
+    "List active services"
+   ],
+   [
+    "daemon-reload",
+    "Re-read unit files after editing"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo systemctl restart nginx",
+    "out": ""
+   },
+   {
+    "cmd": "systemctl status nginx",
+    "out": "\u25cf nginx.service - A high performance web server\n     Active: active (running) since Tue 2026-08-04 09:00:12 UTC\n   Main PID: 812 (nginx)"
+   },
+   {
+    "cmd": "sudo systemctl enable --now nginx",
+    "out": "Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service"
+   }
+  ],
+  "mistakes": [
+   "Confusing start (now, this boot) with enable (every boot) \u2014 enable --now does both.",
+   "Editing a unit file and forgetting daemon-reload."
+  ],
+  "tips": [
+   "systemctl status is the first command to run when any service misbehaves."
+  ],
+  "related": [
+   "journalctl",
+   "service",
+   "ps"
+  ],
+  "quiz": [
+   {
+    "q": "Service runs now but doesn't start after reboot. What was forgotten?",
+    "options": [
+     "systemctl start",
+     "systemctl enable",
+     "systemctl status",
+     "daemon-reload"
+    ],
+    "answer": 1,
+    "explain": "start affects the current boot only; enable creates the boot-time symlink."
+   }
+  ]
+ },
+ {
+  "name": "service",
+  "category": "Services",
+  "difficulty": "beginner",
+  "description": "Legacy wrapper to start/stop services; forwards to systemctl on systemd systems.",
+  "syntax": "sudo service name command",
+  "params": [
+   [
+    "start / stop / restart / status",
+    "Service actions"
+   ],
+   [
+    "--status-all",
+    "List all services"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo service ssh restart",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Learning only service on systemd distros \u2014 status output and features are richer via systemctl."
+  ],
+  "tips": [
+   "Muscle memory from older tutorials still works, but prefer systemctl."
+  ],
+  "related": [
+   "systemctl",
+   "journalctl"
+  ]
+ },
+ {
+  "name": "journalctl",
+  "category": "Services",
+  "difficulty": "intermediate",
+  "description": "Query the systemd journal \u2014 the central log for services, the kernel and boots.",
+  "syntax": "journalctl [options]",
+  "params": [
+   [
+    "-u unit",
+    "Logs for one service"
+   ],
+   [
+    "-f",
+    "Follow live"
+   ],
+   [
+    "-b",
+    "Current boot only (-b -1 = previous boot)"
+   ],
+   [
+    "--since '1 hour ago'",
+    "Time filtering"
+   ],
+   [
+    "-p err",
+    "Only priority err and worse"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "journalctl -u nginx --since today | tail -n 2",
+    "out": "Aug 05 09:00:12 host systemd[1]: Started A high performance web server.\nAug 05 09:00:12 host nginx[812]: nginx: ready"
+   },
+   {
+    "cmd": "journalctl -p err -b",
+    "out": "(all error-level messages since boot)"
+   }
+  ],
+  "mistakes": [
+   "Scrolling the entire journal instead of filtering by unit and time."
+  ],
+  "tips": [
+   "After a crash, journalctl -b -1 -e shows the end of the previous boot's log."
+  ],
+  "related": [
+   "systemctl",
+   "dmesg",
+   "tail"
+  ]
+ },
+ {
+  "name": "uname",
+  "category": "System Information",
+  "difficulty": "beginner",
+  "description": "Print kernel and system information.",
+  "syntax": "uname [options]",
+  "params": [
+   [
+    "-a",
+    "Everything"
+   ],
+   [
+    "-r",
+    "Kernel release"
+   ],
+   [
+    "-m",
+    "Hardware architecture"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "uname -r",
+    "out": "6.8.0-40-generic"
+   },
+   {
+    "cmd": "uname -m",
+    "out": "x86_64"
+   }
+  ],
+  "mistakes": [
+   "Using uname to identify the distro \u2014 check /etc/os-release for that."
+  ],
+  "tips": [
+   "uname -m answers 'do I need the x86_64 or arm64 download?'."
+  ],
+  "related": [
+   "hostnamectl",
+   "lscpu",
+   "cat"
+  ]
+ },
+ {
+  "name": "uptime",
+  "category": "System Information",
+  "difficulty": "beginner",
+  "description": "Show how long the system has been running, user count and load averages.",
+  "syntax": "uptime [-p]",
+  "params": [
+   [
+    "-p",
+    "Pretty format: 'up 6 days, 2 hours'"
+   ],
+   [
+    "-s",
+    "Timestamp of last boot"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "uptime",
+    "out": " 11:42:01 up 6 days,  2:11,  2 users,  load average: 0.31, 0.28, 0.22"
+   }
+  ],
+  "mistakes": [
+   "Comparing load averages across machines with different core counts."
+  ],
+  "tips": [
+   "The three numbers are 1-, 5- and 15-minute averages \u2014 rising order means load is growing."
+  ],
+  "related": [
+   "top",
+   "w",
+   "free"
+  ]
+ },
+ {
+  "name": "free",
+  "category": "System Information",
+  "difficulty": "beginner",
+  "description": "Display RAM and swap usage.",
+  "syntax": "free [options]",
+  "params": [
+   [
+    "-h",
+    "Human-readable units"
+   ],
+   [
+    "-s SEC",
+    "Refresh every SEC seconds"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "free -h",
+    "out": "               total   used   free  buff/cache  available\nMem:           7.6Gi  2.9Gi  1.1Gi       3.6Gi      4.4Gi\nSwap:          2.0Gi     0B  2.0Gi"
+   }
+  ],
+  "mistakes": [
+   "Panicking at low 'free' \u2014 Linux uses spare RAM as cache; 'available' is the number that matters."
+  ],
+  "tips": [
+   "Heavy swap usage plus low available memory is the real pressure signal."
+  ],
+  "related": [
+   "top",
+   "vmstat",
+   "df"
+  ],
+  "quiz": [
+   {
+    "q": "In free -h, which column best shows memory you can still use?",
+    "options": [
+     "free",
+     "used",
+     "available",
+     "shared"
+    ],
+    "answer": 2,
+    "explain": "'available' accounts for reclaimable cache; 'free' undercounts."
+   }
+  ]
+ },
+ {
+  "name": "lscpu",
+  "category": "System Information",
+  "difficulty": "beginner",
+  "description": "Display CPU architecture details: cores, threads, model, speeds, caches.",
+  "syntax": "lscpu",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "lscpu | head -n 4",
+    "out": "Architecture:        x86_64\nCPU(s):              8\nModel name:          Intel(R) Core(TM) i7-1165G7 @ 2.80GHz\nThread(s) per core:  2"
+   }
+  ],
+  "mistakes": [
+   "Confusing logical CPUs (threads) with physical cores when sizing workloads."
+  ],
+  "tips": [
+   "nproc prints just the CPU count \u2014 handy for make -j$(nproc)."
+  ],
+  "related": [
+   "uname",
+   "free",
+   "lspci"
+  ]
+ },
+ {
+  "name": "lsusb",
+  "category": "System Information",
+  "difficulty": "intermediate",
+  "description": "List connected USB devices.",
+  "syntax": "lsusb [-v]",
+  "params": [
+   [
+    "-v",
+    "Verbose device details"
+   ],
+   [
+    "-t",
+    "Tree of the USB topology"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "lsusb",
+    "out": "Bus 001 Device 004: ID 046d:c52b Logitech, Inc. Unifying Receiver\nBus 001 Device 005: ID 0781:5581 SanDisk Corp. Ultra"
+   }
+  ],
+  "mistakes": [
+   "Assuming a listed device works \u2014 lsusb shows detection, not driver status (check dmesg)."
+  ],
+  "tips": [
+   "Run before and after plugging a device in to confirm the kernel sees it."
+  ],
+  "related": [
+   "lspci",
+   "dmesg",
+   "lsblk"
+  ]
+ },
+ {
+  "name": "lspci",
+  "category": "System Information",
+  "difficulty": "intermediate",
+  "description": "List PCI devices: graphics cards, network adapters, controllers.",
+  "syntax": "lspci [options]",
+  "params": [
+   [
+    "-k",
+    "Show the kernel driver in use"
+   ],
+   [
+    "-v",
+    "Verbose output"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "lspci | grep -i network",
+    "out": "02:00.0 Network controller: Intel Corporation Wi-Fi 6 AX201"
+   }
+  ],
+  "mistakes": [
+   "Missing -k when debugging hardware \u2014 the 'driver in use' line is usually the answer."
+  ],
+  "tips": [
+   "lspci -k | grep -A3 -i net shows network hardware and its drivers together."
+  ],
+  "related": [
+   "lsusb",
+   "dmesg",
+   "ip"
+  ]
+ },
+ {
+  "name": "hostnamectl",
+  "category": "System Information",
+  "difficulty": "intermediate",
+  "description": "View or permanently set the hostname, plus see OS, kernel and hardware summary.",
+  "syntax": "hostnamectl [set-hostname name]",
+  "params": [
+   [
+    "set-hostname NAME",
+    "Persistently change the hostname"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "hostnamectl",
+    "out": " Static hostname: webserver01\n Operating System: Ubuntu 24.04.2 LTS\n          Kernel: Linux 6.8.0-40-generic\n    Architecture: x86-64"
+   },
+   {
+    "cmd": "sudo hostnamectl set-hostname api01",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Changing the hostname but leaving the old name in /etc/hosts, causing sudo delays."
+  ],
+  "tips": [
+   "One command shows distro, kernel and hardware \u2014 a great first look at an unfamiliar box."
+  ],
+  "related": [
+   "hostname",
+   "uname",
+   "cat"
+  ]
+ },
+ {
+  "name": "date",
+  "category": "System Information",
+  "difficulty": "beginner",
+  "description": "Print or format the current date and time.",
+  "syntax": "date [+format]",
+  "params": [
+   [
+    "+%Y-%m-%d",
+    "ISO date"
+   ],
+   [
+    "+%s",
+    "Unix timestamp"
+   ],
+   [
+    "-d STRING",
+    "Parse a date string, e.g. -d 'next friday'"
+   ],
+   [
+    "-u",
+    "UTC instead of local time"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "date",
+    "out": "Wed Aug  5 11:48:02 AEST 2026"
+   },
+   {
+    "cmd": "date +%Y-%m-%d_%H-%M",
+    "out": "2026-08-05_11-48"
+   }
+  ],
+  "mistakes": [
+   "Building filenames with spaces from raw date output \u2014 use a custom format."
+  ],
+  "tips": [
+   "backup-$(date +%F).tar.gz timestamps files sortably."
+  ],
+  "related": [
+   "cal",
+   "timedatectl",
+   "uptime"
+  ]
+ },
+ {
+  "name": "cal",
+  "category": "System Information",
+  "difficulty": "beginner",
+  "description": "Display a calendar in the terminal.",
+  "syntax": "cal [month] [year]",
+  "params": [
+   [
+    "-3",
+    "Previous, current and next month"
+   ],
+   [
+    "-y",
+    "Whole year"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "cal 8 2026",
+    "out": "    August 2026\nSu Mo Tu We Th Fr Sa\n                   1\n 2  3  4  5  6  7  8"
+   }
+  ],
+  "mistakes": [
+   "cal 26 shows year 26 AD, not 2026 \u2014 give the full year."
+  ],
+  "tips": [
+   "cal -3 keeps context around today's date."
+  ],
+  "related": [
+   "date"
+  ]
+ },
+ {
+  "name": "dmidecode",
+  "category": "System Information",
+  "difficulty": "advanced",
+  "description": "Dump hardware information from the system's DMI/SMBIOS tables: model, RAM slots, serial numbers.",
+  "syntax": "sudo dmidecode [-t type]",
+  "params": [
+   [
+    "-t memory",
+    "RAM modules and slots"
+   ],
+   [
+    "-t system",
+    "Manufacturer, model, serial"
+   ],
+   [
+    "-t bios",
+    "BIOS/UEFI version"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo dmidecode -t system | head -n 5",
+    "out": "System Information\n\tManufacturer: Dell Inc.\n\tProduct Name: PowerEdge R650\n\tSerial Number: 7Y2KQ04"
+   }
+  ],
+  "mistakes": [
+   "Running without sudo \u2014 DMI tables need root access."
+  ],
+  "tips": [
+   "Answers 'what RAM can this server take?' without opening the case."
+  ],
+  "related": [
+   "lscpu",
+   "lspci",
+   "free"
+  ]
+ },
+ {
+  "name": "ssh",
+  "category": "SSH",
+  "difficulty": "beginner",
+  "description": "Open a secure encrypted shell session on a remote machine.",
+  "syntax": "ssh [options] [user@]host [command]",
+  "params": [
+   [
+    "-p PORT",
+    "Connect to a non-default port"
+   ],
+   [
+    "-i FILE",
+    "Use a specific private key"
+   ],
+   [
+    "-L local:host:remote",
+    "Local port forwarding"
+   ],
+   [
+    "-v",
+    "Verbose: debug connection problems"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ssh amina@203.0.113.10",
+    "out": "amina@203.0.113.10's password:\nWelcome to Ubuntu 24.04.2 LTS"
+   },
+   {
+    "cmd": "ssh -p 2222 deploy@server 'uptime'",
+    "out": " 11:50:01 up 12 days, load average: 0.05, 0.04, 0.01"
+   }
+  ],
+  "mistakes": [
+   "Ignoring host-key-changed warnings \u2014 it can mean a rebuilt server, or an attack.",
+   "Typing passwords forever instead of setting up keys."
+  ],
+  "tips": [
+   "Define hosts in ~/.ssh/config once, then just ssh myserver."
+  ],
+  "related": [
+   "scp",
+   "ssh-keygen",
+   "ssh-copy-id",
+   "sftp"
+  ],
+  "quiz": [
+   {
+    "q": "How do you SSH to port 2222?",
+    "options": [
+     "ssh host:2222",
+     "ssh -p 2222 host",
+     "ssh --2222 host",
+     "ssh 2222@host"
+    ],
+    "answer": 1,
+    "explain": "-p sets the port for ssh (note: scp uses capital -P)."
+   }
+  ]
+ },
+ {
+  "name": "scp",
+  "category": "SSH",
+  "difficulty": "beginner",
+  "description": "Copy files between hosts over SSH.",
+  "syntax": "scp [options] source destination",
+  "params": [
+   [
+    "-r",
+    "Copy directories recursively"
+   ],
+   [
+    "-P PORT",
+    "Remote port (capital P, unlike ssh)"
+   ],
+   [
+    "-i FILE",
+    "Identity key file"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "scp report.pdf amina@server:/home/amina/",
+    "out": "report.pdf    100% 2411KB   4.1MB/s   00:00"
+   },
+   {
+    "cmd": "scp -r amina@server:~/logs ./server-logs",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Using -p (lowercase) for the port \u2014 in scp that preserves timestamps; the port flag is -P."
+  ],
+  "tips": [
+   "For big or repeated transfers, rsync over SSH resumes and skips unchanged files."
+  ],
+  "related": [
+   "ssh",
+   "rsync",
+   "sftp"
+  ]
+ },
+ {
+  "name": "sftp",
+  "category": "SSH",
+  "difficulty": "intermediate",
+  "description": "Interactive file transfer session over SSH, with FTP-like commands.",
+  "syntax": "sftp [user@]host",
+  "params": [
+   [
+    "get / put",
+    "Download / upload a file"
+   ],
+   [
+    "ls / lls",
+    "List remote / local directory"
+   ],
+   [
+    "cd / lcd",
+    "Change remote / local directory"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sftp amina@server",
+    "out": "Connected to server.\nsftp> get backup.tar.gz\nFetching /home/amina/backup.tar.gz to backup.tar.gz"
+   }
+  ],
+  "mistakes": [
+   "Forgetting the l-prefixed commands act locally \u2014 plain ls is the remote side."
+  ],
+  "tips": [
+   "Good when you need to browse before transferring; scp/rsync are better for known paths."
+  ],
+  "related": [
+   "scp",
+   "ssh",
+   "rsync"
+  ]
+ },
+ {
+  "name": "ssh-keygen",
+  "category": "SSH",
+  "difficulty": "intermediate",
+  "description": "Generate SSH key pairs for password-less, key-based authentication.",
+  "syntax": "ssh-keygen [options]",
+  "params": [
+   [
+    "-t ed25519",
+    "Modern, recommended key type"
+   ],
+   [
+    "-C comment",
+    "Label the key (usually your email)"
+   ],
+   [
+    "-f FILE",
+    "Output file path"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ssh-keygen -t ed25519 -C 'amina@laptop'",
+    "out": "Generating public/private ed25519 key pair.\nYour identification has been saved in /home/amina/.ssh/id_ed25519\nYour public key has been saved in /home/amina/.ssh/id_ed25519.pub"
+   }
+  ],
+  "mistakes": [
+   "Sharing the private key \u2014 only the .pub file ever leaves your machine.",
+   "Skipping the passphrase on keys that guard important systems."
+  ],
+  "tips": [
+   "One keypair per device is easier to revoke than one key everywhere."
+  ],
+  "related": [
+   "ssh-copy-id",
+   "ssh",
+   "chmod"
+  ],
+  "quiz": [
+   {
+    "q": "Which file do you copy to a server for key auth?",
+    "options": [
+     "id_ed25519",
+     "id_ed25519.pub",
+     "known_hosts",
+     "authorized_keys from your laptop"
+    ],
+    "answer": 1,
+    "explain": "The public key goes into the server's ~/.ssh/authorized_keys; the private key never leaves you."
+   }
+  ]
+ },
+ {
+  "name": "ssh-copy-id",
+  "category": "SSH",
+  "difficulty": "intermediate",
+  "description": "Install your public key on a remote server's authorized_keys in one step.",
+  "syntax": "ssh-copy-id [-i keyfile] user@host",
+  "params": [
+   [
+    "-i FILE",
+    "Choose which public key to install"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ssh-copy-id amina@server",
+    "out": "Number of key(s) added: 1\nNow try logging into the machine with: ssh amina@server"
+   }
+  ],
+  "mistakes": [
+   "Copying private keys manually instead \u2014 ssh-copy-id handles permissions and appending correctly."
+  ],
+  "tips": [
+   "Immediately test key login before disabling password auth in sshd_config."
+  ],
+  "related": [
+   "ssh-keygen",
+   "ssh",
+   "chmod"
+  ]
+ },
+ {
+  "name": "rsync",
+  "category": "SSH",
+  "difficulty": "intermediate",
+  "description": "Fast, resumable file synchronization \u2014 locally or over SSH \u2014 copying only what changed.",
+  "syntax": "rsync [options] source destination",
+  "params": [
+   [
+    "-a",
+    "Archive: recurse and preserve permissions, times, links"
+   ],
+   [
+    "-v",
+    "Verbose"
+   ],
+   [
+    "-z",
+    "Compress in transit"
+   ],
+   [
+    "--delete",
+    "Remove destination files not in source"
+   ],
+   [
+    "-n",
+    "Dry run: show what would happen"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "rsync -avz ~/site/ amina@server:/var/www/site/",
+    "out": "sending incremental file list\nindex.html\nsent 8,412 bytes  received 95 bytes"
+   },
+   {
+    "cmd": "rsync -avn --delete src/ dst/",
+    "out": "(dry run: lists changes without making them)"
+   }
+  ],
+  "mistakes": [
+   "Trailing-slash semantics: src/ copies the contents, src copies the directory itself \u2014 the difference bites everyone once.",
+   "Using --delete without a dry run first."
+  ],
+  "tips": [
+   "Make -n (dry run) a reflex before any rsync with --delete."
+  ],
+  "related": [
+   "scp",
+   "cp",
+   "tar",
+   "ssh"
+  ]
+ },
+ {
+  "name": "apt",
+  "category": "Package Management",
+  "difficulty": "beginner",
+  "description": "Install, upgrade, search and remove software on Debian/Ubuntu systems.",
+  "syntax": "sudo apt command [package]",
+  "params": [
+   [
+    "update",
+    "Refresh the package index (do this first)"
+   ],
+   [
+    "upgrade",
+    "Install available upgrades"
+   ],
+   [
+    "install PKG",
+    "Install a package"
+   ],
+   [
+    "remove / purge PKG",
+    "Uninstall (purge also deletes config)"
+   ],
+   [
+    "search TERM",
+    "Search packages"
+   ],
+   [
+    "autoremove",
+    "Remove orphaned dependencies"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo apt update && sudo apt install htop",
+    "out": "Reading package lists... Done\nSetting up htop (3.3.0-4) ..."
+   },
+   {
+    "cmd": "apt search image editor | head -n 2",
+    "out": "gimp/noble 2.10.36-3 amd64\n  GNU Image Manipulation Program"
+   }
+  ],
+  "mistakes": [
+   "Installing without apt update first and getting 'package not found' or old versions.",
+   "Confusing remove (keeps config) with purge (removes config too)."
+  ],
+  "tips": [
+   "apt update refreshes the list; apt upgrade installs \u2014 two steps, in that order."
+  ],
+  "related": [
+   "apt-get",
+   "dpkg",
+   "snap"
+  ],
+  "quiz": [
+   {
+    "q": "What does 'sudo apt update' actually do?",
+    "options": [
+     "Upgrades all packages",
+     "Refreshes the package index only",
+     "Updates the kernel",
+     "Cleans the cache"
+    ],
+    "answer": 1,
+    "explain": "update downloads fresh package lists; upgrade performs installations."
+   }
+  ]
+ },
+ {
+  "name": "apt-get",
+  "category": "Package Management",
+  "difficulty": "intermediate",
+  "description": "Script-friendly Debian/Ubuntu package tool; apt's stable, non-interactive ancestor.",
+  "syntax": "sudo apt-get command [package]",
+  "params": [
+   [
+    "install / remove",
+    "Manage packages"
+   ],
+   [
+    "-y",
+    "Assume yes to prompts (for scripts)"
+   ],
+   [
+    "dist-upgrade",
+    "Upgrade, allowing dependency changes"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo apt-get install -y curl",
+    "out": "Setting up curl (8.5.0-2ubuntu10) ..."
+   }
+  ],
+  "mistakes": [
+   "Using apt (which warns about an unstable CLI) inside scripts \u2014 apt-get is the scripting choice."
+  ],
+  "tips": [
+   "Interactive shell: apt. Dockerfiles and scripts: apt-get -y."
+  ],
+  "related": [
+   "apt",
+   "dpkg"
+  ]
+ },
+ {
+  "name": "dpkg",
+  "category": "Package Management",
+  "difficulty": "intermediate",
+  "description": "Low-level Debian package manager: install local .deb files and query installed packages.",
+  "syntax": "dpkg [options] action",
+  "params": [
+   [
+    "-i FILE.deb",
+    "Install a local .deb file"
+   ],
+   [
+    "-l [pattern]",
+    "List installed packages"
+   ],
+   [
+    "-L PKG",
+    "List a package's files"
+   ],
+   [
+    "-S FILE",
+    "Which package owns a file"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo dpkg -i code_1.92_amd64.deb",
+    "out": "Unpacking code (1.92) ..."
+   },
+   {
+    "cmd": "dpkg -S /bin/ls",
+    "out": "coreutils: /bin/ls"
+   }
+  ],
+  "mistakes": [
+   "dpkg -i does not fetch dependencies \u2014 follow failures with sudo apt -f install."
+  ],
+  "tips": [
+   "dpkg -l | grep name quickly answers 'is this installed, and which version?'."
+  ],
+  "related": [
+   "apt",
+   "apt-get",
+   "rpm"
+  ]
+ },
+ {
+  "name": "yum",
+  "category": "Package Management",
+  "difficulty": "beginner",
+  "description": "Classic package manager for RHEL/CentOS systems (now a dnf alias on modern releases).",
+  "syntax": "sudo yum command [package]",
+  "params": [
+   [
+    "install / remove PKG",
+    "Manage packages"
+   ],
+   [
+    "update",
+    "Upgrade packages"
+   ],
+   [
+    "search TERM",
+    "Find packages"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo yum install httpd",
+    "out": "Installed:\n  httpd-2.4.62-1.el9.x86_64"
+   }
+  ],
+  "mistakes": [
+   "Mixing apt knowledge onto RHEL \u2014 the ecosystem is rpm/yum/dnf, not deb/apt."
+  ],
+  "tips": [
+   "On RHEL 8+, yum simply forwards to dnf \u2014 learn dnf's syntax."
+  ],
+  "related": [
+   "dnf",
+   "rpm",
+   "apt"
+  ]
+ },
+ {
+  "name": "dnf",
+  "category": "Package Management",
+  "difficulty": "beginner",
+  "description": "Modern package manager for Fedora/RHEL: faster dependency solving, same workflow as yum.",
+  "syntax": "sudo dnf command [package]",
+  "params": [
+   [
+    "install / remove PKG",
+    "Manage packages"
+   ],
+   [
+    "upgrade",
+    "Upgrade everything"
+   ],
+   [
+    "search / info",
+    "Find and inspect packages"
+   ],
+   [
+    "history",
+    "Review and undo transactions"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo dnf install nginx",
+    "out": "Complete!"
+   },
+   {
+    "cmd": "dnf history | head -n 3",
+    "out": "ID | Command line          | Date and time    | Action\n12 | install nginx         | 2026-08-05 11:02 | Install"
+   }
+  ],
+  "mistakes": [
+   "Forgetting dnf history undo exists and manually reversing installs."
+  ],
+  "tips": [
+   "dnf provides */bin/htop finds which package supplies a file."
+  ],
+  "related": [
+   "yum",
+   "rpm",
+   "apt"
+  ]
+ },
+ {
+  "name": "rpm",
+  "category": "Package Management",
+  "difficulty": "intermediate",
+  "description": "Low-level RPM package tool: install local .rpm files and query the package database.",
+  "syntax": "rpm [options] package",
+  "params": [
+   [
+    "-ivh FILE.rpm",
+    "Install with progress"
+   ],
+   [
+    "-qa",
+    "List all installed packages"
+   ],
+   [
+    "-ql PKG",
+    "List a package's files"
+   ],
+   [
+    "-qf FILE",
+    "Which package owns a file"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "rpm -qf /usr/sbin/sshd",
+    "out": "openssh-server-9.6p1-3.el9.x86_64"
+   }
+  ],
+  "mistakes": [
+   "Installing with rpm -i and hitting dependency errors \u2014 dnf install ./file.rpm resolves them."
+  ],
+  "tips": [
+   "rpm is to dnf what dpkg is to apt: the layer underneath."
+  ],
+  "related": [
+   "dnf",
+   "yum",
+   "dpkg"
+  ]
+ },
+ {
+  "name": "snap",
+  "category": "Package Management",
+  "difficulty": "beginner",
+  "description": "Install sandboxed, self-updating application packages (snaps) on Ubuntu and others.",
+  "syntax": "sudo snap command [package]",
+  "params": [
+   [
+    "install / remove PKG",
+    "Manage snaps"
+   ],
+   [
+    "list",
+    "Installed snaps"
+   ],
+   [
+    "refresh",
+    "Update snaps"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo snap install spotify",
+    "out": "spotify 1.2.31 from Spotify\u2713 installed"
+   }
+  ],
+  "mistakes": [
+   "Wondering why a snap can't read random paths \u2014 snaps are sandboxed by design."
+  ],
+  "tips": [
+   "Snaps auto-update on their own schedule; snap refresh forces it now."
+  ],
+  "related": [
+   "apt",
+   "flatpak"
+  ]
+ },
+ {
+  "name": "echo",
+  "category": "Bash",
+  "difficulty": "beginner",
+  "description": "Print text or variable values to standard output.",
+  "syntax": "echo [options] [string]",
+  "params": [
+   [
+    "-n",
+    "No trailing newline"
+   ],
+   [
+    "-e",
+    "Interpret escapes like \\n and \\t"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "echo \"Hello, $USER\"",
+    "out": "Hello, amina"
+   },
+   {
+    "cmd": "echo $PATH",
+    "out": "/usr/local/bin:/usr/bin:/bin"
+   }
+  ],
+  "mistakes": [
+   "Single vs double quotes: '$USER' prints literally, \"$USER\" expands the variable."
+  ],
+  "tips": [
+   "echo something >> file.txt appends a line \u2014 a quick way to build test files."
+  ],
+  "related": [
+   "printf",
+   "cat",
+   "export"
+  ],
+  "quiz": [
+   {
+    "q": "What does echo '$HOME' print?",
+    "options": [
+     "/home/amina",
+     "$HOME",
+     "An error",
+     "Nothing"
+    ],
+    "answer": 1,
+    "explain": "Single quotes suppress variable expansion; double quotes allow it."
+   }
+  ]
+ },
+ {
+  "name": "history",
+  "category": "Bash",
+  "difficulty": "beginner",
+  "description": "Show the shell's command history.",
+  "syntax": "history [n]",
+  "params": [
+   [
+    "n",
+    "Show only the last n entries"
+   ],
+   [
+    "-c",
+    "Clear the in-memory history"
+   ],
+   [
+    "!N",
+    "Re-run entry number N"
+   ],
+   [
+    "!!",
+    "Re-run the previous command"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "history 3",
+    "out": "  501  cd /var/log\n  502  tail -f syslog\n  503  history 3"
+   },
+   {
+    "cmd": "sudo !!",
+    "out": "(re-runs the previous command with sudo)"
+   }
+  ],
+  "mistakes": [
+   "Typing secrets on the command line \u2014 they land in ~/.bash_history in plain text."
+  ],
+  "tips": [
+   "Ctrl+R gives interactive reverse search \u2014 usually faster than reading history output."
+  ],
+  "related": [
+   "alias",
+   "echo",
+   "fc"
+  ]
+ },
+ {
+  "name": "alias",
+  "category": "Bash",
+  "difficulty": "beginner",
+  "description": "Create shorthand names for longer commands.",
+  "syntax": "alias name='command'",
+  "params": [
+   [
+    "(no args)",
+    "List current aliases"
+   ],
+   [
+    "unalias name",
+    "Remove an alias"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "alias ll='ls -lah'",
+    "out": ""
+   },
+   {
+    "cmd": "ll",
+    "out": "(runs ls -lah)"
+   }
+  ],
+  "mistakes": [
+   "Defining aliases only in the current session \u2014 put them in ~/.bashrc to persist."
+  ],
+  "tips": [
+   "alias with no arguments reveals what magic your shell already has defined."
+  ],
+  "related": [
+   "history",
+   "source",
+   "which"
+  ]
+ },
+ {
+  "name": "source",
+  "category": "Bash",
+  "difficulty": "intermediate",
+  "description": "Execute a script inside the current shell, so its variables and functions persist.",
+  "syntax": "source file  (or:  . file)",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "source ~/.bashrc",
+    "out": ""
+   },
+   {
+    "cmd": "source venv/bin/activate",
+    "out": "(prompt gains a (venv) prefix)"
+   }
+  ],
+  "mistakes": [
+   "Running ./script.sh and wondering why its exports vanished \u2014 child processes cannot modify your shell."
+  ],
+  "tips": [
+   "Any edit to ~/.bashrc needs source ~/.bashrc (or a new terminal) to take effect."
+  ],
+  "related": [
+   "export",
+   "alias",
+   "bash"
+  ],
+  "quiz": [
+   {
+    "q": "Why 'source ~/.bashrc' instead of running it?",
+    "options": [
+     "It's faster",
+     "Running scripts needs sudo",
+     "source applies changes to the current shell",
+     "There is no difference"
+    ],
+    "answer": 2,
+    "explain": "A script runs in a child process; source executes it in your live shell."
+   }
+  ]
+ },
+ {
+  "name": "type",
+  "category": "Bash",
+  "difficulty": "intermediate",
+  "description": "Reveal how the shell will interpret a name: alias, builtin, function or file.",
+  "syntax": "type [-a] name",
+  "params": [
+   [
+    "-a",
+    "Show all matches, not just the first"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "type ll",
+    "out": "ll is aliased to 'ls -lah'"
+   },
+   {
+    "cmd": "type cd",
+    "out": "cd is a shell builtin"
+   }
+  ],
+  "mistakes": [
+   "Debugging 'wrong version runs' problems without checking type -a first."
+  ],
+  "tips": [
+   "type beats which because it also sees aliases, functions and builtins."
+  ],
+  "related": [
+   "which",
+   "alias",
+   "whereis"
+  ]
+ },
+ {
+  "name": "which",
+  "category": "Bash",
+  "difficulty": "beginner",
+  "description": "Show the full path of the executable that would run for a command name.",
+  "syntax": "which [-a] command",
+  "params": [
+   [
+    "-a",
+    "List every match on PATH, in order"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "which python3",
+    "out": "/usr/bin/python3"
+   }
+  ],
+  "mistakes": [
+   "Trusting which for aliases and builtins \u2014 it only searches PATH; use type for the full story."
+  ],
+  "tips": [
+   "which -a exposes shadowing, e.g. a ~/bin script hiding the system binary."
+  ],
+  "related": [
+   "type",
+   "whereis",
+   "echo"
+  ]
+ },
+ {
+  "name": "xargs",
+  "category": "Bash",
+  "difficulty": "advanced",
+  "description": "Build and run commands from standard input \u2014 turning a list of items into command arguments.",
+  "syntax": "command | xargs [options] [command]",
+  "params": [
+   [
+    "-n N",
+    "Use at most N arguments per command"
+   ],
+   [
+    "-I {}",
+    "Place each item where {} appears"
+   ],
+   [
+    "-0",
+    "Expect NUL-separated input (pairs with find -print0)"
+   ],
+   [
+    "-p",
+    "Prompt before each execution"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "find . -name '*.tmp' -print0 | xargs -0 rm",
+    "out": ""
+   },
+   {
+    "cmd": "cat servers.txt | xargs -I {} ssh {} uptime",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Piping filenames with spaces into xargs without -0 \u2014 arguments split apart."
+  ],
+  "tips": [
+   "Test destructive pipelines by replacing the final command with echo first."
+  ],
+  "related": [
+   "find",
+   "rm",
+   "grep"
+  ]
+ },
+ {
+  "name": "tee",
+  "category": "Bash",
+  "difficulty": "intermediate",
+  "description": "Split a pipe: write input to a file and pass it through to the screen at the same time.",
+  "syntax": "command | tee [-a] file",
+  "params": [
+   [
+    "-a",
+    "Append instead of overwrite"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "make 2>&1 | tee build.log",
+    "out": "(build output shown live AND saved)"
+   },
+   {
+    "cmd": "echo 'net.ipv4.ip_forward=1' | sudo tee -a /etc/sysctl.conf",
+    "out": "net.ipv4.ip_forward=1"
+   }
+  ],
+  "mistakes": [
+   "sudo echo x > /protected/file fails \u2014 the redirect runs as you; sudo tee is the fix."
+  ],
+  "tips": [
+   "The sudo tee pattern is the standard way to write root-owned files from a pipe."
+  ],
+  "related": [
+   "cat",
+   "echo",
+   "sudo"
+  ]
+ },
+ {
+  "name": "watch",
+  "category": "Bash",
+  "difficulty": "intermediate",
+  "description": "Run a command repeatedly and display its output full-screen, refreshing at an interval.",
+  "syntax": "watch [options] command",
+  "params": [
+   [
+    "-n SEC",
+    "Refresh interval (default 2s)"
+   ],
+   [
+    "-d",
+    "Highlight differences between refreshes"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "watch -n 1 -d df -h",
+    "out": "(disk usage refreshing every second, changes highlighted)"
+   }
+  ],
+  "mistakes": [
+   "Writing manual while-sleep loops for monitoring when watch already exists."
+  ],
+  "tips": [
+   "watch -d makes creeping changes (a growing log, a filling disk) jump out."
+  ],
+  "related": [
+   "tail",
+   "top",
+   "du"
+  ]
+ },
+ {
+  "name": "export",
+  "category": "Environment Variables",
+  "difficulty": "beginner",
+  "description": "Mark a shell variable for inheritance by child processes (make it an environment variable).",
+  "syntax": "export NAME=value",
+  "params": [
+   [
+    "-p",
+    "List exported variables"
+   ],
+   [
+    "-n NAME",
+    "Remove the export mark"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "export EDITOR=nano",
+    "out": ""
+   },
+   {
+    "cmd": "export PATH=\"$PATH:$HOME/bin\"",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Overwriting PATH instead of appending to it \u2014 suddenly no commands are found.",
+   "Expecting exports to survive a new terminal \u2014 persist them in ~/.bashrc."
+  ],
+  "tips": [
+   "Difference: NAME=x is shell-local; export NAME=x is visible to programs you launch."
+  ],
+  "related": [
+   "env",
+   "printenv",
+   "unset",
+   "source"
+  ],
+  "quiz": [
+   {
+    "q": "Why does PATH=/home/me/bin (no $PATH) break your shell?",
+    "options": [
+     "Syntax error",
+     "It replaces the whole search path, hiding /usr/bin etc.",
+     "PATH is read-only",
+     "It needs sudo"
+    ],
+    "answer": 1,
+    "explain": "Always append: PATH=\"$PATH:/home/me/bin\"."
+   }
+  ]
+ },
+ {
+  "name": "env",
+  "category": "Environment Variables",
+  "difficulty": "beginner",
+  "description": "Print the environment, or run a command with a modified environment.",
+  "syntax": "env [NAME=value] [command]",
+  "params": [
+   [
+    "-i",
+    "Start from an empty environment"
+   ],
+   [
+    "-u NAME",
+    "Unset a variable for this run"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "env | grep PATH",
+    "out": "PATH=/usr/local/bin:/usr/bin:/bin"
+   },
+   {
+    "cmd": "env TZ=UTC date",
+    "out": "Wed Aug  5 01:48:02 UTC 2026"
+   }
+  ],
+  "mistakes": [
+   "Confusing the environment (inherited) with shell variables (local) \u2014 env shows only the former."
+  ],
+  "tips": [
+   "env VAR=x cmd sets a variable for one command only, without touching your shell."
+  ],
+  "related": [
+   "printenv",
+   "export",
+   "set"
+  ]
+ },
+ {
+  "name": "printenv",
+  "category": "Environment Variables",
+  "difficulty": "beginner",
+  "description": "Print all environment variables, or the value of one.",
+  "syntax": "printenv [NAME]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "printenv HOME",
+    "out": "/home/amina"
+   }
+  ],
+  "mistakes": [
+   "printenv name is case-sensitive \u2014 HOME exists, home does not."
+  ],
+  "tips": [
+   "printenv NAME is cleaner in scripts than echo $NAME (no expansion surprises)."
+  ],
+  "related": [
+   "env",
+   "export",
+   "echo"
+  ]
+ },
+ {
+  "name": "set",
+  "category": "Environment Variables",
+  "difficulty": "advanced",
+  "description": "List all shell variables and functions, or change shell options (like exit-on-error).",
+  "syntax": "set [options]",
+  "params": [
+   [
+    "-e",
+    "Exit script on any command failure"
+   ],
+   [
+    "-u",
+    "Error on undefined variables"
+   ],
+   [
+    "-x",
+    "Print each command before running it (trace)"
+   ],
+   [
+    "-o pipefail",
+    "Fail a pipeline if any stage fails"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "set -euo pipefail",
+    "out": ""
+   },
+   {
+    "cmd": "set -x; ls /tmp; set +x",
+    "out": "+ ls /tmp"
+   }
+  ],
+  "mistakes": [
+   "Writing production scripts without set -euo pipefail \u2014 silent failures compound."
+  ],
+  "tips": [
+   "set -x is the fastest way to see exactly what a misbehaving script is doing."
+  ],
+  "related": [
+   "export",
+   "env",
+   "bash"
+  ]
+ },
+ {
+  "name": "unset",
+  "category": "Environment Variables",
+  "difficulty": "intermediate",
+  "description": "Remove a variable or function from the shell.",
+  "syntax": "unset NAME",
+  "params": [
+   [
+    "-f",
+    "Unset a function instead of a variable"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "unset TEMP_TOKEN",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Unsetting critical variables like PATH \u2014 recoverable only by restarting the shell."
+  ],
+  "tips": [
+   "Clear sensitive variables (tokens, passwords) as soon as you no longer need them."
+  ],
+  "related": [
+   "export",
+   "env",
+   "set"
+  ]
+ },
+ {
+  "name": "crontab",
+  "category": "Cron",
+  "difficulty": "intermediate",
+  "description": "Schedule commands to run automatically at fixed times via the cron daemon.",
+  "syntax": "crontab [-e | -l | -r]",
+  "params": [
+   [
+    "-e",
+    "Edit your crontab"
+   ],
+   [
+    "-l",
+    "List your crontab"
+   ],
+   [
+    "-r",
+    "Remove your crontab (careful: no confirmation)"
+   ],
+   [
+    "m h dom mon dow",
+    "The five schedule fields: minute, hour, day, month, weekday"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "crontab -l",
+    "out": "0 2 * * * /home/amina/bin/backup.sh\n*/15 * * * * curl -s https://example.com/health >> /var/log/health.log"
+   },
+   {
+    "cmd": "crontab -e",
+    "out": "(opens your schedule in $EDITOR)"
+   }
+  ],
+  "mistakes": [
+   "Relying on your interactive PATH \u2014 cron's environment is minimal; use absolute paths.",
+   "crontab -r (remove) is one key from -e (edit) and wipes everything silently."
+  ],
+  "tips": [
+   "'0 2 * * *' = 02:00 daily. Sanity-check schedules at crontab.guru before saving."
+  ],
+  "related": [
+   "at",
+   "systemctl",
+   "date"
+  ],
+  "quiz": [
+   {
+    "q": "When does '30 4 * * 1' run?",
+    "options": [
+     "4:30 AM every day",
+     "4:30 AM every Monday",
+     "1:30 AM on the 4th",
+     "Every 30 minutes"
+    ],
+    "answer": 1,
+    "explain": "Fields: min=30, hour=4, any day/month, weekday=1 (Monday)."
+   }
+  ]
+ },
+ {
+  "name": "at",
+  "category": "Cron",
+  "difficulty": "intermediate",
+  "description": "Schedule a command to run once at a specified future time.",
+  "syntax": "at time  (then type commands, end with Ctrl+D)",
+  "params": [
+   [
+    "atq",
+    "List pending jobs"
+   ],
+   [
+    "atrm N",
+    "Cancel job N"
+   ],
+   [
+    "now + 2 hours",
+    "Relative time syntax"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "echo 'systemctl restart myapp' | at 03:00",
+    "out": "job 7 at Thu Aug  6 03:00:00 2026"
+   }
+  ],
+  "mistakes": [
+   "Using cron for one-off tasks (and forgetting to remove the entry) \u2014 at exists for exactly this."
+  ],
+  "tips": [
+   "at now + 10 minutes is great for 'try this change, revert automatically if I get locked out'."
+  ],
+  "related": [
+   "crontab",
+   "sleep",
+   "batch"
+  ]
+ },
+ {
+  "name": "sleep",
+  "category": "Cron",
+  "difficulty": "beginner",
+  "description": "Pause for a given amount of time \u2014 the building block of polling loops and delays.",
+  "syntax": "sleep number[smhd]",
+  "params": [
+   [
+    "5 / 5s",
+    "Seconds"
+   ],
+   [
+    "2m / 1h",
+    "Minutes / hours"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sleep 3 && echo done",
+    "out": "done"
+   },
+   {
+    "cmd": "while true; do date; sleep 60; done",
+    "out": "(prints the time every minute)"
+   }
+  ],
+  "mistakes": [
+   "Busy-wait loops without sleep pegging a CPU core at 100%."
+  ],
+  "tips": [
+   "In retry loops, back off: sleep longer after each failure."
+  ],
+  "related": [
+   "watch",
+   "at",
+   "date"
+  ]
+ },
+ {
+  "name": "dmesg",
+  "category": "Logs",
+  "difficulty": "intermediate",
+  "description": "Print the kernel ring buffer: hardware events, driver messages, OOM kills.",
+  "syntax": "sudo dmesg [options]",
+  "params": [
+   [
+    "-T",
+    "Human-readable timestamps"
+   ],
+   [
+    "-w",
+    "Follow new messages live"
+   ],
+   [
+    "-l err",
+    "Filter by level (err, warn...)"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo dmesg -T | tail -n 2",
+    "out": "[Wed Aug  5 11:20:14 2026] usb 1-3: new high-speed USB device number 5\n[Wed Aug  5 11:20:14 2026] sd 4:0:0:0: [sdb] Attached SCSI removable disk"
+   }
+  ],
+  "mistakes": [
+   "Debugging disappearing processes without checking dmesg \u2014 the OOM killer logs its victims here."
+  ],
+  "tips": [
+   "Plugged in hardware that 'does nothing'? sudo dmesg -w while re-plugging tells the story."
+  ],
+  "related": [
+   "journalctl",
+   "lsusb",
+   "tail"
+  ]
+ },
+ {
+  "name": "logger",
+  "category": "Logs",
+  "difficulty": "intermediate",
+  "description": "Write a message into the system log from the command line or scripts.",
+  "syntax": "logger [options] message",
+  "params": [
+   [
+    "-t TAG",
+    "Tag the entry with a program name"
+   ],
+   [
+    "-p facility.level",
+    "Set priority, e.g. user.err"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "logger -t backup 'nightly backup finished OK'",
+    "out": ""
+   },
+   {
+    "cmd": "journalctl -t backup | tail -n 1",
+    "out": "Aug 05 02:14:09 host backup[5121]: nightly backup finished OK"
+   }
+  ],
+  "mistakes": [
+   "Scripts echoing status to nowhere \u2014 logger puts it where journalctl can find it."
+  ],
+  "tips": [
+   "Add logger calls to cron scripts so their runs leave an auditable trail."
+  ],
+  "related": [
+   "journalctl",
+   "crontab",
+   "echo"
+  ]
+ },
+ {
+  "name": "lastlog",
+  "category": "Logs",
+  "difficulty": "intermediate",
+  "description": "Report the most recent login of every account on the system.",
+  "syntax": "lastlog [options]",
+  "params": [
+   [
+    "-u user",
+    "One user only"
+   ],
+   [
+    "-t DAYS",
+    "Only logins within the last DAYS"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "lastlog -u amina",
+    "out": "Username   Port  From          Latest\namina      pts/0 192.168.1.20  Tue Aug  4 09:14:11 +1000 2026"
+   }
+  ],
+  "mistakes": [
+   "Alarm at '**Never logged in**' for system accounts \u2014 that is normal and correct."
+  ],
+  "tips": [
+   "A login on a service account that should never log in is a red flag worth investigating."
+  ],
+  "related": [
+   "last",
+   "who",
+   "journalctl"
+  ]
+ },
+ {
+  "name": "logrotate",
+  "category": "Logs",
+  "difficulty": "advanced",
+  "description": "Rotate, compress and prune log files on a schedule so they never fill the disk.",
+  "syntax": "sudo logrotate [options] config",
+  "params": [
+   [
+    "-d",
+    "Debug/dry run"
+   ],
+   [
+    "-f",
+    "Force rotation now"
+   ],
+   [
+    "/etc/logrotate.d/",
+    "Per-application configs live here"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo logrotate -d /etc/logrotate.d/nginx",
+    "out": "reading config file /etc/logrotate.d/nginx\nrotating pattern: /var/log/nginx/*.log weekly (14 rotations)"
+   }
+  ],
+  "mistakes": [
+   "Apps writing to a rotated file handle \u2014 configs need postrotate reload hooks (or use copytruncate)."
+  ],
+  "tips": [
+   "Always test new configs with -d before the 3 a.m. cron run does it for real."
+  ],
+  "related": [
+   "journalctl",
+   "tail",
+   "gzip",
+   "crontab"
+  ]
+ },
+ {
+  "name": "gpg",
+  "category": "Security",
+  "difficulty": "advanced",
+  "description": "Encrypt, decrypt, sign and verify files with OpenPGP keys.",
+  "syntax": "gpg [options] file",
+  "params": [
+   [
+    "-c",
+    "Symmetric encryption with a passphrase"
+   ],
+   [
+    "-e -r NAME",
+    "Encrypt to a recipient's public key"
+   ],
+   [
+    "-d",
+    "Decrypt"
+   ],
+   [
+    "--verify",
+    "Check a signature"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "gpg -c secrets.txt",
+    "out": "(prompts for a passphrase, writes secrets.txt.gpg)"
+   },
+   {
+    "cmd": "gpg -d secrets.txt.gpg",
+    "out": "(prompts, then prints the plaintext)"
+   }
+  ],
+  "mistakes": [
+   "Encrypting a file and leaving the plaintext original beside it.",
+   "Losing the passphrase \u2014 there is no recovery."
+  ],
+  "tips": [
+   "gpg -c is the quickest way to protect a single file before it leaves your machine."
+  ],
+  "related": [
+   "openssl",
+   "sha256sum",
+   "ssh-keygen"
+  ]
+ },
+ {
+  "name": "openssl",
+  "category": "Security",
+  "difficulty": "advanced",
+  "description": "Swiss-army toolkit for TLS: inspect certificates, test HTTPS endpoints, generate keys and hashes.",
+  "syntax": "openssl subcommand [options]",
+  "params": [
+   [
+    "s_client -connect host:443",
+    "Open a TLS connection and show the certificate"
+   ],
+   [
+    "x509 -in cert.pem -text",
+    "Decode a certificate"
+   ],
+   [
+    "rand -hex 16",
+    "Generate random bytes"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -dates",
+    "out": "notBefore=Jan 15 00:00:00 2026 GMT\nnotAfter=Apr 15 23:59:59 2026 GMT"
+   },
+   {
+    "cmd": "openssl rand -hex 8",
+    "out": "9f3a1c7e42d0b865"
+   }
+  ],
+  "mistakes": [
+   "Guessing why HTTPS fails instead of reading the certificate dates and chain with s_client."
+  ],
+  "tips": [
+   "The -dates one-liner above is the fastest 'is this cert expired?' check."
+  ],
+  "related": [
+   "curl",
+   "gpg",
+   "sha256sum"
+  ]
+ },
+ {
+  "name": "sha256sum",
+  "category": "Security",
+  "difficulty": "intermediate",
+  "description": "Compute or verify SHA-256 checksums to confirm a file is intact and untampered.",
+  "syntax": "sha256sum [file] | sha256sum -c sums.txt",
+  "params": [
+   [
+    "-c FILE",
+    "Verify files against a checksum list"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sha256sum ubuntu.iso",
+    "out": "a4acfda10b18da50e2ec50ccaf860d7f20b389df8765611142305c0e911d16fd  ubuntu.iso"
+   },
+   {
+    "cmd": "sha256sum -c SHA256SUMS",
+    "out": "ubuntu.iso: OK"
+   }
+  ],
+  "mistakes": [
+   "Downloading an ISO and skipping verification \u2014 a corrupt image wastes an hour later."
+  ],
+  "tips": [
+   "Compare against the checksum published on the project's website, not one bundled with the download."
+  ],
+  "related": [
+   "md5sum",
+   "gpg",
+   "curl"
+  ]
+ },
+ {
+  "name": "md5sum",
+  "category": "Security",
+  "difficulty": "intermediate",
+  "description": "Compute MD5 checksums \u2014 fine for detecting accidental corruption, broken for security.",
+  "syntax": "md5sum [file]",
+  "params": [
+   [
+    "-c FILE",
+    "Verify against a checksum list"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "md5sum backup.tar.gz",
+    "out": "d41d8cd98f00b204e9800998ecf8427e  backup.tar.gz"
+   }
+  ],
+  "mistakes": [
+   "Using MD5 where tampering matters \u2014 collisions are practical; use sha256sum."
+  ],
+  "tips": [
+   "Still handy for quick 'did the transfer corrupt this?' checks between machines."
+  ],
+  "related": [
+   "sha256sum",
+   "gpg"
+  ]
+ },
+ {
+  "name": "chroot",
+  "category": "Security",
+  "difficulty": "advanced",
+  "description": "Run a command with a different root directory, isolating it to a subtree of the filesystem.",
+  "syntax": "sudo chroot new_root [command]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "sudo chroot /mnt/recovery /bin/bash",
+    "out": "(a shell that sees /mnt/recovery as /)"
+   }
+  ],
+  "mistakes": [
+   "Treating chroot as a security sandbox \u2014 root can escape it; it is a tool, not a jail."
+  ],
+  "tips": [
+   "The classic use: boot a live USB, mount the broken system, chroot in, and fix the bootloader."
+  ],
+  "related": [
+   "mount",
+   "su",
+   "systemctl"
+  ]
+ },
+ {
+  "name": "iptables",
+  "category": "Firewall",
+  "difficulty": "advanced",
+  "description": "Configure the kernel's packet-filtering rules directly: the classic Linux firewall.",
+  "syntax": "sudo iptables [options]",
+  "params": [
+   [
+    "-L -n -v",
+    "List rules, numeric, with counters"
+   ],
+   [
+    "-A CHAIN",
+    "Append a rule to a chain"
+   ],
+   [
+    "-j ACCEPT/DROP",
+    "What to do with matches"
+   ],
+   [
+    "-F",
+    "Flush (delete) all rules"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo iptables -L INPUT -n | head -n 4",
+    "out": "Chain INPUT (policy DROP)\ntarget  prot opt source     destination\nACCEPT  tcp  --  0.0.0.0/0  0.0.0.0/0  tcp dpt:22\nACCEPT  tcp  --  0.0.0.0/0  0.0.0.0/0  tcp dpt:443"
+   },
+   {
+    "cmd": "sudo iptables -A INPUT -p tcp --dport 8080 -j ACCEPT",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Setting a DROP policy over SSH before adding the SSH allow rule \u2014 instant lockout.",
+   "Rules are not persistent by default; save them or they vanish at reboot."
+  ],
+  "tips": [
+   "When working remotely, schedule an automatic flush with at before risky changes."
+  ],
+  "related": [
+   "ufw",
+   "firewall-cmd",
+   "ss",
+   "nft"
+  ]
+ },
+ {
+  "name": "ufw",
+  "category": "Firewall",
+  "difficulty": "intermediate",
+  "description": "Uncomplicated Firewall \u2014 a friendly front-end to Linux packet filtering (default on Ubuntu).",
+  "syntax": "sudo ufw command",
+  "params": [
+   [
+    "enable / disable",
+    "Turn the firewall on or off"
+   ],
+   [
+    "allow PORT/proto",
+    "Open a port, e.g. allow 22/tcp"
+   ],
+   [
+    "deny PORT",
+    "Block a port"
+   ],
+   [
+    "status verbose",
+    "Show current rules"
+   ],
+   [
+    "delete RULE",
+    "Remove a rule"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo ufw allow 22/tcp && sudo ufw enable",
+    "out": "Rule added\nFirewall is active and enabled on system startup"
+   },
+   {
+    "cmd": "sudo ufw status",
+    "out": "Status: active\nTo         Action      From\n22/tcp     ALLOW       Anywhere\n80/tcp     ALLOW       Anywhere"
+   }
+  ],
+  "mistakes": [
+   "Enabling ufw over SSH before allowing port 22 \u2014 the session freezes and you are locked out."
+  ],
+  "tips": [
+   "Order of operations on a remote box: allow SSH first, enable second. Always."
+  ],
+  "related": [
+   "iptables",
+   "firewall-cmd",
+   "ss"
+  ],
+  "quiz": [
+   {
+    "q": "First ufw command on a remote server, before enable?",
+    "options": [
+     "ufw default deny",
+     "ufw allow 22/tcp",
+     "ufw status",
+     "ufw reload"
+    ],
+    "answer": 1,
+    "explain": "Allow SSH before enabling, or you lock yourself out."
+   }
+  ]
+ },
+ {
+  "name": "firewall-cmd",
+  "category": "Firewall",
+  "difficulty": "advanced",
+  "description": "Manage firewalld zones and rules on RHEL/Fedora systems.",
+  "syntax": "sudo firewall-cmd [options]",
+  "params": [
+   [
+    "--add-service=NAME",
+    "Allow a named service (http, ssh...)"
+   ],
+   [
+    "--add-port=PORT/proto",
+    "Allow a port"
+   ],
+   [
+    "--permanent",
+    "Persist the rule across reboots"
+   ],
+   [
+    "--reload",
+    "Apply permanent rules now"
+   ],
+   [
+    "--list-all",
+    "Show the active zone's rules"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo firewall-cmd --permanent --add-service=https && sudo firewall-cmd --reload",
+    "out": "success\nsuccess"
+   }
+  ],
+  "mistakes": [
+   "Adding rules without --permanent and losing them at reboot \u2014 or with it and forgetting --reload."
+  ],
+  "tips": [
+   "Runtime vs permanent is the core concept: test at runtime, then make it permanent."
+  ],
+  "related": [
+   "ufw",
+   "iptables",
+   "systemctl"
+  ]
+ },
+ {
+  "name": "grep",
+  "category": "Text Processing",
+  "difficulty": "beginner",
+  "description": "Search text for lines matching a pattern \u2014 the single most-used text tool on Linux.",
+  "syntax": "grep [options] pattern [file...]",
+  "params": [
+   [
+    "-i",
+    "Case-insensitive"
+   ],
+   [
+    "-r",
+    "Recurse through directories"
+   ],
+   [
+    "-n",
+    "Show line numbers"
+   ],
+   [
+    "-v",
+    "Invert: lines that do NOT match"
+   ],
+   [
+    "-c",
+    "Count matching lines"
+   ],
+   [
+    "-E",
+    "Extended regular expressions"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "grep -in error /var/log/syslog | head -n 1",
+    "out": "214:Aug  5 03:12:44 host kernel: I/O error, dev sdb"
+   },
+   {
+    "cmd": "ps aux | grep nginx",
+    "out": "root  812  0.0  0.2 nginx: master process"
+   },
+   {
+    "cmd": "grep -rn 'TODO' src/",
+    "out": "src/api.py:88:# TODO: add retry logic"
+   }
+  ],
+  "mistakes": [
+   "Forgetting to quote patterns with spaces or special characters \u2014 the shell mangles them.",
+   "Using grep on binary files by accident; add --binary-files=without-match or -I."
+  ],
+  "tips": [
+   "grep -v filters noise out of any pipeline: dmesg | grep -v usb."
+  ],
+  "related": [
+   "find",
+   "sed",
+   "awk",
+   "zcat"
+  ],
+  "quiz": [
+   {
+    "q": "Which grep flag inverts the match?",
+    "options": [
+     "-i",
+     "-n",
+     "-v",
+     "-x"
+    ],
+    "answer": 2,
+    "explain": "-v prints lines that do not match \u2014 perfect for filtering noise."
+   },
+   {
+    "q": "How do you search all files under src/ for 'api_key'?",
+    "options": [
+     "grep api_key src",
+     "grep -r api_key src/",
+     "find api_key src/",
+     "cat src | grep api_key"
+    ],
+    "answer": 1,
+    "explain": "-r makes grep descend into directories."
+   }
+  ]
+ },
+ {
+  "name": "sed",
+  "category": "Text Processing",
+  "difficulty": "advanced",
+  "description": "Stream editor: transform text with search-and-replace and line operations as it flows through a pipe.",
+  "syntax": "sed [options] 'script' [file]",
+  "params": [
+   [
+    "s/old/new/",
+    "Replace first match per line"
+   ],
+   [
+    "s/old/new/g",
+    "Replace all matches per line"
+   ],
+   [
+    "-i",
+    "Edit the file in place"
+   ],
+   [
+    "-n + p",
+    "Print only selected lines"
+   ],
+   [
+    "/pattern/d",
+    "Delete matching lines"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sed 's/http:/https:/g' links.txt | head -n 1",
+    "out": "https://example.com/docs"
+   },
+   {
+    "cmd": "sed -i.bak 's/DEBUG=true/DEBUG=false/' app.conf",
+    "out": ""
+   },
+   {
+    "cmd": "sed -n '5,8p' config.yml",
+    "out": "(prints lines 5 through 8)"
+   }
+  ],
+  "mistakes": [
+   "Running -i without a backup suffix on files you cannot restore \u2014 -i.bak keeps the original.",
+   "Forgetting /g and replacing only the first occurrence per line."
+  ],
+  "tips": [
+   "When the pattern contains slashes, switch delimiters: sed 's|/old/path|/new/path|'."
+  ],
+  "related": [
+   "awk",
+   "grep",
+   "tr"
+  ],
+  "quiz": [
+   {
+    "q": "What does sed 's/cat/dog/' do to 'cat cat'?",
+    "options": [
+     "dog dog",
+     "dog cat",
+     "cat dog",
+     "Deletes the line"
+    ],
+    "answer": 1,
+    "explain": "Without /g, only the first match on each line is replaced."
+   }
+  ]
+ },
+ {
+  "name": "awk",
+  "category": "Text Processing",
+  "difficulty": "advanced",
+  "description": "Pattern-scanning language that processes text by fields \u2014 ideal for columns, sums and reports.",
+  "syntax": "awk [options] 'program' [file]",
+  "params": [
+   [
+    "'{print $1}'",
+    "Print the first field of each line"
+   ],
+   [
+    "-F SEP",
+    "Set the field separator, e.g. -F:"
+   ],
+   [
+    "$0 / NF / NR",
+    "Whole line / field count / line number"
+   ],
+   [
+    "/pattern/ {action}",
+    "Act only on matching lines"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "awk -F: '{print $1}' /etc/passwd | head -n 3",
+    "out": "root\ndaemon\nbin"
+   },
+   {
+    "cmd": "df -h | awk '$5+0 > 80 {print $6, $5}'",
+    "out": "/var 91%"
+   },
+   {
+    "cmd": "awk '{sum+=$2} END {print sum}' sales.txt",
+    "out": "14250"
+   }
+  ],
+  "mistakes": [
+   "Chaining grep | cut | wc pipelines for jobs awk does in one clear expression."
+  ],
+  "tips": [
+   "awk '{print $NF}' prints the last field of every line, whatever the column count."
+  ],
+  "related": [
+   "sed",
+   "cut",
+   "sort",
+   "grep"
+  ]
+ },
+ {
+  "name": "cut",
+  "category": "Text Processing",
+  "difficulty": "intermediate",
+  "description": "Extract columns from each line, by delimiter or character position.",
+  "syntax": "cut [options] [file]",
+  "params": [
+   [
+    "-d SEP",
+    "Field delimiter"
+   ],
+   [
+    "-f LIST",
+    "Fields to keep, e.g. -f1,3"
+   ],
+   [
+    "-c LIST",
+    "Character positions, e.g. -c1-8"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "cut -d: -f1,7 /etc/passwd | head -n 2",
+    "out": "root:/bin/bash\ndaemon:/usr/sbin/nologin"
+   }
+  ],
+  "mistakes": [
+   "Expecting cut to handle multi-space alignment \u2014 it splits on single delimiters; awk copes better."
+  ],
+  "tips": [
+   "For quick single-delimiter column grabs, cut beats awk on typing speed."
+  ],
+  "related": [
+   "awk",
+   "paste",
+   "tr"
+  ]
+ },
+ {
+  "name": "sort",
+  "category": "Text Processing",
+  "difficulty": "intermediate",
+  "description": "Sort lines of text: alphabetically, numerically, by column, or human-readable sizes.",
+  "syntax": "sort [options] [file]",
+  "params": [
+   [
+    "-n",
+    "Numeric sort"
+   ],
+   [
+    "-h",
+    "Human-numeric (2K < 1M < 3G)"
+   ],
+   [
+    "-r",
+    "Reverse"
+   ],
+   [
+    "-k N",
+    "Sort by field N"
+   ],
+   [
+    "-u",
+    "Unique: drop duplicate lines"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "du -sh /var/* 2>/dev/null | sort -h | tail -n 2",
+    "out": "890M  /var/lib\n1.3G  /var/log"
+   },
+   {
+    "cmd": "sort -t: -k3 -n /etc/passwd | head -n 1",
+    "out": "root:x:0:0:root:/root:/bin/bash"
+   }
+  ],
+  "mistakes": [
+   "Sorting numbers without -n: 10 lands before 9 in text order."
+  ],
+  "tips": [
+   "sort -h exists precisely so du -h and df -h output sorts correctly."
+  ],
+  "related": [
+   "uniq",
+   "du",
+   "awk",
+   "wc"
+  ]
+ },
+ {
+  "name": "uniq",
+  "category": "Text Processing",
+  "difficulty": "intermediate",
+  "description": "Filter or count adjacent duplicate lines (input usually sorted first).",
+  "syntax": "uniq [options] [file]",
+  "params": [
+   [
+    "-c",
+    "Prefix each line with its count"
+   ],
+   [
+    "-d",
+    "Only duplicated lines"
+   ],
+   [
+    "-u",
+    "Only unique (never-repeated) lines"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "cut -d' ' -f1 access.log | sort | uniq -c | sort -rn | head -n 2",
+    "out": "   1423 192.168.1.55\n    877 10.0.0.9"
+   }
+  ],
+  "mistakes": [
+   "Skipping sort first \u2014 uniq only collapses adjacent duplicates."
+  ],
+  "tips": [
+   "The sort | uniq -c | sort -rn pipeline is the classic 'top talkers' recipe."
+  ],
+  "related": [
+   "sort",
+   "wc",
+   "cut"
+  ],
+  "quiz": [
+   {
+    "q": "Why does uniq usually need sort before it?",
+    "options": [
+     "uniq is case-sensitive",
+     "uniq only removes adjacent duplicates",
+     "sort is faster",
+     "It doesn't"
+    ],
+    "answer": 1,
+    "explain": "Non-adjacent duplicates pass through uniq untouched."
+   }
+  ]
+ },
+ {
+  "name": "wc",
+  "category": "Text Processing",
+  "difficulty": "beginner",
+  "description": "Count lines, words and bytes in files or piped input.",
+  "syntax": "wc [options] [file]",
+  "params": [
+   [
+    "-l",
+    "Lines only"
+   ],
+   [
+    "-w",
+    "Words only"
+   ],
+   [
+    "-c",
+    "Bytes only"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "wc -l /etc/passwd",
+    "out": "38 /etc/passwd"
+   },
+   {
+    "cmd": "ps aux | wc -l",
+    "out": "212"
+   }
+  ],
+  "mistakes": [
+   "Forgetting the header line when counting piped table output \u2014 subtract one."
+  ],
+  "tips": [
+   "grep -c pattern file counts matches directly, without a wc pipeline."
+  ],
+  "related": [
+   "grep",
+   "sort",
+   "cat"
+  ]
+ },
+ {
+  "name": "tr",
+  "category": "Text Processing",
+  "difficulty": "intermediate",
+  "description": "Translate or delete characters in a stream \u2014 case changes, squeezing, character cleanup.",
+  "syntax": "tr [options] set1 [set2]",
+  "params": [
+   [
+    "'a-z' 'A-Z'",
+    "Translate lowercase to uppercase"
+   ],
+   [
+    "-d SET",
+    "Delete characters"
+   ],
+   [
+    "-s SET",
+    "Squeeze repeats into one"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "echo 'hello world' | tr 'a-z' 'A-Z'",
+    "out": "HELLO WORLD"
+   },
+   {
+    "cmd": "echo 'too    many   spaces' | tr -s ' '",
+    "out": "too many spaces"
+   }
+  ],
+  "mistakes": [
+   "Feeding tr a filename \u2014 it reads only from standard input; use redirection or a pipe."
+  ],
+  "tips": [
+   "tr -d '\\r' strips Windows carriage returns from files that break scripts."
+  ],
+  "related": [
+   "sed",
+   "cut",
+   "awk"
+  ]
+ },
+ {
+  "name": "diff",
+  "category": "Text Processing",
+  "difficulty": "intermediate",
+  "description": "Compare two files (or directories) line by line and show what changed.",
+  "syntax": "diff [options] file1 file2",
+  "params": [
+   [
+    "-u",
+    "Unified format (what git and patches use)"
+   ],
+   [
+    "-r",
+    "Recurse into directories"
+   ],
+   [
+    "-q",
+    "Just say whether files differ"
+   ],
+   [
+    "--color",
+    "Colorize output"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "diff -u config.old config.new",
+    "out": "--- config.old\n+++ config.new\n@@ -3,1 +3,1 @@\n-max_connections = 100\n+max_connections = 250"
+   }
+  ],
+  "mistakes": [
+   "Reading default diff output cold \u2014 -u is far more readable and universally understood."
+  ],
+  "tips": [
+   "diff -qr dirA dirB summarizes which files differ between two directory trees."
+  ],
+  "related": [
+   "cmp",
+   "patch",
+   "sort"
+  ]
+ },
+ {
+  "name": "paste",
+  "category": "Text Processing",
+  "difficulty": "intermediate",
+  "description": "Merge lines of multiple files side by side, joined by tabs or a chosen delimiter.",
+  "syntax": "paste [options] file...",
+  "params": [
+   [
+    "-d SEP",
+    "Delimiter between merged columns"
+   ],
+   [
+    "-s",
+    "Serialize one file's lines into a single row"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "paste -d, names.txt emails.txt | head -n 1",
+    "out": "Amina,amina@example.com"
+   }
+  ],
+  "mistakes": [
+   "Confusing paste (side-by-side merge) with cat (top-to-bottom concatenation)."
+  ],
+  "tips": [
+   "paste -sd+ numbers.txt | bc sums a column of numbers in one line."
+  ],
+  "related": [
+   "cut",
+   "cat",
+   "join"
+  ]
+ },
+ {
+  "name": "split",
+  "category": "Text Processing",
+  "difficulty": "intermediate",
+  "description": "Split a large file into smaller pieces by lines or size.",
+  "syntax": "split [options] file [prefix]",
+  "params": [
+   [
+    "-l N",
+    "N lines per piece"
+   ],
+   [
+    "-b SIZE",
+    "Bytes per piece, e.g. -b 100M"
+   ],
+   [
+    "-d",
+    "Numeric suffixes (00, 01...)"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "split -l 100000 -d huge.csv part_",
+    "out": ""
+   },
+   {
+    "cmd": "ls part_*",
+    "out": "part_00  part_01  part_02"
+   }
+  ],
+  "mistakes": [
+   "Splitting a CSV mid-record set without a plan for re-adding headers to each part."
+  ],
+  "tips": [
+   "Reassemble with cat part_* > whole.csv \u2014 order is preserved by the suffixes."
+  ],
+  "related": [
+   "cat",
+   "wc",
+   "tar"
+  ]
+ },
+ {
+  "name": "find",
+  "category": "Searching",
+  "difficulty": "intermediate",
+  "description": "Search the filesystem live by name, type, size, age, permissions \u2014 and act on the results.",
+  "syntax": "find [path] [tests] [actions]",
+  "params": [
+   [
+    "-name PATTERN",
+    "Match filename (quote the pattern)"
+   ],
+   [
+    "-iname",
+    "Case-insensitive name match"
+   ],
+   [
+    "-type f/d",
+    "Files / directories only"
+   ],
+   [
+    "-size +100M",
+    "Larger than 100 MB"
+   ],
+   [
+    "-mtime -7",
+    "Modified in the last 7 days"
+   ],
+   [
+    "-exec CMD {} \\;",
+    "Run a command on each result"
+   ],
+   [
+    "-delete",
+    "Delete matches (last resort; test first)"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "find /var/log -name '*.log' -size +50M",
+    "out": "/var/log/nginx/access.log"
+   },
+   {
+    "cmd": "find . -type f -mtime -1",
+    "out": "./notes.txt\n./src/api.py"
+   },
+   {
+    "cmd": "find /tmp -name '*.tmp' -exec rm {} \\;",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Unquoted patterns: find . -name *.log lets the shell expand the glob first and breaks the command.",
+   "Putting -delete before the tests \u2014 find evaluates left to right and can delete everything."
+  ],
+  "tips": [
+   "Always run find with just the tests first; add -delete or -exec rm only after reviewing the list."
+  ],
+  "related": [
+   "locate",
+   "grep",
+   "xargs",
+   "du"
+  ],
+  "quiz": [
+   {
+    "q": "Find files over 100MB under /var:",
+    "options": [
+     "find /var -size +100M",
+     "find /var -big 100",
+     "ls -R /var +100M",
+     "du /var 100M"
+    ],
+    "answer": 0,
+    "explain": "-size +100M matches files larger than 100 megabytes."
+   }
+  ]
+ },
+ {
+  "name": "locate",
+  "category": "Searching",
+  "difficulty": "beginner",
+  "description": "Find files instantly by name using a prebuilt index (updated daily by updatedb).",
+  "syntax": "locate [options] pattern",
+  "params": [
+   [
+    "-i",
+    "Case-insensitive"
+   ],
+   [
+    "-c",
+    "Count matches"
+   ],
+   [
+    "--existing",
+    "Only files that still exist"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "locate sshd_config",
+    "out": "/etc/ssh/sshd_config"
+   }
+  ],
+  "mistakes": [
+   "Missing files created today \u2014 the index is stale until updatedb runs."
+  ],
+  "tips": [
+   "locate for speed, find for freshness and rich filters."
+  ],
+  "related": [
+   "updatedb",
+   "find",
+   "whereis"
+  ]
+ },
+ {
+  "name": "updatedb",
+  "category": "Searching",
+  "difficulty": "intermediate",
+  "description": "Rebuild the file index that locate searches.",
+  "syntax": "sudo updatedb",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "sudo updatedb && locate newfile.txt",
+    "out": "/home/amina/newfile.txt"
+   }
+  ],
+  "mistakes": [
+   "Wondering why locate can't see a new file \u2014 run updatedb (or wait for the daily cron)."
+  ],
+  "tips": [
+   "On large disks updatedb takes a while; it normally runs off-hours for a reason."
+  ],
+  "related": [
+   "locate",
+   "find",
+   "crontab"
+  ]
+ },
+ {
+  "name": "whereis",
+  "category": "Searching",
+  "difficulty": "beginner",
+  "description": "Locate a command's binary, source and man page in standard system locations.",
+  "syntax": "whereis [options] command",
+  "params": [
+   [
+    "-b",
+    "Binary only"
+   ],
+   [
+    "-m",
+    "Man page only"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "whereis nginx",
+    "out": "nginx: /usr/sbin/nginx /etc/nginx /usr/share/man/man8/nginx.8.gz"
+   }
+  ],
+  "mistakes": [
+   "Using whereis for arbitrary files \u2014 it only checks standard command locations; use locate or find."
+  ],
+  "tips": [
+   "A quick way to jump from a command name to its config directory and docs."
+  ],
+  "related": [
+   "which",
+   "locate",
+   "man"
+  ]
+ },
+ {
+  "name": "curl",
+  "category": "Networking Tools",
+  "difficulty": "intermediate",
+  "description": "Transfer data to or from URLs \u2014 test APIs, download files, inspect headers and TLS.",
+  "syntax": "curl [options] URL",
+  "params": [
+   [
+    "-o FILE / -O",
+    "Save output to a file / keep remote name"
+   ],
+   [
+    "-I",
+    "Fetch headers only"
+   ],
+   [
+    "-L",
+    "Follow redirects"
+   ],
+   [
+    "-X POST -d DATA",
+    "Send a POST with a body"
+   ],
+   [
+    "-H 'Header: v'",
+    "Add a request header"
+   ],
+   [
+    "-s",
+    "Silent: no progress meter"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "curl -I https://example.com",
+    "out": "HTTP/2 200\ncontent-type: text/html; charset=UTF-8"
+   },
+   {
+    "cmd": "curl -s https://api.example.com/health",
+    "out": "{\"status\":\"ok\"}"
+   },
+   {
+    "cmd": "curl -X POST -H 'Content-Type: application/json' -d '{\"name\":\"test\"}' https://api.example.com/items",
+    "out": "{\"id\":42,\"name\":\"test\"}"
+   }
+  ],
+  "mistakes": [
+   "Debugging an API without -i/-I \u2014 status codes and headers usually contain the answer.",
+   "Forgetting -L when a URL redirects, and saving an empty or HTML 'moved' page."
+  ],
+  "tips": [
+   "curl -sL url | head lets you peek at what a link really serves before trusting it."
+  ],
+  "related": [
+   "wget",
+   "ping",
+   "openssl",
+   "dig"
+  ],
+  "quiz": [
+   {
+    "q": "Which curl flag fetches only the response headers?",
+    "options": [
+     "-h",
+     "-I",
+     "-H",
+     "-v"
+    ],
+    "answer": 1,
+    "explain": "-I sends a HEAD request; -H adds a header, -v is verbose."
+   }
+  ]
+ },
+ {
+  "name": "wget",
+  "category": "Networking Tools",
+  "difficulty": "beginner",
+  "description": "Download files from the web, with resume support and recursive mirroring.",
+  "syntax": "wget [options] URL",
+  "params": [
+   [
+    "-c",
+    "Continue a partial download"
+   ],
+   [
+    "-O FILE",
+    "Save under a different name"
+   ],
+   [
+    "-r -np",
+    "Recursive download, no parent dirs"
+   ],
+   [
+    "-q",
+    "Quiet"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "wget https://releases.example.com/app-2.1.tar.gz",
+    "out": "Saving to: 'app-2.1.tar.gz'\napp-2.1.tar.gz   100%[==========>]  14.2M  8.11MB/s   in 1.8s"
+   },
+   {
+    "cmd": "wget -c https://mirror.example.com/large.iso",
+    "out": "(resumes from where it stopped)"
+   }
+  ],
+  "mistakes": [
+   "Restarting large downloads from zero after a drop \u2014 -c resumes them."
+  ],
+  "tips": [
+   "Rule of thumb: wget to download files, curl to talk to APIs."
+  ],
+  "related": [
+   "curl",
+   "tar",
+   "sha256sum"
+  ]
+ },
+ {
+  "name": "nc",
+  "aliases": [
+   "netcat"
+  ],
+  "category": "Networking Tools",
+  "difficulty": "advanced",
+  "description": "Netcat: read and write raw TCP/UDP connections \u2014 port checks, quick file transfers, ad-hoc servers.",
+  "syntax": "nc [options] host port",
+  "params": [
+   [
+    "-z",
+    "Scan without sending data (port check)"
+   ],
+   [
+    "-v",
+    "Verbose results"
+   ],
+   [
+    "-l -p PORT",
+    "Listen on a port"
+   ],
+   [
+    "-u",
+    "UDP mode"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "nc -zv db.internal 5432",
+    "out": "Connection to db.internal 5432 port [tcp/postgresql] succeeded!"
+   },
+   {
+    "cmd": "nc -l -p 9000 > received.file",
+    "out": "(waits; the other side runs: nc host 9000 < file)"
+   }
+  ],
+  "mistakes": [
+   "Port-scanning hosts you don't own or administer \u2014 that can violate laws and policies."
+  ],
+  "tips": [
+   "nc -zv host port is the honest answer to 'is the port open, or is it DNS/firewall?'."
+  ],
+  "related": [
+   "ss",
+   "telnet",
+   "curl",
+   "nmap"
+  ]
+ },
+ {
+  "name": "telnet",
+  "category": "Networking Tools",
+  "difficulty": "intermediate",
+  "description": "Plain-text TCP client \u2014 obsolete for remote login, still handy for poking at ports and protocols.",
+  "syntax": "telnet host [port]",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "telnet mail.example.com 25",
+    "out": "Connected to mail.example.com.\n220 mail.example.com ESMTP Postfix"
+   }
+  ],
+  "mistakes": [
+   "Using telnet for remote administration \u2014 everything, including passwords, crosses the wire unencrypted."
+  ],
+  "tips": [
+   "For port checks prefer nc -zv; keep telnet for interactively speaking SMTP/HTTP by hand."
+  ],
+  "related": [
+   "nc",
+   "ssh",
+   "curl"
+  ]
+ },
+ {
+  "name": "nmap",
+  "category": "Networking Tools",
+  "difficulty": "advanced",
+  "description": "Network scanner: discover hosts, open ports and service versions on networks you administer.",
+  "syntax": "nmap [options] target",
+  "params": [
+   [
+    "-p LIST",
+    "Ports to scan, e.g. -p 22,80,443"
+   ],
+   [
+    "-sV",
+    "Detect service versions"
+   ],
+   [
+    "-sn",
+    "Ping scan: find live hosts only"
+   ],
+   [
+    "-A",
+    "Aggressive: OS + version + scripts"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "nmap -p 22,80,443 192.168.1.42",
+    "out": "PORT    STATE  SERVICE\n22/tcp  open   ssh\n80/tcp  open   http\n443/tcp closed https"
+   },
+   {
+    "cmd": "nmap -sn 192.168.1.0/24",
+    "out": "Nmap done: 256 IP addresses (9 hosts up)"
+   }
+  ],
+  "mistakes": [
+   "Scanning networks without authorization \u2014 only scan systems you own or have written permission to test."
+  ],
+  "tips": [
+   "Audit your own server from outside: the open ports nmap reports are your true attack surface."
+  ],
+  "related": [
+   "nc",
+   "ss",
+   "ping",
+   "ufw"
+  ]
+ },
+ {
+  "name": "tcpdump",
+  "category": "Networking Tools",
+  "difficulty": "advanced",
+  "description": "Capture and inspect network packets on an interface \u2014 the command-line packet sniffer.",
+  "syntax": "sudo tcpdump [options] [filter]",
+  "params": [
+   [
+    "-i IFACE",
+    "Interface to capture on"
+   ],
+   [
+    "-n",
+    "Skip DNS resolution"
+   ],
+   [
+    "port N / host X",
+    "Capture filters"
+   ],
+   [
+    "-w FILE",
+    "Write capture to a file (open in Wireshark)"
+   ],
+   [
+    "-c N",
+    "Stop after N packets"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo tcpdump -ni eth0 port 443 -c 2",
+    "out": "12:01:11.482 IP 192.168.1.42.51824 > 93.184.215.14.443: Flags [S]\n12:01:11.495 IP 93.184.215.14.443 > 192.168.1.42.51824: Flags [S.]"
+   }
+  ],
+  "mistakes": [
+   "Capturing without a filter on a busy box \u2014 you drown instantly; filter by port or host."
+  ],
+  "tips": [
+   "Capture with -w to a file and analyze comfortably in Wireshark later."
+  ],
+  "related": [
+   "nc",
+   "ss",
+   "ip",
+   "nmap"
+  ]
+ },
+ {
+  "name": "nano",
+  "category": "Editors",
+  "difficulty": "beginner",
+  "description": "Simple terminal text editor with on-screen shortcut hints \u2014 the gentlest way to edit on a server.",
+  "syntax": "nano [options] file",
+  "params": [
+   [
+    "Ctrl+O",
+    "Save (write out)"
+   ],
+   [
+    "Ctrl+X",
+    "Exit"
+   ],
+   [
+    "Ctrl+W",
+    "Search"
+   ],
+   [
+    "-l",
+    "Show line numbers"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "nano /etc/hosts",
+    "out": "(opens the editor; ^O saves, ^X exits)"
+   }
+  ],
+  "mistakes": [
+   "Reading ^X as 'press X' \u2014 the caret means Ctrl."
+  ],
+  "tips": [
+   "All the shortcuts you need are printed at the bottom of the screen."
+  ],
+  "related": [
+   "vim",
+   "cat",
+   "less"
+  ]
+ },
+ {
+  "name": "vim",
+  "aliases": [
+   "vi"
+  ],
+  "category": "Editors",
+  "difficulty": "advanced",
+  "description": "Modal power editor present on virtually every Unix system \u2014 steep to learn, fast for life.",
+  "syntax": "vim [options] file",
+  "params": [
+   [
+    "i",
+    "Enter insert mode"
+   ],
+   [
+    "Esc",
+    "Return to normal mode"
+   ],
+   [
+    ":w / :q / :wq",
+    "Save / quit / save-and-quit"
+   ],
+   [
+    ":q!",
+    "Quit without saving"
+   ],
+   [
+    "/text",
+    "Search"
+   ],
+   [
+    "dd / yy / p",
+    "Delete line / copy line / paste"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "vim app.conf",
+    "out": "(modal editor: press i to type, Esc then :wq to save and exit)"
+   }
+  ],
+  "mistakes": [
+   "The rite of passage: being unable to exit. Esc then :q! abandons changes; :wq saves them.",
+   "Typing text in normal mode and triggering random commands."
+  ],
+  "tips": [
+   "Run vimtutor once \u2014 25 minutes that pays off for decades."
+  ],
+  "related": [
+   "nano",
+   "sed",
+   "less"
+  ],
+  "quiz": [
+   {
+    "q": "How do you exit vim WITHOUT saving?",
+    "options": [
+     ":wq",
+     "Ctrl+X",
+     ":q!",
+     "Esc Esc"
+    ],
+    "answer": 2,
+    "explain": "Esc to normal mode, then :q! quits and discards changes."
+   }
+  ]
+ },
+ {
+  "name": "shutdown",
+  "category": "System Administration",
+  "difficulty": "intermediate",
+  "description": "Power off or reboot the system, now or on a schedule, warning logged-in users.",
+  "syntax": "sudo shutdown [options] [time] [message]",
+  "params": [
+   [
+    "now",
+    "Immediately"
+   ],
+   [
+    "+10",
+    "In 10 minutes"
+   ],
+   [
+    "-r",
+    "Reboot instead of halt"
+   ],
+   [
+    "-c",
+    "Cancel a pending shutdown"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo shutdown -r +5 'Rebooting for kernel update'",
+    "out": "Reboot scheduled for Wed 2026-08-05 12:10:00 AEST"
+   },
+   {
+    "cmd": "sudo shutdown -c",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "shutdown with no time argument schedules +1 minute, not now \u2014 say now if you mean now."
+  ],
+  "tips": [
+   "A timed shutdown with a message is the polite way to reboot a shared machine."
+  ],
+  "related": [
+   "reboot",
+   "poweroff",
+   "systemctl"
+  ]
+ },
+ {
+  "name": "reboot",
+  "category": "System Administration",
+  "difficulty": "beginner",
+  "description": "Restart the system immediately.",
+  "syntax": "sudo reboot",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "sudo reboot",
+    "out": "(connection closes as the machine restarts)"
+   }
+  ],
+  "mistakes": [
+   "Rebooting the wrong SSH session \u2014 check hostname before pressing Enter on shared terminals."
+  ],
+  "tips": [
+   "After a remote reboot, ping -c 100 host tells you the moment it is back."
+  ],
+  "related": [
+   "shutdown",
+   "poweroff",
+   "uptime"
+  ]
+ },
+ {
+  "name": "poweroff",
+  "category": "System Administration",
+  "difficulty": "beginner",
+  "description": "Halt the system and turn the power off.",
+  "syntax": "sudo poweroff",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "sudo poweroff",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "Powering off a remote VPS you can't press the power button on \u2014 prefer reboot unless you mean it."
+  ],
+  "tips": [
+   "reboot, poweroff and halt are all thin wrappers around systemctl these days."
+  ],
+  "related": [
+   "shutdown",
+   "reboot",
+   "systemctl"
+  ]
+ },
+ {
+  "name": "timedatectl",
+  "category": "System Administration",
+  "difficulty": "intermediate",
+  "description": "View and set the system clock, timezone and NTP synchronization.",
+  "syntax": "timedatectl [command]",
+  "params": [
+   [
+    "set-timezone ZONE",
+    "e.g. Australia/Brisbane"
+   ],
+   [
+    "set-ntp true",
+    "Enable network time sync"
+   ],
+   [
+    "list-timezones",
+    "Show valid zone names"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "timedatectl",
+    "out": "               Local time: Wed 2026-08-05 11:58:20 AEST\n                Time zone: Australia/Brisbane (AEST, +1000)\nSystem clock synchronized: yes"
+   }
+  ],
+  "mistakes": [
+   "Setting time manually while NTP is active \u2014 the sync daemon immediately overrides you."
+  ],
+  "tips": [
+   "Wrong timestamps in logs almost always trace back to timezone or NTP \u2014 check here first."
+  ],
+  "related": [
+   "date",
+   "hostnamectl",
+   "systemctl"
+  ]
+ },
+ {
+  "name": "ulimit",
+  "category": "System Administration",
+  "difficulty": "advanced",
+  "description": "Show or set per-process resource limits: open files, core dumps, memory, processes.",
+  "syntax": "ulimit [options] [limit]",
+  "params": [
+   [
+    "-a",
+    "Show all limits"
+   ],
+   [
+    "-n N",
+    "Max open file descriptors"
+   ],
+   [
+    "-c N",
+    "Core dump size (0 disables)"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "ulimit -n",
+    "out": "1024"
+   },
+   {
+    "cmd": "ulimit -n 65535",
+    "out": ""
+   }
+  ],
+  "mistakes": [
+   "'Too many open files' errors on busy servers \u2014 the fix is raising -n (persistently in limits.conf)."
+  ],
+  "tips": [
+   "ulimit changes affect only the current shell and its children; system-wide limits live in /etc/security/limits.conf."
+  ],
+  "related": [
+   "free",
+   "ps",
+   "systemctl"
+  ]
+ },
+ {
+  "name": "lsof",
+  "category": "System Administration",
+  "difficulty": "advanced",
+  "description": "List open files \u2014 and since everything is a file, also sockets, devices and deleted-but-held files.",
+  "syntax": "sudo lsof [options]",
+  "params": [
+   [
+    "-i :PORT",
+    "Who is using a network port"
+   ],
+   [
+    "+D DIR",
+    "All open files under a directory"
+   ],
+   [
+    "-p PID",
+    "Files opened by a process"
+   ],
+   [
+    "-u user",
+    "Files opened by a user"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "sudo lsof -i :80 | head -n 2",
+    "out": "COMMAND PID USER  TYPE DEVICE NODE NAME\nnginx   812 root  IPv4  21501 TCP *:http (LISTEN)"
+   },
+   {
+    "cmd": "sudo lsof +D /mnt/usb",
+    "out": "(reveals what's blocking umount)"
+   }
+  ],
+  "mistakes": [
+   "Deleting a huge log while a process holds it open \u2014 space isn't freed; lsof | grep deleted finds these."
+  ],
+  "tips": [
+   "Two classics: lsof -i :port (who owns the port) and lsof +D /mountpoint (why umount says busy)."
+  ],
+  "related": [
+   "ss",
+   "umount",
+   "ps",
+   "kill"
+  ]
+ },
+ {
+  "name": "man",
+  "category": "System Administration",
+  "difficulty": "beginner",
+  "description": "Read the manual page for any command \u2014 the authoritative built-in documentation.",
+  "syntax": "man [section] command",
+  "params": [
+   [
+    "-k KEYWORD",
+    "Search page names/descriptions (apropos)"
+   ],
+   [
+    "5",
+    "Section 5 = file formats, e.g. man 5 crontab"
+   ]
+  ],
+  "examples": [
+   {
+    "cmd": "man tar",
+    "out": "(opens the tar manual in a pager; q quits)"
+   },
+   {
+    "cmd": "man -k 'copy files'",
+    "out": "cp (1)  - copy files and directories\nscp (1) - OpenSSH secure file copy"
+   }
+  ],
+  "mistakes": [
+   "Reading man pages top to bottom \u2014 jump to EXAMPLES with /EXAMPLES and work outward."
+  ],
+  "tips": [
+   "Inside a man page: / searches, n repeats the search, q quits."
+  ],
+  "related": [
+   "which",
+   "whereis",
+   "tldr"
+  ]
+ },
+ {
+  "name": "clear",
+  "category": "Bash",
+  "difficulty": "beginner",
+  "description": "Clear the terminal screen.",
+  "syntax": "clear",
+  "params": [],
+  "examples": [
+   {
+    "cmd": "clear",
+    "out": "(empty screen, fresh prompt)"
+   }
+  ],
+  "mistakes": [
+   "Thinking clear deletes history \u2014 scrollback and history both survive."
+  ],
+  "tips": [
+   "Ctrl+L does the same thing without typing a command."
+  ],
+  "related": [
+   "history",
+   "reset"
+  ]
+ }
+]

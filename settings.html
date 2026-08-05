@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings — Linux Command Trainer</title>
+  <meta name="description" content="Theme, font size, username, notes, data export and reset.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="section" style="padding-top:34px;max-width:640px">
+      <h1>Settings</h1>
+      <div class="card raised" style="margin-top:14px">
+        <h3>Appearance</h3>
+        <label class="muted" for="set-theme">Theme</label>
+        <select class="input" id="set-theme" style="margin:6px 0 14px">
+          <option value="dark">Dark (default)</option>
+          <option value="light">Light</option>
+        </select>
+        <label class="muted" for="set-font">Base font size: <span id="font-val"></span>px</label>
+        <input type="range" id="set-font" min="14" max="20" step="1" style="width:100%;margin:8px 0 4px">
+      </div>
+      <div class="card raised" style="margin-top:16px">
+        <h3>Profile</h3>
+        <label class="muted" for="set-name">Display name (used on the leaderboard)</label>
+        <input class="input" id="set-name" style="margin-top:6px" maxlength="24">
+      </div>
+      <div class="card raised" style="margin-top:16px">
+        <h3>Your data</h3>
+        <p class="muted" style="font-size:.9rem">Everything is stored locally in your browser. Export a backup, import it on another device, or wipe it clean.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" id="export-data">Export progress (JSON)</button>
+          <button class="btn" id="import-data">Import progress</button>
+          <input type="file" id="import-file" accept="application/json" hidden>
+          <button class="btn danger" id="reset-data">Reset all progress</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="js/settings.js"></script>
+</body>
+</html>
