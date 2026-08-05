@@ -1,8 +1,8 @@
 # 🐧 Linux Command Trainer
 
-An interactive, fully client-side website for learning the Linux command line — with a **realistic in-browser terminal simulator**, a searchable **command database**, structured **lessons**, **quizzes with explanations**, hands-on **challenges**, and gamified **progress tracking**.
+An interactive, fully client-side website for learning the Linux command line with a **realistic in-browser terminal simulator**, a searchable **command database**, structured **lessons**, **quizzes with explanations**, hands-on **challenges**, and gamified **progress tracking**.
 
-Built with **pure HTML5, CSS3 and vanilla ES6 JavaScript**. No frameworks, no build step, no backend. Deploys anywhere static files are served — including GitHub Pages.
+Built with **pure HTML5, CSS3 and vanilla ES6 JavaScript**. No frameworks, no build step, no backend. Deploys anywhere static files are served including GitHub Pages.
 
 > **Live demo:** enable GitHub Pages on this repo (see [Deployment](#-deployment)) and your trainer is online in under a minute.
 
