@@ -1,4 +1,4 @@
-/* vfs.js — an in-memory Unix-like filesystem for the simulator ------------ */
+/* vfs.js - an in-memory Unix-like filesystem for the simulator ------------ */
 
 function dir(children = {}, mode = "drwxr-xr-x", owner = "root") {
   return { type: "dir", children, mode, owner };

@@ -1,4 +1,4 @@
-/* app.js — shared layout, theme, toasts, small helpers -------------------- */
+/* app.js - shared layout, theme, toasts, small helpers -------------------- */
 
 import { state, save, levelInfo } from "./store.js";
 
@@ -34,7 +34,7 @@ export function renderChrome(activePage) {
   footer.className = "site-footer";
   footer.innerHTML = `
     <div class="container">
-      <span>Linux Command Trainer — learn the shell by using it.</span>
+      <span>Linux Command Trainer - learn the shell by using it.</span>
       <span>Open source · MIT License · <a href="about.html">About this project</a></span>
     </div>`;
   document.body.append(footer);

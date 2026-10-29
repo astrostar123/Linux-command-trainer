@@ -1,4 +1,4 @@
-/* Linux Command Trainer — settings page
+/* Linux Command Trainer - settings page
  * Theme, font size, display name, and full data export / import / reset. */
 
 import { renderChrome, applySettings, setTheme, toast } from "./app.js";
@@ -64,7 +64,7 @@ $("import-file").addEventListener("change", (e) => {
         throw new Error("Not a Linux Command Trainer backup file.");
       }
       localStorage.setItem(STORE_KEY, JSON.stringify(data));
-      toast("Progress imported — reloading…");
+      toast("Progress imported - reloading…");
       setTimeout(() => location.reload(), 700);
     } catch (err) {
       toast(`Import failed: ${err.message}`);
@@ -77,7 +77,7 @@ $("import-file").addEventListener("change", (e) => {
 /* ---------------- reset ---------------- */
 
 $("reset-data").addEventListener("click", () => {
-  if (!confirm("Wipe ALL progress — XP, lessons, quizzes, notes, favorites? This cannot be undone.")) return;
+  if (!confirm("Wipe ALL progress - XP, lessons, quizzes, notes, favorites? This cannot be undone.")) return;
   resetProgress();
   toast("Everything reset. Fresh start!");
   setTimeout(() => location.reload(), 700);

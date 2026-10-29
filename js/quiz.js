@@ -1,4 +1,4 @@
-/* Linux Command Trainer — quiz page
+/* Linux Command Trainer - quiz page
  * Generates MCQ / fill-in-the-blank / true-false questions from the command
  * database, mixes in handwritten questions, supports timed + expert modes,
  * records results, and offers a flashcard mode. */
@@ -47,7 +47,7 @@ function qMCQ(cmd, pool) {
     code: cmd.description,
     options,
     answer: options.indexOf(cmd.name),
-    explain: `${cmd.name} — ${cmd.description}`,
+    explain: `${cmd.name} - ${cmd.description}`,
   };
 }
 
@@ -72,13 +72,13 @@ function qTrueFalse(cmd, pool) {
   const desc = truthy ? cmd.description : other.description;
   return {
     type: "tf",
-    q: `True or false — the ${cmd.name} command:`,
+    q: `True or false - the ${cmd.name} command:`,
     code: `“${desc}”`,
     options: ["True", "False"],
     answer: truthy ? 0 : 1,
     explain: truthy
-      ? `True. ${cmd.name} — ${cmd.description}`
-      : `False. That describes ${other.name}. ${cmd.name} — ${cmd.description}`,
+      ? `True. ${cmd.name} - ${cmd.description}`
+      : `False. That describes ${other.name}. ${cmd.name} - ${cmd.description}`,
   };
 }
 
@@ -140,7 +140,7 @@ $("quiz-start").addEventListener("click", () => {
     label: [catSel.value || "All categories", difficulty || "mixed"].join(" · "),
   };
   if (!quiz.questions.length) {
-    toast("Not enough commands in that filter — try a broader one.");
+    toast("Not enough commands in that filter - try a broader one.");
     return;
   }
   show("run");
@@ -225,14 +225,14 @@ function finish() {
 
   const verdict =
     pct === 100 ? "Flawless. root would be proud." :
-    pct >= 80 ? "Strong run — nearly there." :
+    pct >= 80 ? "Strong run - nearly there." :
     pct >= 50 ? "Solid base. Review the misses below." :
-    "Rough one — the lessons page has your back.";
+    "Rough one - the lessons page has your back.";
 
   $("quiz-done").innerHTML = `
     <div class="card raised" style="max-width:720px">
       <p class="eyebrow">Quiz complete</p>
-      <h2 style="margin:4px 0">${score} / ${total} — ${pct}% <span class="badge ${pct >= 80 ? "green" : pct >= 50 ? "amber" : "red"}">+${score * 10} XP</span></h2>
+      <h2 style="margin:4px 0">${score} / ${total} - ${pct}% <span class="badge ${pct >= 80 ? "green" : pct >= 50 ? "amber" : "red"}">+${score * 10} XP</span></h2>
       <p class="muted">${verdict}</p>
       <div class="rule"></div>
       ${review

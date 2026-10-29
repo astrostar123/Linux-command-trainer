@@ -78,7 +78,7 @@ Then open <http://localhost:8000>.
 
 All paths are relative, so it works from a project subpath out of the box. The service worker enables offline use after the first visit.
 
-Netlify / Vercel / Cloudflare Pages: drag-and-drop the folder or point them at the repo — no build command needed.
+Netlify / Vercel / Cloudflare Pages: drag-and-drop the folder or point them at the repo - no build command needed.
 
 ---
 
@@ -116,7 +116,7 @@ linux-command-trainer/
 
 ## 🗃️ Dataset & contributing
 
-`data/commands.json` is a plain array — adding a command is a pull request away:
+`data/commands.json` is a plain array - adding a command is a pull request away:
 
 ```json
 {
@@ -142,7 +142,7 @@ linux-command-trainer/
 }
 ```
 
-Only `name`, `category`, `difficulty`, `description` and `syntax` are required — the UI degrades gracefully. The database currently ships **166 fully written commands** (each with examples, mistakes and tips — no filler); the schema is designed so the community can grow it toward 300+.
+Only `name`, `category`, `difficulty`, `description` and `syntax` are required - the UI degrades gracefully. The database currently ships **166 fully written commands** (each with examples, mistakes and tips - no filler); the schema is designed so the community can grow it toward 300+.
 
 ### Roadmap
 - [ ] More commands (target: 300+)
@@ -154,11 +154,11 @@ Only `name`, `category`, `difficulty`, `description` and `syntax` are required �
 
 ## 🛠️ Tech notes
 
-- **Zero dependencies** — no framework, bundler or CDN scripts (only Google Fonts)
+- **Zero dependencies** - no framework, bundler or CDN scripts (only Google Fonts)
 - ES modules throughout; state changes broadcast via a `state:change` event
 - The chart on the dashboard is hand-rolled SVG; the terminal is a from-scratch engine over a JSON virtual filesystem
 - Challenge verification inspects the live VFS (e.g. *did a directory called `practice` really appear in `/home/student`?*), so copy-pasting answers won't fool it
 
 ## 📄 License
 
-[MIT](LICENSE) — use it, fork it, teach with it.
+[MIT](LICENSE) - use it, fork it, teach with it.

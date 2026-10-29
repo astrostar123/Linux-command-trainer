@@ -103,7 +103,7 @@
   ],
   "mistakes": [
    "Copying a directory without -r fails with 'omitting directory'.",
-   "Overwriting files silently \u2014 use -i when unsure."
+   "Overwriting files silently - use -i when unsure."
   ],
   "tips": [
    "cp -a is a common 'archive' shorthand for -rp plus symlink preservation."
@@ -158,7 +158,7 @@
    }
   ],
   "mistakes": [
-   "mv silently overwrites the destination by default \u2014 data loss is instant and permanent."
+   "mv silently overwrites the destination by default - data loss is instant and permanent."
   ],
   "tips": [
    "Renaming is just moving to a new name in the same directory; no -r is needed for directories."
@@ -173,7 +173,7 @@
   "name": "rm",
   "category": "File Management",
   "difficulty": "beginner",
-  "description": "Remove files or directories. There is no trash bin \u2014 deletion is permanent.",
+  "description": "Remove files or directories. There is no trash bin - deletion is permanent.",
   "syntax": "rm [options] file...",
   "params": [
    [
@@ -205,7 +205,7 @@
   ],
   "mistakes": [
    "rm -rf with a mistyped path (or a stray space, like rm -rf / tmp) can destroy a system.",
-   "Assuming files go to a recycle bin \u2014 they do not."
+   "Assuming files go to a recycle bin - they do not."
   ],
   "tips": [
    "Run ls with the same glob first to preview exactly what rm will match."
@@ -260,7 +260,7 @@
    }
   ],
   "mistakes": [
-   "Expecting touch to open an editor \u2014 it only creates/updates the file."
+   "Expecting touch to open an editor - it only creates/updates the file."
   ],
   "tips": [
    "Great for quickly creating placeholder files when testing scripts and globs."
@@ -298,7 +298,7 @@
    }
   ],
   "mistakes": [
-   "Using cat on huge files \u2014 use less to page instead of flooding the terminal."
+   "Using cat on huge files - use less to page instead of flooding the terminal."
   ],
   "tips": [
    "cat -n file is a quick way to find a line number before editing."
@@ -350,7 +350,7 @@
    }
   ],
   "mistakes": [
-   "Not knowing q quits \u2014 many beginners get 'stuck' in less."
+   "Not knowing q quits - many beginners get 'stuck' in less."
   ],
   "tips": [
    "Inside less, press / to search forward and n to jump to the next match."
@@ -427,7 +427,7 @@
    }
   ],
   "mistakes": [
-   "Using -f on rotated logs \u2014 use -F so tail survives logrotate."
+   "Using -f on rotated logs - use -F so tail survives logrotate."
   ],
   "tips": [
    "tail -f is the classic way to watch a log while reproducing a bug."
@@ -478,7 +478,7 @@
    }
   ],
   "mistakes": [
-   "Reversing the argument order \u2014 the target comes first, the link name second.",
+   "Reversing the argument order - the target comes first, the link name second.",
    "Creating relative symlinks that break when moved."
   ],
   "tips": [
@@ -517,7 +517,7 @@
    }
   ],
   "mistakes": [
-   "Trusting file extensions \u2014 Linux ignores them; file inspects magic bytes."
+   "Trusting file extensions - Linux ignores them; file inspects magic bytes."
   ],
   "tips": [
    "Handy before extracting an unknown archive or opening a mystery download."
@@ -554,7 +554,7 @@
    "Confusing Change time (metadata) with Modify time (content)."
   ],
   "tips": [
-   "stat -c %a file prints permissions in octal \u2014 great for chmod checks."
+   "stat -c %a file prints permissions in octal - great for chmod checks."
   ],
   "related": [
    "ls",
@@ -619,7 +619,7 @@
    }
   ],
   "mistakes": [
-   "Expecting tac to reverse characters \u2014 it reverses lines."
+   "Expecting tac to reverse characters - it reverses lines."
   ],
   "tips": [
    "Useful for reading logs newest-first without a pager."
@@ -665,7 +665,7 @@
    }
   ],
   "mistakes": [
-   "Typing cd/etc without a space \u2014 the command is cd, the argument is /etc."
+   "Typing cd/etc without a space - the command is cd, the argument is /etc."
   ],
   "tips": [
    "cd with no arguments always takes you home; cd - toggles between two places."
@@ -708,7 +708,7 @@
    }
   ],
   "mistakes": [
-   "Guessing your location instead of checking \u2014 many rm accidents start here."
+   "Guessing your location instead of checking - many rm accidents start here."
   ],
   "tips": [
    "Your prompt usually shows the directory, but pwd gives the full unambiguous path."
@@ -800,7 +800,7 @@
    }
   ],
   "mistakes": [
-   "Trying to remove a non-empty directory \u2014 use rm -r for that (carefully)."
+   "Trying to remove a non-empty directory - use rm -r for that (carefully)."
   ],
   "tips": [
    "rmdir's refusal to touch non-empty directories makes it the safe choice."
@@ -857,7 +857,7 @@
    }
   ],
   "mistakes": [
-   "Expecting dirname to verify the path exists \u2014 it is pure string manipulation."
+   "Expecting dirname to verify the path exists - it is pure string manipulation."
   ],
   "tips": [
    "Pair with cd in scripts: cd \"$(dirname \"$0\")\" jumps to the script's own folder."
@@ -891,7 +891,7 @@
    }
   ],
   "mistakes": [
-   "Assuming relative paths in scripts survive a cd \u2014 resolve them first."
+   "Assuming relative paths in scripts survive a cd - resolve them first."
   ],
   "tips": [
    "Great for logging exactly which file a script operated on."
@@ -941,7 +941,7 @@
    }
   ],
   "mistakes": [
-   "chmod 777 as a fix-everything \u2014 it makes files world-writable and is a security hole.",
+   "chmod 777 as a fix-everything - it makes files world-writable and is a security hole.",
    "Forgetting execute (x) on directories, which is required to enter them."
   ],
   "tips": [
@@ -1009,7 +1009,7 @@
    }
   ],
   "mistakes": [
-   "Running chown -R on the wrong path (like /) \u2014 always double-check.",
+   "Running chown -R on the wrong path (like /) - always double-check.",
    "Forgetting sudo: only root can give files away."
   ],
   "tips": [
@@ -1078,7 +1078,7 @@
    }
   ],
   "mistakes": [
-   "Thinking umask sets permissions \u2014 it subtracts them from the defaults (666 files, 777 dirs)."
+   "Thinking umask sets permissions - it subtracts them from the defaults (666 files, 777 dirs)."
   ],
   "tips": [
    "umask 022 \u2192 files 644, dirs 755. umask 077 keeps everything private to you."
@@ -1120,11 +1120,11 @@
    }
   ],
   "mistakes": [
-   "Prefixing everything with sudo out of habit \u2014 root mistakes are unrecoverable.",
+   "Prefixing everything with sudo out of habit - root mistakes are unrecoverable.",
    "sudo cd /root fails: cd is a shell builtin, not a program."
   ],
   "tips": [
-   "sudo !! reruns the previous command with sudo \u2014 a classic time saver."
+   "sudo !! reruns the previous command with sudo - a classic time saver."
   ],
   "related": [
    "su",
@@ -1275,7 +1275,7 @@
    "Using -G without -a, which replaces all existing groups instead of adding one."
   ],
   "tips": [
-   "Group changes take effect at next login \u2014 or immediately via newgrp."
+   "Group changes take effect at next login - or immediately via newgrp."
   ],
   "related": [
    "useradd",
@@ -1362,7 +1362,7 @@
    }
   ],
   "mistakes": [
-   "Choosing weak passwords \u2014 PAM may reject them with 'BAD PASSWORD'."
+   "Choosing weak passwords - PAM may reject them with 'BAD PASSWORD'."
   ],
   "tips": [
    "Regular users change their own password; root can change anyone's without knowing the old one."
@@ -1432,7 +1432,7 @@
    "Forgetting that new group memberships only appear after re-login."
   ],
   "tips": [
-   "id -u returning 0 means you are root \u2014 used in countless install scripts."
+   "id -u returning 0 means you are root - used in countless install scripts."
   ],
   "related": [
    "whoami",
@@ -1463,7 +1463,7 @@
    }
   ],
   "mistakes": [
-   "Expecting who to show what users are doing \u2014 that is w."
+   "Expecting who to show what users are doing - that is w."
   ],
   "tips": [
    "who -b is a quick way to see when the machine last rebooted."
@@ -1497,7 +1497,7 @@
    }
   ],
   "mistakes": [
-   "Ignoring the load average line \u2014 it is the fastest health check available."
+   "Ignoring the load average line - it is the fastest health check available."
   ],
   "tips": [
    "Think of w as who + uptime + ps for each session."
@@ -1535,10 +1535,10 @@
    }
   ],
   "mistakes": [
-   "Forgetting that wtmp rotates \u2014 old history may live in wtmp.1."
+   "Forgetting that wtmp rotates - old history may live in wtmp.1."
   ],
   "tips": [
-   "last reboot lists every boot \u2014 useful for spotting unexpected restarts."
+   "last reboot lists every boot - useful for spotting unexpected restarts."
   ],
   "related": [
    "who",
@@ -1623,7 +1623,7 @@
    }
   ],
   "mistakes": [
-   "Checking groups right after usermod -aG and not seeing the change \u2014 log out and back in."
+   "Checking groups right after usermod -aG and not seeing the change - log out and back in."
   ],
   "tips": [
    "The first group listed is your primary group."
@@ -1661,7 +1661,7 @@
    }
   ],
   "mistakes": [
-   "Setting group passwords \u2014 a legacy feature that is almost never appropriate."
+   "Setting group passwords - a legacy feature that is almost never appropriate."
   ],
   "tips": [
    "gpasswd -d is the cleanest way to remove a single group membership."
@@ -1686,7 +1686,7 @@
    }
   ],
   "mistakes": [
-   "Forgetting you are in a nested shell \u2014 exit returns to the old one."
+   "Forgetting you are in a nested shell - exit returns to the old one."
   ],
   "tips": [
    "Fast alternative to logging out after usermod -aG."
@@ -1724,11 +1724,11 @@
    }
   ],
   "mistakes": [
-   "Forgetting -c on Linux \u2014 ping runs forever until Ctrl+C.",
+   "Forgetting -c on Linux - ping runs forever until Ctrl+C.",
    "Assuming no reply means the host is down; many firewalls simply drop ICMP."
   ],
   "tips": [
-   "Ping the gateway first, then a public IP, then a hostname \u2014 that isolates LAN vs internet vs DNS problems."
+   "Ping the gateway first, then a public IP, then a hostname - that isolates LAN vs internet vs DNS problems."
   ],
   "related": [
    "traceroute",
@@ -1785,7 +1785,7 @@
    }
   ],
   "mistakes": [
-   "Making address changes with ip that vanish on reboot \u2014 persist them in netplan/NetworkManager."
+   "Making address changes with ip that vanish on reboot - persist them in netplan/NetworkManager."
   ],
   "tips": [
    "ip -c a adds color; ip -br a gives a compact one-line-per-interface summary."
@@ -1833,7 +1833,7 @@
    }
   ],
   "mistakes": [
-   "Relying on ifconfig on modern systems \u2014 it is often not installed (net-tools package)."
+   "Relying on ifconfig on modern systems - it is often not installed (net-tools package)."
   ],
   "tips": [
    "Learn ip; keep ifconfig knowledge for older servers you may inherit."
@@ -1871,7 +1871,7 @@
    }
   ],
   "mistakes": [
-   "Setting a hostname with this command and expecting it to survive reboot \u2014 use hostnamectl."
+   "Setting a hostname with this command and expecting it to survive reboot - use hostnamectl."
   ],
   "tips": [
    "hostname -I is the fastest way to grab a machine's IP in a script."
@@ -1964,7 +1964,7 @@
    }
   ],
   "mistakes": [
-   "Expecting netstat on a fresh install \u2014 modern distros ship ss instead."
+   "Expecting netstat on a fresh install - modern distros ship ss instead."
   ],
   "tips": [
    "Every netstat flag combo you know maps almost 1:1 to ss."
@@ -2002,7 +2002,7 @@
    }
   ],
   "mistakes": [
-   "Panicking over * * * lines \u2014 many routers just don't answer; the trace can still succeed."
+   "Panicking over * * * lines - many routers just don't answer; the trace can still succeed."
   ],
   "tips": [
    "Latency jumping sharply at one hop pinpoints where the slowdown begins."
@@ -2044,7 +2044,7 @@
    }
   ],
   "mistakes": [
-   "Testing DNS changes against a caching resolver and seeing stale answers \u2014 query the authoritative server directly."
+   "Testing DNS changes against a caching resolver and seeing stale answers - query the authoritative server directly."
   ],
   "tips": [
    "Compare dig @1.1.1.1 vs dig @your-router to spot broken local DNS."
@@ -2074,7 +2074,7 @@
    }
   ],
   "mistakes": [
-   "Using nslookup output in scripts \u2014 dig +short is far easier to parse."
+   "Using nslookup output in scripts - dig +short is far easier to parse."
   ],
   "tips": [
    "Fine for quick checks; reach for dig when you need detail."
@@ -2108,7 +2108,7 @@
    }
   ],
   "mistakes": [
-   "Confusing a stale ARP entry with a live host \u2014 entries linger after devices leave."
+   "Confusing a stale ARP entry with a live host - entries linger after devices leave."
   ],
   "tips": [
    "The modern equivalent is ip neigh show."
@@ -2202,7 +2202,7 @@
    }
   ],
   "mistakes": [
-   "Reading load average without knowing the core count \u2014 load 4.0 is fine on 8 cores, alarming on 1."
+   "Reading load average without knowing the core count - load 4.0 is fine on 8 cores, alarming on 1."
   ],
   "tips": [
    "Press q to quit, h for help; htop is a friendlier alternative."
@@ -2245,7 +2245,7 @@
    }
   ],
   "mistakes": [
-   "Assuming it is preinstalled \u2014 sudo apt install htop."
+   "Assuming it is preinstalled - sudo apt install htop."
   ],
   "tips": [
    "F5 toggles tree view, making parent/child relationships obvious."
@@ -2260,7 +2260,7 @@
   "name": "kill",
   "category": "Processes",
   "difficulty": "intermediate",
-  "description": "Send a signal to a process by PID \u2014 politely ask it to exit, or force it.",
+  "description": "Send a signal to a process by PID - politely ask it to exit, or force it.",
   "syntax": "kill [-signal] PID...",
   "params": [
    [
@@ -2273,7 +2273,7 @@
    ],
    [
     "-1 / -HUP",
-    "Hang up \u2014 many daemons reload config"
+    "Hang up - many daemons reload config"
    ],
    [
     "-l",
@@ -2291,7 +2291,7 @@
    }
   ],
   "mistakes": [
-   "Reaching for -9 first \u2014 the process gets no chance to save data or clean up; try plain kill first."
+   "Reaching for -9 first - the process gets no chance to save data or clean up; try plain kill first."
   ],
   "tips": [
    "Find the PID with pgrep or ps, or skip the lookup entirely with pkill name."
@@ -2339,7 +2339,7 @@
    }
   ],
   "mistakes": [
-   "Matching more than intended \u2014 killall node stops every Node.js app on the box."
+   "Matching more than intended - killall node stops every Node.js app on the box."
   ],
   "tips": [
    "killall requires the exact process name; pkill matches patterns."
@@ -2377,7 +2377,7 @@
    }
   ],
   "mistakes": [
-   "Broad patterns killing unrelated processes \u2014 dry-run with pgrep -l first."
+   "Broad patterns killing unrelated processes - dry-run with pgrep -l first."
   ],
   "tips": [
    "Always test the pattern with pgrep -l pattern before pkill."
@@ -2418,7 +2418,7 @@
    "The classic ps | grep pitfall (grep matching itself) is exactly what pgrep avoids."
   ],
   "tips": [
-   "kill $(pgrep myapp) is a common combo \u2014 or just use pkill."
+   "kill $(pgrep myapp) is a common combo - or just use pkill."
   ],
   "related": [
    "pkill",
@@ -2445,7 +2445,7 @@
    }
   ],
   "mistakes": [
-   "Confusing job numbers (%1) with PIDs \u2014 they are different namespaces."
+   "Confusing job numbers (%1) with PIDs - they are different namespaces."
   ],
   "tips": [
    "Ctrl+Z suspends the foreground task; bg resumes it in the background."
@@ -2471,7 +2471,7 @@
    }
   ],
   "mistakes": [
-   "Backgrounding a job that still writes to the terminal \u2014 it will scribble over your prompt."
+   "Backgrounding a job that still writes to the terminal - it will scribble over your prompt."
   ],
   "tips": [
    "The workflow: Ctrl+Z to suspend, bg to resume in background, fg to bring back."
@@ -2496,7 +2496,7 @@
    }
   ],
   "mistakes": [
-   "Closing the terminal with jobs still attached \u2014 they receive SIGHUP and die."
+   "Closing the terminal with jobs still attached - they receive SIGHUP and die."
   ],
   "tips": [
    "fg with no argument resumes the most recent job (the one marked +)."
@@ -2526,7 +2526,7 @@
    }
   ],
   "mistakes": [
-   "Thinking higher niceness means higher priority \u2014 it is the opposite (nicer = yields more)."
+   "Thinking higher niceness means higher priority - it is the opposite (nicer = yields more)."
   ],
   "tips": [
    "Only root may set negative niceness."
@@ -2589,7 +2589,7 @@
    }
   ],
   "mistakes": [
-   "Forgetting the trailing & \u2014 nohup alone does not background the command."
+   "Forgetting the trailing & - nohup alone does not background the command."
   ],
   "tips": [
    "For anything serious, tmux/screen or a systemd service beats nohup."
@@ -2628,7 +2628,7 @@
    }
   ],
   "mistakes": [
-   "'No space left on device' with df showing free space \u2014 check inodes with df -i."
+   "'No space left on device' with df showing free space - check inodes with df -i."
   ],
   "tips": [
    "df tells you which filesystem is full; du tells you what is filling it."
@@ -2726,7 +2726,7 @@
    }
   ],
   "mistakes": [
-   "Mounting over a non-empty directory \u2014 the existing contents are hidden (not deleted) until unmount."
+   "Mounting over a non-empty directory - the existing contents are hidden (not deleted) until unmount."
   ],
   "tips": [
    "The mount point must exist first: sudo mkdir -p /mnt/usb."
@@ -2761,7 +2761,7 @@
    }
   ],
   "mistakes": [
-   "It is umount, not unmount \u2014 the missing n trips everyone once.",
+   "It is umount, not unmount - the missing n trips everyone once.",
    "Yanking a USB drive without unmounting risks data loss."
   ],
   "tips": [
@@ -2831,7 +2831,7 @@
    }
   ],
   "mistakes": [
-   "Writing changes (w) to the wrong disk destroys its data \u2014 triple-check the device name."
+   "Writing changes (w) to the wrong disk destroys its data - triple-check the device name."
   ],
   "tips": [
    "Nothing is written until you press w; q quits safely at any time."
@@ -2870,7 +2870,7 @@
    }
   ],
   "mistakes": [
-   "Formatting a mounted or wrong partition \u2014 mkfs is irreversible."
+   "Formatting a mounted or wrong partition - mkfs is irreversible."
   ],
   "tips": [
    "Verify with lsblk -f first; format partitions (sdb1), not whole disks (sdb), unless you mean to."
@@ -2895,10 +2895,10 @@
    }
   ],
   "mistakes": [
-   "Hardcoding /dev/sdX names in /etc/fstab \u2014 device letters can change; use UUID= instead."
+   "Hardcoding /dev/sdX names in /etc/fstab - device letters can change; use UUID= instead."
   ],
   "tips": [
-   "UUIDs are stable across reboots and cable swaps \u2014 always prefer them in fstab."
+   "UUIDs are stable across reboots and cable swaps - always prefer them in fstab."
   ],
   "related": [
    "lsblk",
@@ -2949,8 +2949,8 @@
    }
   ],
   "mistakes": [
-   "Putting f before the filename position, e.g. tar cfz \u2014 f must be immediately followed by the archive name.",
-   "Extracting unknown tarballs into the current directory and scattering files everywhere \u2014 list with t first."
+   "Putting f before the filename position, e.g. tar cfz - f must be immediately followed by the archive name.",
+   "Extracting unknown tarballs into the current directory and scattering files everywhere - list with t first."
   ],
   "tips": [
    "Mnemonic: Create Zip File / eXtract Zip File \u2192 czf / xzf."
@@ -3006,7 +3006,7 @@
    }
   ],
   "mistakes": [
-   "Being surprised the original disappears \u2014 gzip replaces it unless you pass -k."
+   "Being surprised the original disappears - gzip replaces it unless you pass -k."
   ],
   "tips": [
    "gzip compresses single files; combine with tar to compress directories."
@@ -3041,7 +3041,7 @@
    }
   ],
   "mistakes": [
-   "Trying to gunzip a .tar.gz and expecting the files out \u2014 that yields a .tar; use tar xzf."
+   "Trying to gunzip a .tar.gz and expecting the files out - that yields a .tar; use tar xzf."
   ],
   "tips": [
    "zcat prints a .gz file's contents without creating a decompressed copy."
@@ -3121,7 +3121,7 @@
    }
   ],
   "mistakes": [
-   "Extracting into a cluttered directory \u2014 always -l first, or extract with -d into a fresh folder."
+   "Extracting into a cluttered directory - always -l first, or extract with -d into a fresh folder."
   ],
   "tips": [
    "unzip is often not preinstalled on servers: sudo apt install unzip."
@@ -3136,7 +3136,7 @@
   "name": "bzip2",
   "category": "Compression",
   "difficulty": "intermediate",
-  "description": "Compress files with bzip2 \u2014 better ratios than gzip, slower speed.",
+  "description": "Compress files with bzip2 - better ratios than gzip, slower speed.",
   "syntax": "bzip2 [options] file",
   "params": [
    [
@@ -3155,7 +3155,7 @@
    }
   ],
   "mistakes": [
-   "Using bzip2 where speed matters \u2014 gzip or zstd is usually the better trade-off today."
+   "Using bzip2 where speed matters - gzip or zstd is usually the better trade-off today."
   ],
   "tips": [
    "tar's -j flag pairs with .tar.bz2 archives."
@@ -3170,7 +3170,7 @@
   "name": "xz",
   "category": "Compression",
   "difficulty": "intermediate",
-  "description": "Compress files with xz/LZMA \u2014 excellent ratios, common for software releases.",
+  "description": "Compress files with xz/LZMA - excellent ratios, common for software releases.",
   "syntax": "xz [options] file",
   "params": [
    [
@@ -3193,7 +3193,7 @@
    }
   ],
   "mistakes": [
-   "Compressing large data single-threaded \u2014 always add -T0."
+   "Compressing large data single-threaded - always add -T0."
   ],
   "tips": [
    "tar's -J flag handles .tar.xz archives directly."
@@ -3218,7 +3218,7 @@
    }
   ],
   "mistakes": [
-   "Decompressing rotated logs to disk just to grep them \u2014 zcat (and zgrep) avoid that."
+   "Decompressing rotated logs to disk just to grep them - zcat (and zgrep) avoid that."
   ],
   "tips": [
    "Siblings zless and zgrep page and search .gz files directly."
@@ -3273,7 +3273,7 @@
    }
   ],
   "mistakes": [
-   "Confusing start (now, this boot) with enable (every boot) \u2014 enable --now does both.",
+   "Confusing start (now, this boot) with enable (every boot) - enable --now does both.",
    "Editing a unit file and forgetting daemon-reload."
   ],
   "tips": [
@@ -3321,7 +3321,7 @@
    }
   ],
   "mistakes": [
-   "Learning only service on systemd distros \u2014 status output and features are richer via systemctl."
+   "Learning only service on systemd distros - status output and features are richer via systemctl."
   ],
   "tips": [
    "Muscle memory from older tutorials still works, but prefer systemctl."
@@ -3335,7 +3335,7 @@
   "name": "journalctl",
   "category": "Services",
   "difficulty": "intermediate",
-  "description": "Query the systemd journal \u2014 the central log for services, the kernel and boots.",
+  "description": "Query the systemd journal - the central log for services, the kernel and boots.",
   "syntax": "journalctl [options]",
   "params": [
    [
@@ -3412,7 +3412,7 @@
    }
   ],
   "mistakes": [
-   "Using uname to identify the distro \u2014 check /etc/os-release for that."
+   "Using uname to identify the distro - check /etc/os-release for that."
   ],
   "tips": [
    "uname -m answers 'do I need the x86_64 or arm64 download?'."
@@ -3449,7 +3449,7 @@
    "Comparing load averages across machines with different core counts."
   ],
   "tips": [
-   "The three numbers are 1-, 5- and 15-minute averages \u2014 rising order means load is growing."
+   "The three numbers are 1-, 5- and 15-minute averages - rising order means load is growing."
   ],
   "related": [
    "top",
@@ -3480,7 +3480,7 @@
    }
   ],
   "mistakes": [
-   "Panicking at low 'free' \u2014 Linux uses spare RAM as cache; 'available' is the number that matters."
+   "Panicking at low 'free' - Linux uses spare RAM as cache; 'available' is the number that matters."
   ],
   "tips": [
    "Heavy swap usage plus low available memory is the real pressure signal."
@@ -3521,7 +3521,7 @@
    "Confusing logical CPUs (threads) with physical cores when sizing workloads."
   ],
   "tips": [
-   "nproc prints just the CPU count \u2014 handy for make -j$(nproc)."
+   "nproc prints just the CPU count - handy for make -j$(nproc)."
   ],
   "related": [
    "uname",
@@ -3552,7 +3552,7 @@
    }
   ],
   "mistakes": [
-   "Assuming a listed device works \u2014 lsusb shows detection, not driver status (check dmesg)."
+   "Assuming a listed device works - lsusb shows detection, not driver status (check dmesg)."
   ],
   "tips": [
    "Run before and after plugging a device in to confirm the kernel sees it."
@@ -3586,7 +3586,7 @@
    }
   ],
   "mistakes": [
-   "Missing -k when debugging hardware \u2014 the 'driver in use' line is usually the answer."
+   "Missing -k when debugging hardware - the 'driver in use' line is usually the answer."
   ],
   "tips": [
    "lspci -k | grep -A3 -i net shows network hardware and its drivers together."
@@ -3623,7 +3623,7 @@
    "Changing the hostname but leaving the old name in /etc/hosts, causing sudo delays."
   ],
   "tips": [
-   "One command shows distro, kernel and hardware \u2014 a great first look at an unfamiliar box."
+   "One command shows distro, kernel and hardware - a great first look at an unfamiliar box."
   ],
   "related": [
    "hostname",
@@ -3666,7 +3666,7 @@
    }
   ],
   "mistakes": [
-   "Building filenames with spaces from raw date output \u2014 use a custom format."
+   "Building filenames with spaces from raw date output - use a custom format."
   ],
   "tips": [
    "backup-$(date +%F).tar.gz timestamps files sortably."
@@ -3700,7 +3700,7 @@
    }
   ],
   "mistakes": [
-   "cal 26 shows year 26 AD, not 2026 \u2014 give the full year."
+   "cal 26 shows year 26 AD, not 2026 - give the full year."
   ],
   "tips": [
    "cal -3 keeps context around today's date."
@@ -3736,7 +3736,7 @@
    }
   ],
   "mistakes": [
-   "Running without sudo \u2014 DMI tables need root access."
+   "Running without sudo - DMI tables need root access."
   ],
   "tips": [
    "Answers 'what RAM can this server take?' without opening the case."
@@ -3782,7 +3782,7 @@
    }
   ],
   "mistakes": [
-   "Ignoring host-key-changed warnings \u2014 it can mean a rebuilt server, or an attack.",
+   "Ignoring host-key-changed warnings - it can mean a rebuilt server, or an attack.",
    "Typing passwords forever instead of setting up keys."
   ],
   "tips": [
@@ -3839,7 +3839,7 @@
    }
   ],
   "mistakes": [
-   "Using -p (lowercase) for the port \u2014 in scp that preserves timestamps; the port flag is -P."
+   "Using -p (lowercase) for the port - in scp that preserves timestamps; the port flag is -P."
   ],
   "tips": [
    "For big or repeated transfers, rsync over SSH resumes and skips unchanged files."
@@ -3877,7 +3877,7 @@
    }
   ],
   "mistakes": [
-   "Forgetting the l-prefixed commands act locally \u2014 plain ls is the remote side."
+   "Forgetting the l-prefixed commands act locally - plain ls is the remote side."
   ],
   "tips": [
    "Good when you need to browse before transferring; scp/rsync are better for known paths."
@@ -3915,7 +3915,7 @@
    }
   ],
   "mistakes": [
-   "Sharing the private key \u2014 only the .pub file ever leaves your machine.",
+   "Sharing the private key - only the .pub file ever leaves your machine.",
    "Skipping the passphrase on keys that guard important systems."
   ],
   "tips": [
@@ -3959,7 +3959,7 @@
    }
   ],
   "mistakes": [
-   "Copying private keys manually instead \u2014 ssh-copy-id handles permissions and appending correctly."
+   "Copying private keys manually instead - ssh-copy-id handles permissions and appending correctly."
   ],
   "tips": [
    "Immediately test key login before disabling password auth in sshd_config."
@@ -3974,7 +3974,7 @@
   "name": "rsync",
   "category": "SSH",
   "difficulty": "intermediate",
-  "description": "Fast, resumable file synchronization \u2014 locally or over SSH \u2014 copying only what changed.",
+  "description": "Fast, resumable file synchronization - locally or over SSH - copying only what changed.",
   "syntax": "rsync [options] source destination",
   "params": [
    [
@@ -4009,7 +4009,7 @@
    }
   ],
   "mistakes": [
-   "Trailing-slash semantics: src/ copies the contents, src copies the directory itself \u2014 the difference bites everyone once.",
+   "Trailing-slash semantics: src/ copies the contents, src copies the directory itself - the difference bites everyone once.",
    "Using --delete without a dry run first."
   ],
   "tips": [
@@ -4069,7 +4069,7 @@
    "Confusing remove (keeps config) with purge (removes config too)."
   ],
   "tips": [
-   "apt update refreshes the list; apt upgrade installs \u2014 two steps, in that order."
+   "apt update refreshes the list; apt upgrade installs - two steps, in that order."
   ],
   "related": [
    "apt-get",
@@ -4117,7 +4117,7 @@
    }
   ],
   "mistakes": [
-   "Using apt (which warns about an unstable CLI) inside scripts \u2014 apt-get is the scripting choice."
+   "Using apt (which warns about an unstable CLI) inside scripts - apt-get is the scripting choice."
   ],
   "tips": [
    "Interactive shell: apt. Dockerfiles and scripts: apt-get -y."
@@ -4162,7 +4162,7 @@
    }
   ],
   "mistakes": [
-   "dpkg -i does not fetch dependencies \u2014 follow failures with sudo apt -f install."
+   "dpkg -i does not fetch dependencies - follow failures with sudo apt -f install."
   ],
   "tips": [
    "dpkg -l | grep name quickly answers 'is this installed, and which version?'."
@@ -4200,10 +4200,10 @@
    }
   ],
   "mistakes": [
-   "Mixing apt knowledge onto RHEL \u2014 the ecosystem is rpm/yum/dnf, not deb/apt."
+   "Mixing apt knowledge onto RHEL - the ecosystem is rpm/yum/dnf, not deb/apt."
   ],
   "tips": [
-   "On RHEL 8+, yum simply forwards to dnf \u2014 learn dnf's syntax."
+   "On RHEL 8+, yum simply forwards to dnf - learn dnf's syntax."
   ],
   "related": [
    "dnf",
@@ -4288,7 +4288,7 @@
    }
   ],
   "mistakes": [
-   "Installing with rpm -i and hitting dependency errors \u2014 dnf install ./file.rpm resolves them."
+   "Installing with rpm -i and hitting dependency errors - dnf install ./file.rpm resolves them."
   ],
   "tips": [
    "rpm is to dnf what dpkg is to apt: the layer underneath."
@@ -4326,7 +4326,7 @@
    }
   ],
   "mistakes": [
-   "Wondering why a snap can't read random paths \u2014 snaps are sandboxed by design."
+   "Wondering why a snap can't read random paths - snaps are sandboxed by design."
   ],
   "tips": [
    "Snaps auto-update on their own schedule; snap refresh forces it now."
@@ -4366,7 +4366,7 @@
    "Single vs double quotes: '$USER' prints literally, \"$USER\" expands the variable."
   ],
   "tips": [
-   "echo something >> file.txt appends a line \u2014 a quick way to build test files."
+   "echo something >> file.txt appends a line - a quick way to build test files."
   ],
   "related": [
    "printf",
@@ -4422,10 +4422,10 @@
    }
   ],
   "mistakes": [
-   "Typing secrets on the command line \u2014 they land in ~/.bash_history in plain text."
+   "Typing secrets on the command line - they land in ~/.bash_history in plain text."
   ],
   "tips": [
-   "Ctrl+R gives interactive reverse search \u2014 usually faster than reading history output."
+   "Ctrl+R gives interactive reverse search - usually faster than reading history output."
   ],
   "related": [
    "alias",
@@ -4460,7 +4460,7 @@
    }
   ],
   "mistakes": [
-   "Defining aliases only in the current session \u2014 put them in ~/.bashrc to persist."
+   "Defining aliases only in the current session - put them in ~/.bashrc to persist."
   ],
   "tips": [
    "alias with no arguments reveals what magic your shell already has defined."
@@ -4489,7 +4489,7 @@
    }
   ],
   "mistakes": [
-   "Running ./script.sh and wondering why its exports vanished \u2014 child processes cannot modify your shell."
+   "Running ./script.sh and wondering why its exports vanished - child processes cannot modify your shell."
   ],
   "tips": [
    "Any edit to ~/.bashrc needs source ~/.bashrc (or a new terminal) to take effect."
@@ -4566,7 +4566,7 @@
    }
   ],
   "mistakes": [
-   "Trusting which for aliases and builtins \u2014 it only searches PATH; use type for the full story."
+   "Trusting which for aliases and builtins - it only searches PATH; use type for the full story."
   ],
   "tips": [
    "which -a exposes shadowing, e.g. a ~/bin script hiding the system binary."
@@ -4581,7 +4581,7 @@
   "name": "xargs",
   "category": "Bash",
   "difficulty": "advanced",
-  "description": "Build and run commands from standard input \u2014 turning a list of items into command arguments.",
+  "description": "Build and run commands from standard input - turning a list of items into command arguments.",
   "syntax": "command | xargs [options] [command]",
   "params": [
    [
@@ -4612,7 +4612,7 @@
    }
   ],
   "mistakes": [
-   "Piping filenames with spaces into xargs without -0 \u2014 arguments split apart."
+   "Piping filenames with spaces into xargs without -0 - arguments split apart."
   ],
   "tips": [
    "Test destructive pipelines by replacing the final command with echo first."
@@ -4646,7 +4646,7 @@
    }
   ],
   "mistakes": [
-   "sudo echo x > /protected/file fails \u2014 the redirect runs as you; sudo tee is the fix."
+   "sudo echo x > /protected/file fails - the redirect runs as you; sudo tee is the fix."
   ],
   "tips": [
    "The sudo tee pattern is the standard way to write root-owned files from a pipe."
@@ -4718,8 +4718,8 @@
    }
   ],
   "mistakes": [
-   "Overwriting PATH instead of appending to it \u2014 suddenly no commands are found.",
-   "Expecting exports to survive a new terminal \u2014 persist them in ~/.bashrc."
+   "Overwriting PATH instead of appending to it - suddenly no commands are found.",
+   "Expecting exports to survive a new terminal - persist them in ~/.bashrc."
   ],
   "tips": [
    "Difference: NAME=x is shell-local; export NAME=x is visible to programs you launch."
@@ -4771,7 +4771,7 @@
    }
   ],
   "mistakes": [
-   "Confusing the environment (inherited) with shell variables (local) \u2014 env shows only the former."
+   "Confusing the environment (inherited) with shell variables (local) - env shows only the former."
   ],
   "tips": [
    "env VAR=x cmd sets a variable for one command only, without touching your shell."
@@ -4796,7 +4796,7 @@
    }
   ],
   "mistakes": [
-   "printenv name is case-sensitive \u2014 HOME exists, home does not."
+   "printenv name is case-sensitive - HOME exists, home does not."
   ],
   "tips": [
    "printenv NAME is cleaner in scripts than echo $NAME (no expansion surprises)."
@@ -4842,7 +4842,7 @@
    }
   ],
   "mistakes": [
-   "Writing production scripts without set -euo pipefail \u2014 silent failures compound."
+   "Writing production scripts without set -euo pipefail - silent failures compound."
   ],
   "tips": [
    "set -x is the fastest way to see exactly what a misbehaving script is doing."
@@ -4872,7 +4872,7 @@
    }
   ],
   "mistakes": [
-   "Unsetting critical variables like PATH \u2014 recoverable only by restarting the shell."
+   "Unsetting critical variables like PATH - recoverable only by restarting the shell."
   ],
   "tips": [
    "Clear sensitive variables (tokens, passwords) as soon as you no longer need them."
@@ -4918,7 +4918,7 @@
    }
   ],
   "mistakes": [
-   "Relying on your interactive PATH \u2014 cron's environment is minimal; use absolute paths.",
+   "Relying on your interactive PATH - cron's environment is minimal; use absolute paths.",
    "crontab -r (remove) is one key from -e (edit) and wipes everything silently."
   ],
   "tips": [
@@ -4970,7 +4970,7 @@
    }
   ],
   "mistakes": [
-   "Using cron for one-off tasks (and forgetting to remove the entry) \u2014 at exists for exactly this."
+   "Using cron for one-off tasks (and forgetting to remove the entry) - at exists for exactly this."
   ],
   "tips": [
    "at now + 10 minutes is great for 'try this change, revert automatically if I get locked out'."
@@ -4985,7 +4985,7 @@
   "name": "sleep",
   "category": "Cron",
   "difficulty": "beginner",
-  "description": "Pause for a given amount of time \u2014 the building block of polling loops and delays.",
+  "description": "Pause for a given amount of time - the building block of polling loops and delays.",
   "syntax": "sleep number[smhd]",
   "params": [
    [
@@ -5046,7 +5046,7 @@
    }
   ],
   "mistakes": [
-   "Debugging disappearing processes without checking dmesg \u2014 the OOM killer logs its victims here."
+   "Debugging disappearing processes without checking dmesg - the OOM killer logs its victims here."
   ],
   "tips": [
    "Plugged in hardware that 'does nothing'? sudo dmesg -w while re-plugging tells the story."
@@ -5084,7 +5084,7 @@
    }
   ],
   "mistakes": [
-   "Scripts echoing status to nowhere \u2014 logger puts it where journalctl can find it."
+   "Scripts echoing status to nowhere - logger puts it where journalctl can find it."
   ],
   "tips": [
    "Add logger calls to cron scripts so their runs leave an auditable trail."
@@ -5118,7 +5118,7 @@
    }
   ],
   "mistakes": [
-   "Alarm at '**Never logged in**' for system accounts \u2014 that is normal and correct."
+   "Alarm at '**Never logged in**' for system accounts - that is normal and correct."
   ],
   "tips": [
    "A login on a service account that should never log in is a red flag worth investigating."
@@ -5156,7 +5156,7 @@
    }
   ],
   "mistakes": [
-   "Apps writing to a rotated file handle \u2014 configs need postrotate reload hooks (or use copytruncate)."
+   "Apps writing to a rotated file handle - configs need postrotate reload hooks (or use copytruncate)."
   ],
   "tips": [
    "Always test new configs with -d before the 3 a.m. cron run does it for real."
@@ -5204,7 +5204,7 @@
   ],
   "mistakes": [
    "Encrypting a file and leaving the plaintext original beside it.",
-   "Losing the passphrase \u2014 there is no recovery."
+   "Losing the passphrase - there is no recovery."
   ],
   "tips": [
    "gpg -c is the quickest way to protect a single file before it leaves your machine."
@@ -5280,7 +5280,7 @@
    }
   ],
   "mistakes": [
-   "Downloading an ISO and skipping verification \u2014 a corrupt image wastes an hour later."
+   "Downloading an ISO and skipping verification - a corrupt image wastes an hour later."
   ],
   "tips": [
    "Compare against the checksum published on the project's website, not one bundled with the download."
@@ -5295,7 +5295,7 @@
   "name": "md5sum",
   "category": "Security",
   "difficulty": "intermediate",
-  "description": "Compute MD5 checksums \u2014 fine for detecting accidental corruption, broken for security.",
+  "description": "Compute MD5 checksums - fine for detecting accidental corruption, broken for security.",
   "syntax": "md5sum [file]",
   "params": [
    [
@@ -5310,7 +5310,7 @@
    }
   ],
   "mistakes": [
-   "Using MD5 where tampering matters \u2014 collisions are practical; use sha256sum."
+   "Using MD5 where tampering matters - collisions are practical; use sha256sum."
   ],
   "tips": [
    "Still handy for quick 'did the transfer corrupt this?' checks between machines."
@@ -5334,7 +5334,7 @@
    }
   ],
   "mistakes": [
-   "Treating chroot as a security sandbox \u2014 root can escape it; it is a tool, not a jail."
+   "Treating chroot as a security sandbox - root can escape it; it is a tool, not a jail."
   ],
   "tips": [
    "The classic use: boot a live USB, mount the broken system, chroot in, and fix the bootloader."
@@ -5380,7 +5380,7 @@
    }
   ],
   "mistakes": [
-   "Setting a DROP policy over SSH before adding the SSH allow rule \u2014 instant lockout.",
+   "Setting a DROP policy over SSH before adding the SSH allow rule - instant lockout.",
    "Rules are not persistent by default; save them or they vanish at reboot."
   ],
   "tips": [
@@ -5397,7 +5397,7 @@
   "name": "ufw",
   "category": "Firewall",
   "difficulty": "intermediate",
-  "description": "Uncomplicated Firewall \u2014 a friendly front-end to Linux packet filtering (default on Ubuntu).",
+  "description": "Uncomplicated Firewall - a friendly front-end to Linux packet filtering (default on Ubuntu).",
   "syntax": "sudo ufw command",
   "params": [
    [
@@ -5432,7 +5432,7 @@
    }
   ],
   "mistakes": [
-   "Enabling ufw over SSH before allowing port 22 \u2014 the session freezes and you are locked out."
+   "Enabling ufw over SSH before allowing port 22 - the session freezes and you are locked out."
   ],
   "tips": [
    "Order of operations on a remote box: allow SSH first, enable second. Always."
@@ -5491,7 +5491,7 @@
    }
   ],
   "mistakes": [
-   "Adding rules without --permanent and losing them at reboot \u2014 or with it and forgetting --reload."
+   "Adding rules without --permanent and losing them at reboot - or with it and forgetting --reload."
   ],
   "tips": [
    "Runtime vs permanent is the core concept: test at runtime, then make it permanent."
@@ -5506,7 +5506,7 @@
   "name": "grep",
   "category": "Text Processing",
   "difficulty": "beginner",
-  "description": "Search text for lines matching a pattern \u2014 the single most-used text tool on Linux.",
+  "description": "Search text for lines matching a pattern - the single most-used text tool on Linux.",
   "syntax": "grep [options] pattern [file...]",
   "params": [
    [
@@ -5549,7 +5549,7 @@
    }
   ],
   "mistakes": [
-   "Forgetting to quote patterns with spaces or special characters \u2014 the shell mangles them.",
+   "Forgetting to quote patterns with spaces or special characters - the shell mangles them.",
    "Using grep on binary files by accident; add --binary-files=without-match or -I."
   ],
   "tips": [
@@ -5571,7 +5571,7 @@
      "-x"
     ],
     "answer": 2,
-    "explain": "-v prints lines that do not match \u2014 perfect for filtering noise."
+    "explain": "-v prints lines that do not match - perfect for filtering noise."
    },
    {
     "q": "How do you search all files under src/ for 'api_key'?",
@@ -5629,7 +5629,7 @@
    }
   ],
   "mistakes": [
-   "Running -i without a backup suffix on files you cannot restore \u2014 -i.bak keeps the original.",
+   "Running -i without a backup suffix on files you cannot restore - -i.bak keeps the original.",
    "Forgetting /g and replacing only the first occurrence per line."
   ],
   "tips": [
@@ -5658,7 +5658,7 @@
   "name": "awk",
   "category": "Text Processing",
   "difficulty": "advanced",
-  "description": "Pattern-scanning language that processes text by fields \u2014 ideal for columns, sums and reports.",
+  "description": "Pattern-scanning language that processes text by fields - ideal for columns, sums and reports.",
   "syntax": "awk [options] 'program' [file]",
   "params": [
    [
@@ -5732,7 +5732,7 @@
    }
   ],
   "mistakes": [
-   "Expecting cut to handle multi-space alignment \u2014 it splits on single delimiters; awk copes better."
+   "Expecting cut to handle multi-space alignment - it splits on single delimiters; awk copes better."
   ],
   "tips": [
    "For quick single-delimiter column grabs, cut beats awk on typing speed."
@@ -5821,7 +5821,7 @@
    }
   ],
   "mistakes": [
-   "Skipping sort first \u2014 uniq only collapses adjacent duplicates."
+   "Skipping sort first - uniq only collapses adjacent duplicates."
   ],
   "tips": [
    "The sort | uniq -c | sort -rn pipeline is the classic 'top talkers' recipe."
@@ -5876,7 +5876,7 @@
    }
   ],
   "mistakes": [
-   "Forgetting the header line when counting piped table output \u2014 subtract one."
+   "Forgetting the header line when counting piped table output - subtract one."
   ],
   "tips": [
    "grep -c pattern file counts matches directly, without a wc pipeline."
@@ -5891,7 +5891,7 @@
   "name": "tr",
   "category": "Text Processing",
   "difficulty": "intermediate",
-  "description": "Translate or delete characters in a stream \u2014 case changes, squeezing, character cleanup.",
+  "description": "Translate or delete characters in a stream - case changes, squeezing, character cleanup.",
   "syntax": "tr [options] set1 [set2]",
   "params": [
    [
@@ -5918,7 +5918,7 @@
    }
   ],
   "mistakes": [
-   "Feeding tr a filename \u2014 it reads only from standard input; use redirection or a pipe."
+   "Feeding tr a filename - it reads only from standard input; use redirection or a pipe."
   ],
   "tips": [
    "tr -d '\\r' strips Windows carriage returns from files that break scripts."
@@ -5960,7 +5960,7 @@
    }
   ],
   "mistakes": [
-   "Reading default diff output cold \u2014 -u is far more readable and universally understood."
+   "Reading default diff output cold - -u is far more readable and universally understood."
   ],
   "tips": [
    "diff -qr dirA dirB summarizes which files differ between two directory trees."
@@ -6039,7 +6039,7 @@
    "Splitting a CSV mid-record set without a plan for re-adding headers to each part."
   ],
   "tips": [
-   "Reassemble with cat part_* > whole.csv \u2014 order is preserved by the suffixes."
+   "Reassemble with cat part_* > whole.csv - order is preserved by the suffixes."
   ],
   "related": [
    "cat",
@@ -6051,7 +6051,7 @@
   "name": "find",
   "category": "Searching",
   "difficulty": "intermediate",
-  "description": "Search the filesystem live by name, type, size, age, permissions \u2014 and act on the results.",
+  "description": "Search the filesystem live by name, type, size, age, permissions - and act on the results.",
   "syntax": "find [path] [tests] [actions]",
   "params": [
    [
@@ -6099,7 +6099,7 @@
   ],
   "mistakes": [
    "Unquoted patterns: find . -name *.log lets the shell expand the glob first and breaks the command.",
-   "Putting -delete before the tests \u2014 find evaluates left to right and can delete everything."
+   "Putting -delete before the tests - find evaluates left to right and can delete everything."
   ],
   "tips": [
    "Always run find with just the tests first; add -delete or -exec rm only after reviewing the list."
@@ -6151,7 +6151,7 @@
    }
   ],
   "mistakes": [
-   "Missing files created today \u2014 the index is stale until updatedb runs."
+   "Missing files created today - the index is stale until updatedb runs."
   ],
   "tips": [
    "locate for speed, find for freshness and rich filters."
@@ -6176,7 +6176,7 @@
    }
   ],
   "mistakes": [
-   "Wondering why locate can't see a new file \u2014 run updatedb (or wait for the daily cron)."
+   "Wondering why locate can't see a new file - run updatedb (or wait for the daily cron)."
   ],
   "tips": [
    "On large disks updatedb takes a while; it normally runs off-hours for a reason."
@@ -6210,7 +6210,7 @@
    }
   ],
   "mistakes": [
-   "Using whereis for arbitrary files \u2014 it only checks standard command locations; use locate or find."
+   "Using whereis for arbitrary files - it only checks standard command locations; use locate or find."
   ],
   "tips": [
    "A quick way to jump from a command name to its config directory and docs."
@@ -6225,7 +6225,7 @@
   "name": "curl",
   "category": "Networking Tools",
   "difficulty": "intermediate",
-  "description": "Transfer data to or from URLs \u2014 test APIs, download files, inspect headers and TLS.",
+  "description": "Transfer data to or from URLs - test APIs, download files, inspect headers and TLS.",
   "syntax": "curl [options] URL",
   "params": [
    [
@@ -6268,7 +6268,7 @@
    }
   ],
   "mistakes": [
-   "Debugging an API without -i/-I \u2014 status codes and headers usually contain the answer.",
+   "Debugging an API without -i/-I - status codes and headers usually contain the answer.",
    "Forgetting -L when a URL redirects, and saving an empty or HTML 'moved' page."
   ],
   "tips": [
@@ -6329,7 +6329,7 @@
    }
   ],
   "mistakes": [
-   "Restarting large downloads from zero after a drop \u2014 -c resumes them."
+   "Restarting large downloads from zero after a drop - -c resumes them."
   ],
   "tips": [
    "Rule of thumb: wget to download files, curl to talk to APIs."
@@ -6347,7 +6347,7 @@
   ],
   "category": "Networking Tools",
   "difficulty": "advanced",
-  "description": "Netcat: read and write raw TCP/UDP connections \u2014 port checks, quick file transfers, ad-hoc servers.",
+  "description": "Netcat: read and write raw TCP/UDP connections - port checks, quick file transfers, ad-hoc servers.",
   "syntax": "nc [options] host port",
   "params": [
    [
@@ -6378,7 +6378,7 @@
    }
   ],
   "mistakes": [
-   "Port-scanning hosts you don't own or administer \u2014 that can violate laws and policies."
+   "Port-scanning hosts you don't own or administer - that can violate laws and policies."
   ],
   "tips": [
    "nc -zv host port is the honest answer to 'is the port open, or is it DNS/firewall?'."
@@ -6394,7 +6394,7 @@
   "name": "telnet",
   "category": "Networking Tools",
   "difficulty": "intermediate",
-  "description": "Plain-text TCP client \u2014 obsolete for remote login, still handy for poking at ports and protocols.",
+  "description": "Plain-text TCP client - obsolete for remote login, still handy for poking at ports and protocols.",
   "syntax": "telnet host [port]",
   "params": [],
   "examples": [
@@ -6404,7 +6404,7 @@
    }
   ],
   "mistakes": [
-   "Using telnet for remote administration \u2014 everything, including passwords, crosses the wire unencrypted."
+   "Using telnet for remote administration - everything, including passwords, crosses the wire unencrypted."
   ],
   "tips": [
    "For port checks prefer nc -zv; keep telnet for interactively speaking SMTP/HTTP by hand."
@@ -6450,7 +6450,7 @@
    }
   ],
   "mistakes": [
-   "Scanning networks without authorization \u2014 only scan systems you own or have written permission to test."
+   "Scanning networks without authorization - only scan systems you own or have written permission to test."
   ],
   "tips": [
    "Audit your own server from outside: the open ports nmap reports are your true attack surface."
@@ -6466,7 +6466,7 @@
   "name": "tcpdump",
   "category": "Networking Tools",
   "difficulty": "advanced",
-  "description": "Capture and inspect network packets on an interface \u2014 the command-line packet sniffer.",
+  "description": "Capture and inspect network packets on an interface - the command-line packet sniffer.",
   "syntax": "sudo tcpdump [options] [filter]",
   "params": [
    [
@@ -6497,7 +6497,7 @@
    }
   ],
   "mistakes": [
-   "Capturing without a filter on a busy box \u2014 you drown instantly; filter by port or host."
+   "Capturing without a filter on a busy box - you drown instantly; filter by port or host."
   ],
   "tips": [
    "Capture with -w to a file and analyze comfortably in Wireshark later."
@@ -6513,7 +6513,7 @@
   "name": "nano",
   "category": "Editors",
   "difficulty": "beginner",
-  "description": "Simple terminal text editor with on-screen shortcut hints \u2014 the gentlest way to edit on a server.",
+  "description": "Simple terminal text editor with on-screen shortcut hints - the gentlest way to edit on a server.",
   "syntax": "nano [options] file",
   "params": [
    [
@@ -6540,7 +6540,7 @@
    }
   ],
   "mistakes": [
-   "Reading ^X as 'press X' \u2014 the caret means Ctrl."
+   "Reading ^X as 'press X' - the caret means Ctrl."
   ],
   "tips": [
    "All the shortcuts you need are printed at the bottom of the screen."
@@ -6558,7 +6558,7 @@
   ],
   "category": "Editors",
   "difficulty": "advanced",
-  "description": "Modal power editor present on virtually every Unix system \u2014 steep to learn, fast for life.",
+  "description": "Modal power editor present on virtually every Unix system - steep to learn, fast for life.",
   "syntax": "vim [options] file",
   "params": [
    [
@@ -6597,7 +6597,7 @@
    "Typing text in normal mode and triggering random commands."
   ],
   "tips": [
-   "Run vimtutor once \u2014 25 minutes that pays off for decades."
+   "Run vimtutor once - 25 minutes that pays off for decades."
   ],
   "related": [
    "nano",
@@ -6653,7 +6653,7 @@
    }
   ],
   "mistakes": [
-   "shutdown with no time argument schedules +1 minute, not now \u2014 say now if you mean now."
+   "shutdown with no time argument schedules +1 minute, not now - say now if you mean now."
   ],
   "tips": [
    "A timed shutdown with a message is the polite way to reboot a shared machine."
@@ -6678,7 +6678,7 @@
    }
   ],
   "mistakes": [
-   "Rebooting the wrong SSH session \u2014 check hostname before pressing Enter on shared terminals."
+   "Rebooting the wrong SSH session - check hostname before pressing Enter on shared terminals."
   ],
   "tips": [
    "After a remote reboot, ping -c 100 host tells you the moment it is back."
@@ -6703,7 +6703,7 @@
    }
   ],
   "mistakes": [
-   "Powering off a remote VPS you can't press the power button on \u2014 prefer reboot unless you mean it."
+   "Powering off a remote VPS you can't press the power button on - prefer reboot unless you mean it."
   ],
   "tips": [
    "reboot, poweroff and halt are all thin wrappers around systemctl these days."
@@ -6741,10 +6741,10 @@
    }
   ],
   "mistakes": [
-   "Setting time manually while NTP is active \u2014 the sync daemon immediately overrides you."
+   "Setting time manually while NTP is active - the sync daemon immediately overrides you."
   ],
   "tips": [
-   "Wrong timestamps in logs almost always trace back to timezone or NTP \u2014 check here first."
+   "Wrong timestamps in logs almost always trace back to timezone or NTP - check here first."
   ],
   "related": [
    "date",
@@ -6783,7 +6783,7 @@
    }
   ],
   "mistakes": [
-   "'Too many open files' errors on busy servers \u2014 the fix is raising -n (persistently in limits.conf)."
+   "'Too many open files' errors on busy servers - the fix is raising -n (persistently in limits.conf)."
   ],
   "tips": [
    "ulimit changes affect only the current shell and its children; system-wide limits live in /etc/security/limits.conf."
@@ -6798,7 +6798,7 @@
   "name": "lsof",
   "category": "System Administration",
   "difficulty": "advanced",
-  "description": "List open files \u2014 and since everything is a file, also sockets, devices and deleted-but-held files.",
+  "description": "List open files - and since everything is a file, also sockets, devices and deleted-but-held files.",
   "syntax": "sudo lsof [options]",
   "params": [
    [
@@ -6829,7 +6829,7 @@
    }
   ],
   "mistakes": [
-   "Deleting a huge log while a process holds it open \u2014 space isn't freed; lsof | grep deleted finds these."
+   "Deleting a huge log while a process holds it open - space isn't freed; lsof | grep deleted finds these."
   ],
   "tips": [
    "Two classics: lsof -i :port (who owns the port) and lsof +D /mountpoint (why umount says busy)."
@@ -6845,7 +6845,7 @@
   "name": "man",
   "category": "System Administration",
   "difficulty": "beginner",
-  "description": "Read the manual page for any command \u2014 the authoritative built-in documentation.",
+  "description": "Read the manual page for any command - the authoritative built-in documentation.",
   "syntax": "man [section] command",
   "params": [
    [
@@ -6868,7 +6868,7 @@
    }
   ],
   "mistakes": [
-   "Reading man pages top to bottom \u2014 jump to EXAMPLES with /EXAMPLES and work outward."
+   "Reading man pages top to bottom - jump to EXAMPLES with /EXAMPLES and work outward."
   ],
   "tips": [
    "Inside a man page: / searches, n repeats the search, q quits."
@@ -6893,7 +6893,7 @@
    }
   ],
   "mistakes": [
-   "Thinking clear deletes history \u2014 scrollback and history both survive."
+   "Thinking clear deletes history - scrollback and history both survive."
   ],
   "tips": [
    "Ctrl+L does the same thing without typing a command."

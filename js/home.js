@@ -1,4 +1,4 @@
-/* home.js — homepage: live hero terminal, search, roadmap, daily widgets -- */
+/* home.js - homepage: live hero terminal, search, roadmap, daily widgets -- */
 
 import { renderChrome, esc, el, diffBadge, dayIndex } from "./app.js";
 import { state, levelInfo } from "./store.js";
@@ -10,7 +10,7 @@ renderChrome("index.html");
 
 /* ---- Signature element: a real, live terminal in the hero ---- */
 const heroTerm = new Terminal(document.getElementById("hero-terminal"), { greeting: false });
-heroTerm.print(`Try a command — this terminal is real. Start with <span class="exec">ls</span>, <span class="exec">pwd</span> or <span class="exec">help</span>.\n`, true);
+heroTerm.print(`Try a command - this terminal is real. Start with <span class="exec">ls</span>, <span class="exec">pwd</span> or <span class="exec">help</span>.\n`, true);
 
 /* ---- Hero stats ---- */
 async function heroStats() {
@@ -38,7 +38,7 @@ async function wireSearch() {
         <div class="cmd-meta"><span class="badge">${esc(c.category)}</span>${diffBadge(c.difficulty)}</div>
       </a>`));
     }
-    if (!results.children.length) results.append(el(`<p class="muted">No commands match "${esc(q)}" — try a broader term, or browse all commands.</p>`));
+    if (!results.children.length) results.append(el(`<p class="muted">No commands match "${esc(q)}" - try a broader term, or browse all commands.</p>`));
   });
 }
 
@@ -68,7 +68,7 @@ function progressCard() {
   const lvl = levelInfo();
   document.getElementById("home-progress").innerHTML = `
     <div class="stat-big">${state.xp} XP</div>
-    <p class="muted" style="margin:4px 0 8px">Level: ${lvl.name}${lvl.next ? ` — ${lvl.next.xp - state.xp} XP to ${lvl.next.name}` : " (max)"}</p>
+    <p class="muted" style="margin:4px 0 8px">Level: ${lvl.name}${lvl.next ? ` - ${lvl.next.xp - state.xp} XP to ${lvl.next.name}` : " (max)"}</p>
     <div class="bar"><div style="width:${lvl.pct}%"></div></div>
     <p class="muted" style="margin-top:10px;font-size:.9rem">🔥 ${state.streak.count}-day streak · ${state.completedLessons.length} lessons · ${state.completedQuizzes.length} quizzes</p>
     <a class="btn small" style="margin-top:6px" href="progress.html">Open dashboard</a>`;

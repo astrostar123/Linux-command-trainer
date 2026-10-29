@@ -1,4 +1,4 @@
-/* store.js — persistent app state (Local Storage) ------------------------- */
+/* store.js - persistent app state (Local Storage) ------------------------- */
 
 export const STORE_KEY = "lct-state-v1";
 

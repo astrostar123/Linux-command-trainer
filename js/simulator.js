@@ -1,4 +1,4 @@
-/* Linux Command Trainer — simulator page
+/* Linux Command Trainer - simulator page
  * Full-screen terminal + practice challenges verified against the live sandbox. */
 
 import { renderChrome, toast, esc } from "./app.js";
@@ -46,7 +46,7 @@ function verify(t) {
     if (ch.id === daily.id && state.dailyChallengeDone !== todayKey) {
       state.dailyChallengeDone = todayKey;
       save();
-      toast("★ Daily challenge done — streak fuel secured.");
+      toast("★ Daily challenge done - streak fuel secured.");
     }
   }
   if (earned) renderChallenges();
@@ -86,7 +86,7 @@ function renderChallenges() {
 
 document.getElementById("reset-term").addEventListener("click", () => {
   bootTerminal();
-  toast("Sandbox reset — fresh filesystem, same challenges.");
+  toast("Sandbox reset - fresh filesystem, same challenges.");
 });
 
 bootTerminal();

@@ -1,4 +1,4 @@
-/* terminal.js — the interactive Linux terminal simulator ------------------
+/* terminal.js - the interactive Linux terminal simulator ------------------
  *
  * A self-contained shell engine over the virtual filesystem in vfs.js.
  * Supports: pipes (|), output redirection (> and >>), environment variables
@@ -213,9 +213,9 @@ Type <span class="exec">help</span> to list supported commands. Tab completes, �
     const node = resolve(this.fs, abs);
     const lines = node?.type === "file" ? node.content.replace(/\n$/, "").split("\n") : [];
     this.mode = { type: "editor", path: abs, lines: node?.type === "file" ? lines : [] };
-    this.print(`GNU nano (simulated) — editing ${abs}`, false);
+    this.print(`GNU nano (simulated) - editing ${abs}`, false);
     if (node?.type === "file" && node.content) this.print(node.content.replace(/\n$/, ""));
-    this.print(`— type lines to append · ':wq' save & exit · ':q!' discard & exit —`, false);
+    this.print(`- type lines to append · ':wq' save & exit · ':q!' discard & exit -`, false);
     this._colorizeLast("dim");
   }
 
@@ -299,7 +299,7 @@ function cmd(names, fn) { for (const n of [].concat(names)) COMMANDS[n] = fn; }
 /* ---- Session & help ---- */
 
 cmd("help", () => ({ out:
-`Supported commands (this is a simulator — a safe sandbox, not a real shell):
+`Supported commands (this is a simulator - a safe sandbox, not a real shell):
 
   Files       ls  cd  pwd  mkdir  rmdir  touch  cp  mv  rm  cat  head  tail  nano  tree  file
   Search/text grep  find  wc  sort  uniq  echo  history
@@ -347,7 +347,7 @@ cmd("which", (t, a) => {
   return COMMANDS[a[0]] ? { out: `/usr/bin/${a[0]}` } : { err: `which: no ${a[0]} in (${t.env.PATH})` };
 });
 cmd("man", (t, a) => a[0]
-  ? { out: `Opening the manual for '${a[0]}'...\nIn this trainer, full documentation lives on the command pages —\nvisit Commands → ${a[0]} for syntax, examples and common mistakes.` }
+  ? { out: `Opening the manual for '${a[0]}'...\nIn this trainer, full documentation lives on the command pages -\nvisit Commands → ${a[0]} for syntax, examples and common mistakes.` }
   : { err: "What manual page do you want?\nFor example, try 'man ls'." });
 cmd("sleep", (t, a) => a[0] ? { out: "" } : { err: "sleep: missing operand" });
 cmd("ssh", (t, a) => a[0]
@@ -542,7 +542,7 @@ cmd("rm", (t, a) => {
   if (!rest.length) return { err: "rm: missing operand" };
   for (const path of rest) {
     const abs = normalize(path, t.cwd);
-    if (abs === "/") return { err: "rm: refusing to remove '/' — and outside this sandbox, that mistake ends careers." };
+    if (abs === "/") return { err: "rm: refusing to remove '/' - and outside this sandbox, that mistake ends careers." };
     const node = resolve(t.fs, abs);
     if (!node) {
       if (flags.has("f")) continue;
@@ -749,7 +749,7 @@ MiB Mem :   7823.4 total,   1174.2 free,   2903.1 used,   3746.1 buff/cache
  1450 student    1.8  2.4 node server.js
   813 www-data   0.1  0.2 nginx: worker
     1 root       0.0  0.1 init
-(top is interactive on a real system — press q there to quit)` }));
+(top is interactive on a real system - press q there to quit)` }));
 
 cmd("kill", (t, a) => {
   const pid = a.filter((x) => !x.startsWith("-")).map(Number)[0];
@@ -758,7 +758,7 @@ cmd("kill", (t, a) => {
   if (!known) return { err: `kill: (${pid}) - No such process` };
   if (pid === 1) return { err: "kill: (1) - Operation not permitted" };
   return { out: a.includes("-9")
-    ? `Process ${pid} killed with SIGKILL (no chance to clean up — prefer plain kill first).`
+    ? `Process ${pid} killed with SIGKILL (no chance to clean up - prefer plain kill first).`
     : `Sent SIGTERM to process ${pid}. It can now shut down cleanly.` };
 });
 
@@ -911,7 +911,7 @@ function pkgManager(nameShown) {
     const action = a[0]; const pkg = a.filter((x) => !x.startsWith("-"))[1];
     t._pkgs = t._pkgs || new Set(["bash", "coreutils", "nano", "curl"]);
     if (action === "update" || action === "check-update")
-      return sudo ? { out: `Reading package lists... Done\nAll package indexes are up to date.` } : { err: `${nameShown}: Permission denied — package operations need sudo` };
+      return sudo ? { out: `Reading package lists... Done\nAll package indexes are up to date.` } : { err: `${nameShown}: Permission denied - package operations need sudo` };
     if (action === "search") return { out: `htop/stable 3.3.0 amd64\n  interactive process viewer\ntree/stable 2.1.1 amd64\n  displays an indented directory tree` };
     if (action === "list") return { out: [...t._pkgs].sort().map((p) => p + "/stable [installed]").join("\n") };
     if (action === "install") {
@@ -921,7 +921,7 @@ function pkgManager(nameShown) {
       return { out: `Reading package lists... Done\nThe following NEW packages will be installed:\n  ${pkg}\nSetting up ${pkg} ...\nDone.` };
     }
     if (action === "remove" || action === "purge") {
-      if (!sudo) return { err: `E: Permission denied — try sudo` };
+      if (!sudo) return { err: `E: Permission denied - try sudo` };
       t._pkgs.delete(pkg);
       return { out: `Removing ${pkg} ...\nDone.` };
     }
@@ -976,7 +976,7 @@ cmd("zip", (t, a) => {
   if (!archive || !target) return { err: "zip: usage: zip [-r] archive.zip files" };
   const src = t.node(target);
   if (!src) return { err: `zip: nothing to do (${target} not found)` };
-  if (src.type === "dir" && !flags.has("r")) return { err: `zip warning: ${target} is a directory — use -r to include its contents` };
+  if (src.type === "dir" && !flags.has("r")) return { err: `zip warning: ${target} is a directory - use -r to include its contents` };
   const { parent, name } = parentOf(t.fs, normalize(archive, t.cwd));
   parent.children[name] = mkfile("ZIPFILE:" + JSON.stringify({ name: normalize(target, t.cwd).split("/").pop(), node: cloneNode(src) }));
   return { out: `  adding: ${target} (deflated 61%)` };

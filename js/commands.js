@@ -1,4 +1,4 @@
-/* commands.js — command browser (list + detail) --------------------------- */
+/* commands.js - command browser (list + detail) --------------------------- */
 
 import { renderChrome, esc, el, param, diffBadge, withCopy, toast } from "./app.js";
 import { state, save, viewCommand, toggleFavorite } from "./store.js";
@@ -66,7 +66,7 @@ function renderDetail(name) {
   }
 
   viewCommand(c.name);
-  document.title = `${c.name} — Linux Command Trainer`;
+  document.title = `${c.name} - Linux Command Trainer`;
   const isFav = () => state.favorites.includes(c.name);
 
   root.innerHTML = `
@@ -111,7 +111,7 @@ function renderDetail(name) {
         : `<span class="chip"><span class="mono">${esc(r)}</span></span>`).join("")}</div>` : ""}
 
     <h2>Your notes</h2>
-    <textarea class="input" id="cmd-notes" placeholder="Private notes about ${esc(c.name)} — saved locally as you type."></textarea>
+    <textarea class="input" id="cmd-notes" placeholder="Private notes about ${esc(c.name)} - saved locally as you type."></textarea>
 
     <hr class="rule">
     <div class="no-print" style="display:flex;gap:10px">

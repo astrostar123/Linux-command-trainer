@@ -1,4 +1,4 @@
-/* Linux Command Trainer — lessons page
+/* Linux Command Trainer - lessons page
  * List of learning paths + single-lesson view with sections, tasks and a mini quiz. */
 
 import { renderChrome, toast, esc, withCopy } from "./app.js";
@@ -31,7 +31,7 @@ if (lessonId) {
 function showList() {
   listView.hidden = false;
   lessonView.hidden = true;
-  document.title = "Lessons — Linux Command Trainer";
+  document.title = "Lessons - Linux Command Trainer";
 
   listEl.innerHTML = lessons
     .map((l, i) => {
@@ -59,7 +59,7 @@ function showList() {
 function showLesson(lesson) {
   listView.hidden = true;
   lessonView.hidden = false;
-  document.title = `${lesson.title} — Linux Command Trainer`;
+  document.title = `${lesson.title} - Linux Command Trainer`;
 
   const idx = lessons.indexOf(lesson);
   const prev = lessons[idx - 1];
@@ -149,7 +149,7 @@ function buildMiniQuiz(lesson) {
       q: `Which command matches: “${c.description}”?`,
       options,
       answer: options.indexOf(c.name),
-      explain: `${c.name} — ${c.description}`,
+      explain: `${c.name} - ${c.description}`,
       cmd: c.name,
       auto: true,
     });
@@ -161,7 +161,7 @@ function renderMiniQuiz(lesson) {
   const box = document.getElementById("mini-quiz");
   const qs = buildMiniQuiz(lesson);
   if (!qs.length) {
-    box.innerHTML = `<p class="muted">No quiz for this lesson yet — head to the <a href="quiz.html">quiz arena</a> instead.</p>`;
+    box.innerHTML = `<p class="muted">No quiz for this lesson yet - head to the <a href="quiz.html">quiz arena</a> instead.</p>`;
     return;
   }
   box.innerHTML = qs

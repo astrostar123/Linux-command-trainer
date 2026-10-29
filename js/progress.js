@@ -1,4 +1,4 @@
-/* Linux Command Trainer — progress dashboard
+/* Linux Command Trainer - progress dashboard
  * Stat cards, SVG quiz-score chart, category completion, achievements,
  * daily goal and a local best-runs leaderboard. */
 
@@ -16,10 +16,10 @@ const $ = (id) => document.getElementById(id);
 
 const lvl = levelInfo();
 const stats = [
-  { label: "Level", value: lvl.name, sub: lvl.next ? `${state.xp} XP — ${lvl.pct}% to ${lvl.next.name}` : `${state.xp} XP — max level` },
+  { label: "Level", value: lvl.name, sub: lvl.next ? `${state.xp} XP - ${lvl.pct}% to ${lvl.next.name}` : `${state.xp} XP - max level` },
   { label: "Streak", value: `${state.streak.count} day${state.streak.count === 1 ? "" : "s"}`, sub: state.streak.count ? "🔥 keep it alive in the simulator" : "run a command today to start one" },
   { label: "Lessons", value: `${state.completedLessons.length} / 13`, sub: "completed" },
-  { label: "Quizzes", value: String(state.completedQuizzes.length), sub: `best ${state.quizHistory.length ? Math.max(...state.quizHistory) + "%" : "—"}` },
+  { label: "Quizzes", value: String(state.completedQuizzes.length), sub: `best ${state.quizHistory.length ? Math.max(...state.quizHistory) + "%" : "-"}` },
   { label: "Commands run", value: String(state.commandRuns || 0), sub: "in the simulator" },
   { label: "Explored", value: `${new Set(state.viewedCommands).size}`, sub: `command pages viewed` },
   { label: "Challenges", value: `${state.completedChallenges.length} / 12`, sub: "solved" },
@@ -130,7 +130,7 @@ $("achievements").innerHTML = ACHIEVEMENTS.map(
 const todayKey = new Date().toISOString().slice(0, 10);
 const dailyDone = state.dailyChallengeDone === todayKey;
 $("daily-goal").innerHTML = `
-  <p style="margin:0 0 8px">${dailyDone ? "✓ Today's challenge is done — streak secured." : "Complete today's terminal challenge to protect your streak."}</p>
+  <p style="margin:0 0 8px">${dailyDone ? "✓ Today's challenge is done - streak secured." : "Complete today's terminal challenge to protect your streak."}</p>
   <div class="bar"><div style="width:${dailyDone ? 100 : 0}%"></div></div>
   <a class="btn ${dailyDone ? "" : "amber"} small" href="simulator.html#daily" style="margin-top:12px">${dailyDone ? "Free practice →" : "Go to today's challenge →"}</a>`;
 
@@ -154,4 +154,4 @@ $("leaderboard").innerHTML = best.length
       </tr>`
       )
       .join("")}</tbody></table>`
-  : `<p class="muted">No quiz runs yet — your best scores will appear here.</p>`;
+  : `<p class="muted">No quiz runs yet - your best scores will appear here.</p>`;

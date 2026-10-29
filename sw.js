@@ -1,7 +1,7 @@
-/* Linux Command Trainer — service worker
+/* Linux Command Trainer - service worker
  * Cache-first for the app shell so the trainer works offline once visited. */
 
-const CACHE = "lct-v1";
+const CACHE = "lct-v2";
 const CORE = [
   "./",
   "./index.html",

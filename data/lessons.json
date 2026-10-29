@@ -3,7 +3,7 @@
  "summary":"What Linux is, how the shell works, and the anatomy of a command.",
  "commands":["echo","whoami","date","clear","man","history"],
  "sections":[
-  {"h":"What is the shell?","p":"When you open a terminal you are talking to a program called a shell (usually Bash). You type a command, press Enter, the shell runs it and prints the result. Everything you will learn here — from copying files to administering servers — happens through this simple loop.","code":"whoami\ndate\necho \"I am learning Linux\""},
+  {"h":"What is the shell?","p":"When you open a terminal you are talking to a program called a shell (usually Bash). You type a command, press Enter, the shell runs it and prints the result. Everything you will learn here - from copying files to administering servers - happens through this simple loop.","code":"whoami\ndate\necho \"I am learning Linux\""},
   {"h":"Anatomy of a command","p":"Commands follow a pattern: the program name, then options (flags that change behavior, like -l), then arguments (what to act on). Options usually start with a dash; long versions start with two.","code":"ls -l /etc\n#  │  │   └── argument: what to list\n#  │  └────── option: long format\n#  └───────── the command itself"},
   {"h":"Getting help","p":"You never need to memorize everything. man opens the manual for any command, and history shows what you have typed before. Inside a manual page, press q to quit and / to search.","code":"man ls\nhistory 5"}],
  "tasks":["Print your username with whoami","Print today's date","Echo the text: hello linux","Show your last 5 commands with history 5"]},
@@ -12,35 +12,35 @@
  "summary":"Move confidently around the filesystem with pwd, ls and cd.",
  "commands":["pwd","ls","cd","tree"],
  "sections":[
-  {"h":"Where am I?","p":"The filesystem is one big tree that starts at / (the root). You are always 'in' one directory — the working directory. pwd prints it, ls shows what's around you, and cd moves you.","code":"pwd\nls\nls -la"},
+  {"h":"Where am I?","p":"The filesystem is one big tree that starts at / (the root). You are always 'in' one directory - the working directory. pwd prints it, ls shows what's around you, and cd moves you.","code":"pwd\nls\nls -la"},
   {"h":"Absolute vs relative paths","p":"An absolute path starts with / and works from anywhere (/var/log). A relative path starts from where you are (logs/app.log). Two special names help: . is the current directory and .. is the parent.","code":"cd /etc          # absolute\ncd ..            # up one level\ncd -             # back to where you were"},
   {"h":"Home sweet home","p":"Every user has a home directory (yours is /home/student in this trainer). The shortcut ~ means home, and cd with no arguments always takes you there.","code":"cd\npwd\nls ~"}],
  "tasks":["Print your current directory","Change into /etc and list its contents","Return home with a single command","Go up one level using .."]},
 
 {"id":"files","title":"Working with Files","icon":"📄","level":"beginner",
- "summary":"Create, view, copy, move and delete files — safely.",
+ "summary":"Create, view, copy, move and delete files - safely.",
  "commands":["touch","cat","cp","mv","rm","head","tail","less"],
  "sections":[
   {"h":"Creating and viewing","p":"touch creates an empty file (or updates its timestamp). cat prints a file's contents; head and tail show just the beginning or end, which matters for long files like logs.","code":"touch notes.txt\necho \"first line\" > notes.txt\ncat notes.txt"},
-  {"h":"Copying and moving","p":"cp copies, mv moves — and because renaming is just moving to a new name, mv is also the rename command. Both silently overwrite existing destinations, so add -i when unsure.","code":"cp notes.txt backup.txt\nmv backup.txt archive.txt\nls"},
-  {"h":"Deleting — with respect","p":"rm deletes permanently. There is no trash bin on the command line. Before any rm with a wildcard, run ls with the same pattern first to preview exactly what will match.","code":"ls *.txt      # preview\nrm archive.txt"}],
+  {"h":"Copying and moving","p":"cp copies, mv moves - and because renaming is just moving to a new name, mv is also the rename command. Both silently overwrite existing destinations, so add -i when unsure.","code":"cp notes.txt backup.txt\nmv backup.txt archive.txt\nls"},
+  {"h":"Deleting - with respect","p":"rm deletes permanently. There is no trash bin on the command line. Before any rm with a wildcard, run ls with the same pattern first to preview exactly what will match.","code":"ls *.txt      # preview\nrm archive.txt"}],
  "tasks":["Create a file called demo.txt","Write a line into it with echo and >","Copy it to demo2.txt","Delete demo2.txt"]},
 
 {"id":"directories","title":"Directories","icon":"📁","level":"beginner",
  "summary":"Build and reorganize directory structures.",
  "commands":["mkdir","rmdir","cp","mv","tree"],
  "sections":[
-  {"h":"Making directories","p":"mkdir creates directories. Its -p flag creates whole nested paths in one go and never complains if part already exists — which makes it the safe default in scripts.","code":"mkdir projects\nmkdir -p projects/2026/august\ntree projects"},
-  {"h":"Copying and removing trees","p":"Directories need cp -r to copy (r for recursive). rmdir removes only empty directories — a built-in safety net. For non-empty ones you need rm -r, which deserves a moment of double-checking every time.","code":"cp -r projects projects-backup\nrmdir empty-dir\nrm -r projects-backup"}],
+  {"h":"Making directories","p":"mkdir creates directories. Its -p flag creates whole nested paths in one go and never complains if part already exists - which makes it the safe default in scripts.","code":"mkdir projects\nmkdir -p projects/2026/august\ntree projects"},
+  {"h":"Copying and removing trees","p":"Directories need cp -r to copy (r for recursive). rmdir removes only empty directories - a built-in safety net. For non-empty ones you need rm -r, which deserves a moment of double-checking every time.","code":"cp -r projects projects-backup\nrmdir empty-dir\nrm -r projects-backup"}],
  "tasks":["Create a directory called lab","Create nested path lab/a/b in one command","List the structure","Remove the empty directory b with rmdir"]},
 
 {"id":"permissions","title":"Permissions","icon":"🔐","level":"intermediate",
- "summary":"Read, write, execute — who can do what, and how to change it.",
+ "summary":"Read, write, execute - who can do what, and how to change it.",
  "commands":["ls","chmod","chown","sudo","whoami"],
  "sections":[
-  {"h":"Reading the permission string","p":"ls -l shows ten characters like -rwxr-xr--. The first is the type (- file, d directory). Then three triplets: owner, group, others — each with read (r), write (w) and execute (x) bits.","code":"ls -l /etc/passwd\n# -rw-r--r-- 1 root root ...\n# owner: read+write · group: read · others: read"},
-  {"h":"chmod: symbolic and octal","p":"Symbolic mode reads like a sentence: chmod u+x adds execute for the user (owner). Octal mode sets everything at once: r=4, w=2, x=1, summed per triplet — so 755 means rwxr-xr-x.","code":"chmod +x script.sh\nchmod 644 notes.txt\nls -l"},
-  {"h":"Ownership and sudo","p":"Every file has an owner and a group; chown changes them (root only). sudo runs one command with root privileges — powerful and dangerous in equal measure. Never use chmod 777 as a fix: it hands write access to everyone.","code":"sudo chown student notes.txt\nsudo whoami"}],
+  {"h":"Reading the permission string","p":"ls -l shows ten characters like -rwxr-xr--. The first is the type (- file, d directory). Then three triplets: owner, group, others - each with read (r), write (w) and execute (x) bits.","code":"ls -l /etc/passwd\n# -rw-r--r-- 1 root root ...\n# owner: read+write · group: read · others: read"},
+  {"h":"chmod: symbolic and octal","p":"Symbolic mode reads like a sentence: chmod u+x adds execute for the user (owner). Octal mode sets everything at once: r=4, w=2, x=1, summed per triplet - so 755 means rwxr-xr-x.","code":"chmod +x script.sh\nchmod 644 notes.txt\nls -l"},
+  {"h":"Ownership and sudo","p":"Every file has an owner and a group; chown changes them (root only). sudo runs one command with root privileges - powerful and dangerous in equal measure. Never use chmod 777 as a fix: it hands write access to everyone.","code":"sudo chown student notes.txt\nsudo whoami"}],
  "tasks":["Create script.sh and make it executable","Set notes.txt to permissions 644","List files in long format and read the permission strings"]},
 
 {"id":"users","title":"Users & Groups","icon":"👥","level":"intermediate",
@@ -48,7 +48,7 @@
  "commands":["whoami","id","who","useradd","usermod","passwd","groups"],
  "sections":[
   {"h":"Identity","p":"whoami tells you who you are; id adds your numeric UID and every group you belong to. Groups exist so permissions can be granted to teams instead of person by person.","code":"whoami\nid\ngroups"},
-  {"h":"Creating accounts","p":"useradd -m creates a user with a home directory; passwd sets their password. usermod -aG adds them to a group — and the -a (append) matters: -G alone replaces every existing membership.","code":"sudo useradd -m -s /bin/bash dana\nsudo passwd dana\nsudo usermod -aG sudo dana"},
+  {"h":"Creating accounts","p":"useradd -m creates a user with a home directory; passwd sets their password. usermod -aG adds them to a group - and the -a (append) matters: -G alone replaces every existing membership.","code":"sudo useradd -m -s /bin/bash dana\nsudo passwd dana\nsudo usermod -aG sudo dana"},
   {"h":"Who is here?","p":"who lists logged-in users; w adds what they are running plus the system load. On shared servers these are your situational awareness commands.","code":"who\nw"}],
  "tasks":["Show your identity with id","List your groups","Show who is logged in"]},
 
@@ -58,14 +58,14 @@
  "sections":[
   {"h":"Is the network up?","p":"Debug connectivity in layers: ping your gateway (LAN works?), ping a public IP like 8.8.8.8 (internet works?), then ping a domain name (DNS works?). Where the chain breaks tells you what to fix.","code":"ping -c 3 192.168.1.1\nping -c 3 8.8.8.8\nping -c 3 example.com"},
   {"h":"Addresses and routes","p":"ip is the modern tool for interfaces and routing. ip addr shows your IP addresses; ip route reveals the default gateway your traffic leaves through.","code":"ip addr\nip route\nhostname -I"},
-  {"h":"What is listening?","p":"Every network service occupies a port. ss -tulpn lists listening TCP/UDP sockets and the processes behind them — the definitive answer to 'is my server actually running, and on which port?'.","code":"ss -tulpn\ncurl -I https://example.com"}],
+  {"h":"What is listening?","p":"Every network service occupies a port. ss -tulpn lists listening TCP/UDP sockets and the processes behind them - the definitive answer to 'is my server actually running, and on which port?'.","code":"ss -tulpn\ncurl -I https://example.com"}],
  "tasks":["Ping example.com three times","Show your IP addresses with ip addr","List listening ports with ss -tulpn"]},
 
 {"id":"processes","title":"Processes","icon":"⚙️","level":"intermediate",
  "summary":"See what's running, understand load, and stop things cleanly.",
  "commands":["ps","top","kill","pgrep","jobs","nohup"],
  "sections":[
-  {"h":"Snapshots and live views","p":"ps aux is a snapshot of every process with its owner, CPU and memory. top is the live version, refreshing continuously — press q to leave it.","code":"ps aux\ntop"},
+  {"h":"Snapshots and live views","p":"ps aux is a snapshot of every process with its owner, CPU and memory. top is the live version, refreshing continuously - press q to leave it.","code":"ps aux\ntop"},
   {"h":"Stopping processes","p":"kill sends signals by PID. The default SIGTERM asks a process to exit and lets it clean up; SIGKILL (-9) is the un-ignorable sledgehammer. Try polite first: data-losing crashes often trace back to a hasty kill -9.","code":"pgrep -l nginx\nkill 812\nkill -9 812   # last resort"},
   {"h":"Background jobs","p":"Append & to run a command in the background. jobs lists them; fg brings one forward, Ctrl+Z suspends the foreground task and bg resumes it in the background.","code":"sleep 300 &\njobs\nkill %1"}],
  "tasks":["List all processes with ps aux","Find a process by name with pgrep","Run sleep 100 & then list jobs"]},
@@ -75,7 +75,7 @@
  "commands":["systemctl","journalctl","service"],
  "sections":[
   {"h":"The service lifecycle","p":"Long-running programs (web servers, databases) run as services managed by systemd. systemctl start|stop|restart changes their state now; status shows whether they are healthy, their PID and their latest log lines.","code":"systemctl status ssh\nsudo systemctl restart ssh"},
-  {"h":"Now vs at boot","p":"start affects only the current boot. enable makes a service launch at every boot. They are independent — forgetting enable is why 'it worked until we rebooted'. enable --now does both at once.","code":"sudo systemctl enable --now nginx\nsystemctl is-enabled nginx"},
+  {"h":"Now vs at boot","p":"start affects only the current boot. enable makes a service launch at every boot. They are independent - forgetting enable is why 'it worked until we rebooted'. enable --now does both at once.","code":"sudo systemctl enable --now nginx\nsystemctl is-enabled nginx"},
   {"h":"Reading service logs","p":"journalctl is the systemd log reader. Filter by unit with -u, follow live with -f, and constrain by time with --since. It replaces hunting through /var/log for many services.","code":"journalctl -u nginx --since today\njournalctl -f"}],
  "tasks":["Show the status of the ssh service","Restart a service with systemctl","View a service's logs with journalctl -u"]},
 
@@ -83,9 +83,9 @@
  "summary":"Disk space, memory, packages, scheduled jobs and shutdowns.",
  "commands":["df","du","free","apt","crontab","shutdown","uname"],
  "sections":[
-  {"h":"Resource checks","p":"Three commands answer 'how is this machine doing?': df -h (disk space per filesystem), free -h (memory — read the 'available' column, not 'free'), and uptime (load averages).","code":"df -h\nfree -h\nuptime"},
+  {"h":"Resource checks","p":"Three commands answer 'how is this machine doing?': df -h (disk space per filesystem), free -h (memory - read the 'available' column, not 'free'), and uptime (load averages).","code":"df -h\nfree -h\nuptime"},
   {"h":"Installing software","p":"On Debian/Ubuntu, apt manages packages. The two-step rhythm matters: apt update refreshes the catalog, apt install fetches the software. On RHEL-family systems the same rhythm uses dnf.","code":"sudo apt update\nsudo apt install htop"},
-  {"h":"Scheduling with cron","p":"crontab -e edits your scheduled jobs. Five fields — minute, hour, day-of-month, month, weekday — then the command. Cron's environment is minimal, so always use absolute paths in the command.","code":"crontab -l\n# 0 2 * * * /home/student/backup.sh  → 02:00 daily"}],
+  {"h":"Scheduling with cron","p":"crontab -e edits your scheduled jobs. Five fields - minute, hour, day-of-month, month, weekday - then the command. Cron's environment is minimal, so always use absolute paths in the command.","code":"crontab -l\n# 0 2 * * * /home/student/backup.sh  → 02:00 daily"}],
  "tasks":["Check disk usage with df -h","Check memory with free -h","List your crontab"]},
 
 {"id":"security","title":"Security Essentials","icon":"🛡️","level":"advanced",
@@ -93,7 +93,7 @@
  "commands":["ssh","ssh-keygen","ufw","sha256sum","chmod","last"],
  "sections":[
   {"h":"Keys beat passwords","p":"SSH key pairs replace passwords with cryptography: the private key stays on your machine, the public key goes on the server. ssh-keygen -t ed25519 creates a modern pair; ssh-copy-id installs it remotely.","code":"ssh-keygen -t ed25519\nssh-copy-id student@server\nssh student@server"},
-  {"h":"Firewalls","p":"A firewall drops traffic to ports you haven't opened. With ufw, the golden rule on a remote machine is: allow SSH first, enable second — the reverse order locks you out mid-session.","code":"sudo ufw allow 22/tcp\nsudo ufw enable\nsudo ufw status"},
+  {"h":"Firewalls","p":"A firewall drops traffic to ports you haven't opened. With ufw, the golden rule on a remote machine is: allow SSH first, enable second - the reverse order locks you out mid-session.","code":"sudo ufw allow 22/tcp\nsudo ufw enable\nsudo ufw status"},
   {"h":"Verify what you run","p":"Checksums prove a download arrived intact and unmodified. Compare sha256sum output against the value published by the project. And audit logins: last shows history, lastlog shows each account's most recent entry.","code":"sha256sum ubuntu.iso\nlast -n 5"}],
  "tasks":["Generate an SSH key pair","Allow port 22 and check ufw status","Compute a file's sha256 checksum"]},
 
@@ -101,8 +101,8 @@
  "summary":"Variables, pipes, redirection and your first scripts.",
  "commands":["echo","export","grep","sort","tee","xargs","source"],
  "sections":[
-  {"h":"Pipes and redirection","p":"The pipe | feeds one command's output into the next — small tools composing into big answers. > writes output to a file (overwriting), >> appends, and 2> captures error output separately.","code":"ps aux | grep nginx\nsort names.txt | uniq -c | sort -rn > report.txt"},
-  {"h":"Variables and environment","p":"NAME=value sets a shell variable; export makes it visible to programs you launch. Double quotes expand variables, single quotes do not — the source of a thousand script bugs.","code":"GREETING=\"hello\"\necho \"$GREETING world\"\nexport EDITOR=nano"},
+  {"h":"Pipes and redirection","p":"The pipe | feeds one command's output into the next - small tools composing into big answers. > writes output to a file (overwriting), >> appends, and 2> captures error output separately.","code":"ps aux | grep nginx\nsort names.txt | uniq -c | sort -rn > report.txt"},
+  {"h":"Variables and environment","p":"NAME=value sets a shell variable; export makes it visible to programs you launch. Double quotes expand variables, single quotes do not - the source of a thousand script bugs.","code":"GREETING=\"hello\"\necho \"$GREETING world\"\nexport EDITOR=nano"},
   {"h":"Your first script","p":"A script is commands in a file, starting with a shebang line telling Linux which interpreter runs it. Make it executable with chmod +x, then run it with ./name. Add set -euo pipefail near the top so failures stop the script instead of compounding.","code":"echo '#!/bin/bash' > hi.sh\necho 'echo \"hi from a script\"' >> hi.sh\nchmod +x hi.sh\n./hi.sh"}],
  "tasks":["Build a pipeline with ps aux | grep","Set and echo a variable","Create hi.sh, make it executable, and run it"]},
 
@@ -110,8 +110,8 @@
  "summary":"find, awk, sed, tar and the power-tool patterns of daily admin work.",
  "commands":["find","grep","awk","sed","tar","rsync","lsof"],
  "sections":[
-  {"h":"find: the filesystem query language","p":"find searches live by name, size, age and type — then acts on the results. The safety pattern: run it with just the tests first, review the list, and only then add -exec or -delete.","code":"find /var/log -name '*.log' -size +50M\nfind . -type f -mtime -1\nfind /tmp -name '*.tmp' -delete"},
+  {"h":"find: the filesystem query language","p":"find searches live by name, size, age and type - then acts on the results. The safety pattern: run it with just the tests first, review the list, and only then add -exec or -delete.","code":"find /var/log -name '*.log' -size +50M\nfind . -type f -mtime -1\nfind /tmp -name '*.tmp' -delete"},
   {"h":"Text surgery: grep, sed, awk","p":"grep finds lines, sed transforms them, awk computes over fields. Together they turn raw logs and config files into answers. Learn one pattern from each and expand as needed.","code":"grep -c ERROR app.log\nsed -i.bak 's/DEBUG=true/DEBUG=false/' app.conf\nawk -F: '{print $1}' /etc/passwd"},
-  {"h":"Archives and sync","p":"tar czf creates compressed archives, tar xzf extracts them (mnemonic: Create/eXtract Zip File). rsync -avz synchronizes trees efficiently, locally or over SSH — and rsync -n dry-runs any risky sync first.","code":"tar czf backup.tar.gz project/\ntar xzf backup.tar.gz -C /tmp\nrsync -avzn src/ dst/   # dry run"}],
+  {"h":"Archives and sync","p":"tar czf creates compressed archives, tar xzf extracts them (mnemonic: Create/eXtract Zip File). rsync -avz synchronizes trees efficiently, locally or over SSH - and rsync -n dry-runs any risky sync first.","code":"tar czf backup.tar.gz project/\ntar xzf backup.tar.gz -C /tmp\nrsync -avzn src/ dst/   # dry run"}],
  "tasks":["Find files modified in the last day","Count ERROR lines in a log with grep -c","Create and extract a tar.gz archive"]}
 ]

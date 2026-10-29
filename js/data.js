@@ -1,4 +1,4 @@
-/* data.js — loads and indexes the command & lesson datasets --------------- */
+/* data.js - loads and indexes the command & lesson datasets --------------- */
 
 let commandsCache = null;
 let lessonsCache = null;
